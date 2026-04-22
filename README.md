@@ -4,7 +4,7 @@ This is a LaTeX template for formatting theses and dissertations for submission 
 
 This template was created using the memoir class as a foundation. If you are interested in adding or modifying features of the template, you will likely find it useful to consult the memoir.cls documentation (memman.pdf) at  http://tug.ctan.org/tex-archive/macros/latex/contrib/memoir/memman.pdf
 
-NOTE: The template and byuthesis.cls work reliably with TeX Live 2024 and earlier versions of the memoir class. If using TeX Live 2025, memoir class v3.8.4b should be used. In Overleaf, when using Tex Live 2025, memoir class v3.8.3b is loaded and this causes formatting problems with the front matter (e.g. title page, etc.) of the document. A bug fix has been implemented for this case.
+NOTE: The template and byuthesis.cls work reliably with TeX Live 2024 and the memoir class version in TeX Live 2024. If using TeX Live 2025, memoir class v3.8.4b should be used. In Overleaf, when using Tex Live 2025, memoir class v3.8.3b is loaded and this causes formatting problems with the front matter (e.g. title page, etc.) of the document. A bug fix has been implemented for this case.
 
 The template also uses biblatex for formatting citations and the bibliography. Documentation for biblatex can be found at https://ctan.math.illinois.edu/macros/latex/contrib/biblatex/doc/biblatex.pdf
 
