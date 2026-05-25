@@ -1,4 +1,9 @@
-\begin{abstract}  
-	The abstract is summary of the work with emphasis on the findings of the study. It is not intended to be an {\em introduction} to the research. Instead, it should concisely state the problem addressed, the methods developed and used, and the results obtained. It must be single spaced and no more than one page in length. It must use the same font and font size as the rest of the work. The abstract precedes the acknowledgment page and the body of the work.
-	{\color{mediumgray} \blindtext}
+\begin{abstract}
+Document files with sensitive information are used across nearly every industry. In recent years, cyberattacks targeting cloud-based file transfer applications have resulted in millions of sensitive documents being exposed. Although document encryption methods exist, they are often limited in usability, security, or deployability. Password-based encryption, the most widely available option, remains vulnerable to brute-force attacks, unauthorized sharing, and human error.
+
+We address these gaps in three phases. First, we present a structured comparative framework adapted from the usability-deployability-security model to evaluate nine document encryption methods across 15 design properties, identifying the benefits and limitations of current approaches. Second, we design and implement a novel document encryption system leveraging FIDO2 passkeys, the WebAuthn PRF extension, and open-source age encryption to provide end-to-end protection of digital documents without passwords. Third, we evaluate this system through a counterbalanced within-subjects user study (N=21) comparing the passwordless approach to traditional password-based encryption as provided by Adobe Acrobat.
+
+Mixed-methods results show the passwordless prototype achieved comparable usability to Adobe Acrobat on first use (SUS 72.0 vs.\ 73.3, $p=.944$) while being rated significantly more useful on the Van der Laan acceptance scale ($p=.014$). When asked which system they would prefer for sharing multiple documents, 19 of 21 participants chose the passwordless approach. Qualitative analysis revealed the password sharing burden was a major pain point with the traditional method, while trust in biometric authentication was a key driver of preference for the passwordless system.
+
+To our knowledge, this is the first study to apply FIDO2 and WebAuthn PRF to end-to-end document encryption rather than user authentication, and one of the first human-subjects usability evaluations of the WebAuthn PRF extension in any context.
 \end{abstract}
