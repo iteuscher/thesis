@@ -1,4 +1,4 @@
-\documentclass[fancy,phd]{byuthesis}
+\documentclass[fancy,masters]{byuthesis}
 % Class options are simple/fancy and masters/phd.
 % Leave options blank for defaults.
 % Defaults are simple for document style, and masters for degree type.
@@ -10,9 +10,46 @@
 % Define path to figure files
 \graphicspath{{figures/}}
 
-% Define sequences of Latin text to fill space in example documents
-% (not needed for your thesis -- delete or comment out if you'd like)
-\usepackage{blindtext} 
+% --- Additional packages required by the imported tables/figures ---
+\usepackage{booktabs}        % \toprule, \midrule, \bottomrule
+\usepackage{tabularx}        % flexible-width X columns
+\usepackage{array}           % advanced column types
+\usepackage{multirow}        % multirow cells
+\usepackage{makecell}        % cell formatting
+\usepackage{ragged2e}        % \RaggedRight
+\usepackage{colortbl}        % \arrayrulecolor, row coloring
+\usepackage{wasysym}         % \CIRCLE, \LEFTcircle, \Circle (UDS rating symbols)
+\usepackage{threeparttable}  % captioned tables with notes
+\usepackage{pdflscape}       % landscape pages for wide tables
+\usepackage{tikz}            % TikZ for the procedure diagram
+\usetikzlibrary{positioning, calc, decorations.pathreplacing}
+\usepackage{url}             % \url{}
+
+% Make tabularx X columns vertically centered by default
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+% --- Custom column types reused across imported tables ---
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{G}{!{\color{gray!50}\vrule}}
+
+% Multirow alignment used by the comparison table
+\renewcommand{\multirowsetup}{\centering\arraybackslash}
+
+% --- Placeholder macro for figures whose source file is not yet supplied ---
+% Renders a clearly labeled grey TODO box at the requested width.
+% Usage: \todofigure[<width>]{<caption>}{<label>}{<description of intended figure>}
+\providecommand{\todofigure}[4][4.5in]{%
+    \begin{center}
+        \fbox{%
+            \begin{minipage}[c][2.5in][c]{#1}%
+                \centering\bfseries\color{red}TODO: Figure pending\\[0.5em]%
+                \normalfont\normalcolor\itshape\small #4%
+            \end{minipage}%
+        }%
+    \end{center}%
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -21,33 +58,32 @@
 % Thesis title for required BYU title page
 % On the required BYU title page, multiple-line titles should MUST be formatted into an inverted
 % pyramid style. Choose line breaks accordingly.
-\title{Exceptional Engineering Research That Has Taken Longer \\ Than Everyone Thought It Would}
+\title{Toward Passwordless \\ Document Encryption}
 
 % On the custom title page, use the same title, but format as you like
 % This custom title page is optional
-\customtitle{Exceptional Engineering Research \\ That Has Taken Longer Than \\ Everyone Thought It Would}
+\customtitle{Toward Passwordless \\ Document Encryption}
 
 % Your name goes here (include middle name or initial if it appears on BYU records):
-\author{Emma J. Student}
+\author{Isaac Henry Teuscher}
 
 % This is the date of graduation
-\date{April 2021}
+\date{June 2026}
 
-% If your degree is not a PhD or MS, then you can overwrite the degree using 
+% If your degree is not a PhD or MS, then you can overwrite the degree using
 % the \degree command: \degree{Bachelors of Basics}
 
 % Your department
 \department{Department of Electrical and Computer Engineering}
 
 % The names of your committee members
-\committeechair{Norman D. Smith}
-\committeemember{Mary Q. Scott}
-\committeemember{Steven R. Jones}
-\committeemember{Anna B. Hanna}
+\committeechair{Benjamin Schooley}
+\committeemember{Dr. Hansen}      % TODO: confirm full name
+\committeemember{Dr. Tay}         % TODO: confirm full name
 
 % Include any keywords you would like for your thesis/dissertation
 % (all lowercase except proper nouns)
-\keywords{awesome stuff, killer app, buzz words}
+\keywords{document encryption, passwordless authentication, FIDO2, WebAuthn, passkeys, PRF extension, usable security}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,8 +126,9 @@
 	\listoftables
 	\clearpage
 
-	\input{nomenclature}
-	\clearpage
+	% Nomenclature is optional. Uncomment to include.
+	% \input{nomenclature}
+	% \clearpage
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -99,25 +136,18 @@
 %%%%%%%%%%%%%%%%%%%%%
 	\mainmatter
 
-% Here you want to include the .tex files where you have your chapter content.  
-% You can name the files whatever you want, but make sure that what you call 
-% them here matches what you name them.
-%
-% Note that the chapter .tex files for the simple template and fancy template 
-% are different because fancy template option has commands and features not 
-% available in the simple template option. 
+% Chapter .tex files for the fancy template option.
+% Each chapter is included individually so they can be commented out
+% temporarily while working on a single chapter.
 
-% Fancy Version
 	\include{fancychapters/chap1}
 	\include{fancychapters/chap2}
 	\include{fancychapters/chap3}
 	\include{fancychapters/chap4}
-
-% Simple Version
-%	\include{simplechapters/chap1}
-%	\include{simplechapters/chap2}
-%	\include{simplechapters/chap3}
-%	\include{simplechapters/chap4}
+	\include{fancychapters/chap5}
+	\include{fancychapters/chap6}
+	\include{fancychapters/chap7}
+	\include{fancychapters/chap8}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -134,6 +164,10 @@
 
 	\include{appenA}
 	\include{appenB}
+	\include{appenC}
+	\include{appenD}
+	\include{appenE}
+	\include{appenF}
 
 
 
@@ -141,4 +175,3 @@
 % --- End --- %
 %%%%%%%%%%%%%%%
 \end{document}
-
