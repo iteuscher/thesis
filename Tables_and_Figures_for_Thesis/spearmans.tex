@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+
+\begin{document}
+
+% ============================================================
+% Spearman Correlations (Section 7.1)
+% ============================================================
+\begin{table}[htbp]
+    \centering
+    \begin{threeparttable}
+        \caption{Spearman Correlations Between Control and Dependent Variables}
+        \label{tab:correlations}
+        \begin{tabular}{lcc}
+            \toprule
+            \textbf{Pair} & \textbf{$\rho$} & \textbf{$p$} \\
+            \midrule
+            ATI vs.\ Passwordless SUS        & $+.578$ & $.006^{**}$  \\
+            ATI vs.\ Password-based SUS      & $+.192$ & .405    \\
+            ATI vs.\ $\Delta$SUS             & $+.304$ & .180    \\
+            ATI vs.\ $\Delta$VdL Usefulness  & $+.367$ & .102    \\
+            ATI vs.\ $\Delta$VdL Satisfaction & $+.168$ & .467   \\
+            PC vs.\ Passwordless SUS         & $+.062$ & .788    \\
+            PC vs.\ $\Delta$VdL Usefulness   & $-.097$ & .676    \\
+            ATI vs.\ PC                      & $+.395$ & .077    \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}
+            \small
+            \item \textit{Note:} $N = 21$. $\Delta$ = Passwordless $-$ Password-based. $^{*} p < .05$, $^{**} p < .01$.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+
+\end{document}

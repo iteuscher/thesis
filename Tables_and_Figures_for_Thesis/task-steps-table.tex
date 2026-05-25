@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{url}
+
+\begin{document}
+
+% ============================================================
+% TABLE: Task Instructions by Condition (Appendix)
+% ============================================================
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5} % Gives breathing room between rows
+    \caption{Task Instructions by Condition}
+    \label{tab:task-instructions}
+    \small
+    \begin{tabularx}{\textwidth}{
+        >{\raggedright\arraybackslash}p{2.2cm} % Left column for Task Names
+        >{\raggedright\arraybackslash}X        % Auto-scaling paragraph column
+        >{\raggedright\arraybackslash}X        % Auto-scaling paragraph column
+    }
+        \toprule
+        & \textbf{Password-based (Adobe Acrobat)} & \textbf{Passwordless (DocProtect)} \\
+        \midrule
+        
+        \textbf{Context} & 
+        For this set of tasks you will use Adobe Acrobat Online to encrypt a file with a password. This means the password you choose will be the key to access the file contents and only those who know the password can read the file contents. & 
+        For this set of tasks you will use a passkey tool to encrypt a file with a passkey. This means your device will create a strong secret instead of a password which will be the key to access the file contents. Only those who have the passkey or are added as recipients will be able to read the file contents. If you are not familiar with passkeys, please watch this 30 second video explaining passkeys: \newline [\textit{Link to Understanding passkeys in 4 minutes, Chrome for Developers on YouTube}]. \\
+        
+        \midrule
+        
+        \textbf{Task 1} \newline (Encryption) & 
+        You have a contract with sensitive information that needs to stay secure. You want to encrypt the document before sending it to an external company. Use Adobe Acrobat Online (\url{https://www.adobe.com/acrobat/online/password-protect-pdf.html}) to encrypt the document with a password. & 
+        You have a contract with sensitive information that needs to stay secure. You want to encrypt the document before sending it to an external company. Use DocProtect (\url{https://doc-protect.vercel.app/}) to encrypt the document with a passkey. You do not need to create a password; instead, authorize the file so [the researcher's] identity ([researcher's email address]) can decrypt it. \\
+        
+        \midrule
+        
+        \textbf{Task 2} \newline (Decryption) & 
+        Now you want to download the encrypted file, open it, and decrypt it to ensure the data is protected and everything looks correct. & 
+        Now you want to download the encrypted file, open it, and decrypt it to ensure the data is protected and everything looks correct. \\
+        
+        \midrule
+        
+        \textbf{Task 3} \newline (Sharing) & 
+        Now you want to share the encrypted file with the external company. Please email the encrypted file to [researcher's email address]. \newline \newline Note: You must ensure the researcher has the password to open it. Please communicate the password using a method you would consider secure in a real office environment. & 
+        Email the encrypted file to [researcher's email address]. You do not need to send a password, but ensure the file is attached correctly. \\
+        
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\end{document}

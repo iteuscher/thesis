@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=0.8in} % Margins reduced to 0.8 inches for more horizontal breathing room
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{wasysym} % Required for the \CIRCLE, \LEFTcircle, and \Circle symbols
+
+% This command tells LaTeX to make the flexible 'X' column vertically centered
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+\begin{document}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.2} 
+    \caption{Evaluation of Implemented System Against Design Requirements}
+    \label{tab:uds-evaluation}
+    \small 
+    \begin{tabularx}{\textwidth}{
+        >{\bfseries\centering\arraybackslash}m{0.6cm} % ID Column
+        >{\raggedright\arraybackslash}m{3.3cm}        % Benefit Column
+        >{\raggedright\arraybackslash}m{2.5cm}        % Rating Column
+        >{\raggedright\arraybackslash}X               % Justification Column
+    }
+        \toprule
+        & \textbf{Benefit} & \textbf{Rating} & \textbf{Justification} \\
+        \midrule
+        
+        % ==========================================
+        % --- USABILITY ---
+        % ==========================================
+        U1 & Memorywise-Effortless & \CIRCLE\ Full & Users authenticate via passkey or security key (biometric or hardware tap). No passwords or secrets to remember. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        U2 & Scalable-for-Users & \CIRCLE\ Full & Users' cognitive load does not increase with additional documents as individual secrets do not need to be remembered. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        U3 & Easy-to-Learn & \CIRCLE\ Full & The guided step-by-step workflow mirrors familiar web interactions. Evaluated empirically in Chapter 6. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        U4 & Easy-Recovery-from-Loss & \LEFTcircle\ Partial & Synced passkeys (e.g. iCloud, Google, 1Password) provide recovery through cloud backup. Hardware-bound credentials have no recovery path. Supporting both authenticator types gives users a choice based on their risk tolerance. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        U5 & Seamless-Sharing & \LEFTcircle\ Partial & Direct download is implemented. Link sharing and the full recipient-initiated access request flow is scaffolded but not fully implemented. \\
+        
+        \midrule % <--- DARK SOLID LINE SEPARATING SECTIONS
+        
+        % ==========================================
+        % --- DEPLOYABILITY ---
+        % ==========================================
+        D1 & Negligible-Cost-per-User & \CIRCLE\ Full & All components are open-source and free. No per-user licensing fees. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        D2 & Negligible-IT-Support-Cost & \CIRCLE\ Full & Browser-based SaaS model requires no client installation, updates, or IT provisioning. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        D3 & Compatible & \LEFTcircle\ Partial & Runs in any modern browser (Chrome 108+, Edge 108+, Safari 16.4+). PRF support depends on both the platform authenticator and operating system; Windows Hello added support in February 2026 and a PBKDF2 fallback is provided for unsupported platforms. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        D4 & Mature & \Circle\ Not satisfied & The current system is a research prototype (v0.1). Maturity can only come as real-world deployment scale over time. Acknowledged as a limitation. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        D5 & Non-Proprietary & \CIRCLE\ Full & \texttt{age} is BSD-3-Clause licensed. WebAuthn and FIDO2 are open W3C/FIDO Alliance standards. The codebase is open-source. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        D6 & Guest-Friendly & \LEFTcircle\ Partial & Recipients can decrypt via their own passkey without provisioned accounts. The share link flow enabling access without prior credentials is scaffolded but not fully implemented. \\
+        
+        \midrule % <--- DARK SOLID LINE SEPARATING SECTIONS
+        
+        % ==========================================
+        % --- SECURITY ---
+        % ==========================================
+        S1 & Resilient-to-Observation & \CIRCLE\ Full & No passwords to observe. The PRF-derived key exists only during the WebAuthn ceremony and is not displayed or typed. Phishing resistant through relying party bound credentials. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        S2 & Resilient-to-Guessing & \CIRCLE\ Full & The encryption key is derived from the authenticator's internal secret via PRF, not from a user-chosen password. Offline brute-force and dictionary attacks are not feasible. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        S3 & Resilient-to-Third-Party-Leak & \CIRCLE\ Full & Encryption keys are derived client-side and never leave the browser. The server only sees already-encrypted ciphertext. Server compromise yields no plaintext or key material. \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        S4 & Granular-Protection & \CIRCLE\ Full & Each document is encrypted with a unique file key. Compromise of one document does not grant access to others. \\
+        
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\end{document}

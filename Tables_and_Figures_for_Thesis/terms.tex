@@ -1,0 +1,65 @@
+\label{app:terms}
+
+\begin{description}
+
+\item[Age:] An open-source, modern file encryption tool and format.
+
+\item[Authenticator:] A tool used to validate one’s identity, such as a phone's fingerprint scanner, facial recognition system, a hardware security key, or a laptop's built-in security chip.
+
+\item[Client:] The software that runs on a user’s device and communicates with remote servers (\textit{Relying Parties}) on behalf of the user. In the context of this work, the \textit{client} is typically a web browser.
+
+\item[Client Device:] The physical hardware (e.g., a laptop or smartphone) on which the \textit{client} software operates.
+
+\item[Client Platform:] The integrated system comprising the \textit{Client} software (e.g., browser) and the \textit{Client Device} it runs on.
+
+\item[Client-side:] A term referring to the user's local computing environment, encompassing the \textit{Client Platform}, the attached \textit{Authenticators}, and the secure connections between them.
+
+\item[CTAP (Client to Authenticator Protocol):] A standard from the \textit{FIDO Alliance} for connecting an external \textit{authenticator} device (e.g., fingerprint scanner or hardware security key) to a web browser-based \textit{client}.
+
+\item[Device-bound Passkey (Single-device Passkey):] A \textit{passkey} tied to a single \textit{authenticator}'s hardware, meaning the credential cannot be synced or leave the device where it was created. 
+
+\item[End-to-End Encryption (E2E):] A system of communication where only the communicating users can read the messages or files, preventing third parties (including the server) from accessing the cryptographic keys needed to decrypt the data. 
+
+\item[FIDO Alliance (Fast IDentity Online):] An industry group (including Apple, Google, Microsoft) working to standardize passwordless authentication protocols for interoperability and consistency across the internet. 
+
+\item[FIDO2:] A standard for passwordless authentication developed, maintained, and promoted by the \textit{FIDO Alliance}. At the core, FIDO2 is made up of \textit{WebAuthn} and \textit{CTAP}.
+
+\item[Hash / Hashing:] A one-way mathematical function that turns data into a string of text that cannot be reversed or decoded. In cybersecurity, it is used to keep sensitive information secure by rendering the resulting value unreadable to humans and extremely difficult to decrypt. 
+
+\item[HMAC (Hash-based Message Authentication Code):] Detailed in RFC 2104, this is the process of combining a secret key with a \textit{salt} and returning a sharable value. This is used as part of the \textit{PRF} performed to generate a secret used for encryption (e.g., HMAC-SHA-256). 
+
+\item[MFT (Managed File Transfer):] A type of software application or service used by organizations to securely store, manage, and share sensitive files. Typically accessed through the internet or an intranet. 
+
+\item[Non-custodial:] An architecture where the server neither stores nor has access to encryption secrets; users alone control secret data through their \textit{authenticators}. 
+
+\item[Passkey:] A passwordless login method where a strong secret is created and stored on a user’s device and unlocked when identity is confirmed (e.g., via fingerprint or PIN), avoiding the need to remember passwords and the need for a physical \textit{authenticator} beyond the user’s standard device.
+
+\item[Passkey Provider:] The software service or operating system process that creates, stores, and manages a user's \textit{passkeys} (e.g., Apple iCloud Keychain, Google Password Manager, or third-party managers like 1Password).
+
+\item[Phishing-resistant:] An authentication mechanism where the credential or key is bound to the specific \textit{relying party} (website), preventing users from being tricked into providing their credentials to a malicious, spoofed site.
+
+\item[Platform Authenticator:] An \textit{authenticator} built directly into a user's device (e.g., Windows Hello, Apple Face ID). 
+
+\item[PRF (Pseudo-Random Function):] A function that generates a deterministic value that is computationally indistinguishable from random, which can be used to perform encryption, including \textit{end-to-end encryption}. 
+
+\item[Relying Party:] A website or application where users log in or authenticate.
+
+\item[Roaming Authenticator:] A physically separate, portable \textit{authenticator} device attached via USB, NFC, or Bluetooth that can be used to sign into multiple devices (e.g., a YubiKey). 
+
+\item[Salt:] A random string of numbers and letters added to a secret before it is \textit{hashed}, ensuring unique outputs even for identical initial secrets.
+
+\item[Secure Hardware Enclave:] A dedicated hardware component for calculating and storing cryptographic secrets, isolated from the rest of the device's processing. It is a primary example of \textit{tamper-resistant hardware}. 
+
+\item[Synced Passkey:] A \textit{passkey} that is shared across a user's devices, typically through a backend cloud-sync operated by a \textit{passkey provider} (e.g., Apple iCloud Keychain, Google Password Manager), allowing for cross-platform availability and recovery. 
+
+\item[Tamper-resistant hardware:] Hardware designed to prevent the cloning, extraction, or viewing of cryptographic keys by malware or physical access (e.g., TPM 2.0 or YubiKeys). 
+
+\item[W3C (World Wide Web Consortium):] An international standards body for web-based communication standards. 
+
+\item[WebAuthn:] A web authentication specification developed and maintained by the \textit{W3C}, widely used to perform authentication between a user’s web browser (\textit{client}) and a remote server.
+
+\item[WebAuthn PRF Extension:] An optional feature described in the \textit{WebAuthn} standard where the \textit{Relying Party} sends a pseudo-random \textit{salt} to the user’s \textit{authenticator} (e.g., via \textit{CTAP}) and receives back a derived secret that can be used for \textit{end-to-end encryption}, while the internal encryption key stays secured on the user’s \textit{authenticator}.
+
+\item[Zero-Knowledge Encryption:] An architecture where zero secret knowledge is given to the server. It is a specific application of a \textit{non-custodial} architecture.
+
+\end{description}

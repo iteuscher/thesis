@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=0.8in}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+
+\begin{document}
+
+% ============================================================
+% TABLE 2: Internal Consistency (Section 7.1)
+% ============================================================
+\begin{table}[htbp]
+    \centering
+    \begin{threeparttable}
+        \caption{Internal Consistency (Cronbach's $\alpha$)}
+        \label{tab:cronbach}
+        \begin{tabular}{lcc}
+            \toprule
+            \textbf{Instrument} & \textbf{Password-based} & \textbf{Passwordless} \\
+            \midrule
+            SUS (10 items)        & .807  & .887 \\
+            VdL (9 items)         & .884  & .890 \\
+            \quad \textit{Usefulness}   & .646  & .834 \\
+            \quad \textit{Satisfaction} & .902  & .813 \\
+            \midrule
+            ATI (9 items)         & \multicolumn{2}{c}{.893} \\
+            PC (4 items)          & \multicolumn{2}{c}{.803} \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}
+            \small
+            \item \textit{Note:} ATI and PC were administered once per participant (not per condition). 
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+
+\end{document}

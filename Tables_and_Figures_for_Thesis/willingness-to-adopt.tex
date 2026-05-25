@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=0.8in}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{colortbl}
+
+\begin{document}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Participant willingness to adopt the passwordless method for personal use.}
+    \label{tab:willingness_to_adopt}
+    \begin{tabular}{@{} l c p{8.5cm} @{}}
+        \toprule
+        \multicolumn{3}{@{} p{14cm} @{}}{\textbf{Interview Question:} \textit{``Would you use the passwordless method for your own sensitive documents if it were available today?''}} \\
+        \midrule
+        \textbf{Response Category} & \textbf{Count} & \textbf{Participants} \\
+        \midrule
+        Yes, enthusiastic & 12/21 & P7, P8, P9, P12, P13, P18, P23, P24, P25, P26, P27, P30 \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        Yes, but/depends & 8/21 & P16, P17, P19, P20, P21, P22, P28, P29 \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        Personal no / sending yes & 1/21 & P11 \\
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        No / active distrust & 0/21 & None \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\end{document}

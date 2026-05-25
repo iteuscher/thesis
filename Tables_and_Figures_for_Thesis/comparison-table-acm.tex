@@ -1,0 +1,72 @@
+\begin{table*}
+\caption{Comparison of Document Encryption Methods by Usability, Deployability, and Security Benefits}
+\centering
+\renewcommand{\multirowsetup}{\centering\arraybackslash}
+\renewcommand{\arraystretch}{1.2}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{G}{!{\color{gray!50}\vrule}}
+\normalsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{2cm}C{1.4cm}M{2cm}L{2.2cm}cccccGccccccGcccc}
+
+\raisebox{-4ex}[0pt][0pt]{\textbf{Auth. Type}} &
+\raisebox{-4ex}[0pt][0pt]{\textbf{Scope}} &
+\raisebox{-4ex}[0pt][0pt]{\textbf{License}} &
+\raisebox{-4ex}[0pt][0pt]{\textbf{Examples}} &
+
+\multicolumn{5}{c}{\textbf{Usability}} & \multicolumn{6}{c}{\textbf{Deployability}} & \multicolumn{4}{c}{\textbf{Security}} \\
+\cmidrule(lr){5-9} \cmidrule(lr){10-15} \cmidrule(lr){16-19}
+& & & & U1 & U2 & U3 & U4 & U5 & D1 & D2 & D3 & D4 & D5 & D6 & S1 & S2 & S3 & S4 \\
+
+\noalign{\hrule height 0.6pt}
+\noalign{\vskip 2pt}
+\multirow[=]{3}{*}{Password-based} & \multirow[=]{3}{*}{File level} & Incumbent & {\small PDF, Microsoft Word}
+    & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle \\
+\cmidrule(lr){3-19}
+& & Proprietary & {\small WinRAR, AxCrypt}
+    & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle \\
+\cmidrule(lr){3-19}
+& & Open Source & {\small 7-zip, Picocrypt}
+    & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle \\
+\noalign{\vskip 2pt}
+\noalign{\hrule height 0.6pt}
+\noalign{\vskip 2pt}
+
+\multirow[=]{2}{*}{Password-based} & \multirow[=]{2}{*}{Full disk} & Proprietary & {\small BitLocker, FileVault}
+    & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle \\
+\cmidrule(lr){3-19}
+& & Open Source & {\small VeraCrypt, LUKS}
+    & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle \\
+\noalign{\vskip 2pt}
+\noalign{\hrule height 0.6pt}
+\noalign{\vskip 2pt}
+
+\multirow[=]{2}{*}{Cloud-based} & \multirow[=]{2}{*}{File share} & Proprietary & {\small MFT, SharePoint, Box}
+    & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle \\
+\cmidrule(lr){3-19}
+& & Open Source & {\small CryptPad, Nextcloud, SFTP}
+    & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle \\
+
+\noalign{\vskip 2pt}
+\noalign{\hrule height 0.6pt}
+\noalign{\vskip 2pt}
+
+\multirow[=]{2}{*}{Passwordless} & \multirow[=]{2}{*}{File level} & Proprietary & {\small PreVeil, Virtru}
+    & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE \\
+\cmidrule(lr){3-19}
+& & Open Source & {\small age, GPG}
+    & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\Circle & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\LEFTcircle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\Circle & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE & \scalebox{1.3}\CIRCLE \\
+    
+\noalign{\vskip 2pt}
+\noalign{\hrule height 0.6pt}
+\end{tabular}
+}
+{\rule{0pt}{0.2ex}
+\makebox[\textwidth][r]{\small
+\scalebox{1.3}\CIRCLE~Satisfies~~\quad
+\scalebox{1.3}\LEFTcircle~Partially Satisfies~~\quad
+\scalebox{1.3}\Circle~Does Not Satisfy~
+}}
+\end{table*}

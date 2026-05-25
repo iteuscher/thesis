@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{booktabs}
+\usepackage{array}
+
+\begin{document}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \setlength{\tabcolsep}{8pt}
+    \caption{Actively exploited vulnerabilities in Managed File Transfer (MFT) systems (2020--2025).}
+    \label{tab:mft_hacks}
+    \begin{tabular}{lllll} 
+        \toprule
+        \textbf{Date} & \textbf{MFT Provider} & \textbf{CVE ID} & \textbf{CVSS 3.1} & \textbf{CISA KEV} \\
+        \midrule
+        Dec 2020 & Accellion FTA & CVE-2021-27101 & 9.8 (Critical) & Yes, Added 11/03/2021 \\
+        Jan 2022 & SolarWinds Serv-U & CVE-2021-35247 & 5.3 (Medium) & Yes, Added 01/21/2022 \\
+        Feb 2023 & Fortra GoAnywhere & CVE-2023-0669 & 7.2 (High) & Yes, Added 02/10/2023 \\
+        May 2023 & Progress MOVEit & CVE-2023-34362 & 9.8 (Critical) & Yes, Added 06/02/2023 \\
+        Apr 2024 & CrushFTP & CVE-2024-4040 & 10.0 (Critical) & Yes, Added 04/24/2024 \\
+        Jun 2024 & SolarWinds Serv-U & CVE-2024-28995 & 8.6 (High) & Yes, Added 07/17/2024 \\
+        Dec 2024 & Cleo MFT & CVE-2024-50623 & 9.8 (Critical) & Yes, Added 12/13/2024 \\
+        Jul 2025 & Wing FTP Server & CVE-2025-47812 & 10.0 (Critical) & Yes, Added 07/14/2025 \\
+        Sep 2025 & Fortra GoAnywhere & CVE-2025-10035 & 10.0 (Critical) & Yes, Added 09/29/2025 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\end{document}
