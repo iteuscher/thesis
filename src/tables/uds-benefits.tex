@@ -1,0 +1,52 @@
+\begin{table}[htbp]
+\caption{Usability, Deployability, and Security Benefits}
+\label{tab:evaluation-criteria}
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}c c >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}X@{}}
+\noalign{\hrule height 1pt}
+\noalign{\vskip 3pt}
+\small\textbf{Category} & \small\textbf{ID} & \small\textbf{Benefit} & \small\textbf{Description} \\
+\noalign{\vskip 2pt}
+\noalign{\hrule height 1pt}
+\noalign{\vskip 3pt}
+\multirow{5}{*}{\rule{0pt}{12ex}\parbox{2.2cm}{\centering\normalsize\textbf{Usability}\\[4pt]\footnotesize How easily the primary user can perform necessary tasks.}} 
+& U1 & Memorywise-Effortless & Users do not have to remember any secrets. Partially satisfies if users have to remember one secret for everything (as opposed to one per document). \\
+\cmidrule(lr){2-4}
+& U2 & Scalable-for-Users & Users' cognitive load does not increase when managing hundreds of documents. \\
+\cmidrule(lr){2-4}
+& U3 & Easy-to-Learn & Users unfamiliar with the method can learn and recall how to use it easily. \\
+\cmidrule(lr){2-4}
+& U4 & Easy-Recovery-from-Loss & Users can regain access if recovery is needed. This combines usability aspects such as: low latency before restored ability; low user inconvenience in recovery; and assurance that recovery is possible. \\
+\cmidrule(lr){2-4}
+& U5 & Seamless-Sharing & Users can easily share a document with others by a familiar method such as a shared link. \\
+\noalign{\vskip 3pt}
+\noalign{\hrule height 1pt}
+\noalign{\vskip 3.5pt}
+\multirow{6}{*}{\rule{0pt}{16ex}\parbox{2.2cm}{\centering\normalsize\textbf{Deployability}\\[4pt]\footnotesize How easily a method can be adopted and used in real-world use cases.}} 
+& D1 & Negligible-Cost-per-User & Cost per user is negligible. \\
+\cmidrule(lr){2-4}
+& D2 & Negligible-IT-Support-Cost & Cost of IT support is negligible. \\
+\cmidrule(lr){2-4}
+& D3 & Compatible & The method works across major operating systems, browsers, and software, ensuring documents can be shared with external partners using systems outside direct control but reasonably up-to-date. \\
+\cmidrule(lr){2-4}
+& D4 & Mature & The method has been implemented and deployed on a large scale in real-world use cases outside of research simulations. \\
+\cmidrule(lr){2-4}
+& D5 & Non-Proprietary & The method used is published openly and not protected by patents or trade secrets. Anyone can implement or use the method for any purpose without paying a fee to anyone else. \\
+\cmidrule(lr){2-4}
+& D6 & Guest-Friendly & Third parties can access shared items using a link or other method without requiring provisioning or unique credentials. \\
+\noalign{\vskip 3pt}
+\noalign{\hrule height 1pt}
+\noalign{\vskip 3pt}
+\multirow{4}{*}{\rule{0pt}{9ex}\parbox{2.2cm}{\centering\normalsize\textbf{Security}\\[4pt]\footnotesize How well the method protects against unauthorized access attempts.}} 
+& S1 & Resilient-to-Observation & Attacker cannot succeed by observation (e.g., shoulder surfing, recording keystrokes, keylogger malware). \\
+\cmidrule(lr){2-4}
+& S2 & Resilient-to-Guessing & Attacker cannot succeed by guessing including offline dictionary attacks. \\
+\cmidrule(lr){2-4}
+& S3 & Resilient-to-Third-Party-Leak & Attacker cannot succeed by gaining information from a third party. \\
+\cmidrule(lr){2-4}
+& S4 & Granular-Protection & Encryption of documents is performed at a granular level so that compromise of one document does not cause access or compromise of additional documents. \\
+\noalign{\vskip 3pt}
+\noalign{\hrule height 1.2pt}
+\end{tabularx}
+\end{table}

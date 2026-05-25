@@ -1,0 +1,32 @@
+﻿\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5} 
+    \caption{Adversary threat mapping to design requirements and UDS framework benefits.}
+    \label{tab:threat_mapping}
+    \begin{tabularx}{\textwidth}{
+        >{\bfseries\centering\arraybackslash}m{0.8cm} % Centered horizontally and vertically
+        >{\raggedright\arraybackslash}m{4.2cm}        % Threat column
+        >{\raggedright\arraybackslash}m{4.2cm}        % Narrowed Design Requirement column
+        >{\raggedright\arraybackslash}X               % Benefits column takes remaining space
+    }
+        \toprule
+        & \textbf{Threat} & \textbf{Design Requirement} & \textbf{Benefit(s)} \\
+        \midrule
+        
+        I & Bulk server-side file access & Granular per-document encryption, no shared encryption key & S4 Granular-Protection \\
+        
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black} 
+        
+        II & Brute-force password cracking post-exfiltration & Passwordless key derivation & S2 Resilient-to-Guessing \newline U1 Memorywise-Effortless \\
+        
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        III & Unauthorized redistribution of exfiltrated files & Recipient-bound encryption & S3 Resilient-to-Third-Party-Leak \\
+        
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black}
+        
+        IV & Server compromise exposing encryption keys & Non-custodial, client-side key derivation, zero-knowledge server & S3 Resilient-to-Third-Party-Leak \\
+        
+        \bottomrule
+    \end{tabularx}
+\end{table}

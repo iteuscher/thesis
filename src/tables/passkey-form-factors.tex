@@ -1,0 +1,24 @@
+﻿\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5} 
+    \caption{Security and usability differences between FIDO2 Passkey form factors.}
+    \label{tab:passkey_form_factors}
+    \begin{tabularx}{\textwidth}{
+        >{\bfseries\raggedright\arraybackslash}m{2.8cm} % Vertically centered, bolded row headers
+        >{\raggedright\arraybackslash}X               % Synced column
+        >{\raggedright\arraybackslash}X               % Device-bound column
+    }
+        \toprule
+        % Note: \textbf{} is omitted for "Authenticator" because the entire column is set to bold above
+        Authenticator & \textbf{Synced} & \textbf{Device-bound} \\
+        \midrule
+        
+        Platform & Created by the built-in platform authenticator. The credential can be discovered and used on multiple devices via cloud sync. & Created by a single device's platform authenticator. Only usable on that specific hardware device. \\
+        
+        \arrayrulecolor{gray!40}\midrule\arrayrulecolor{black} 
+        
+        Roaming & Created on a separately attached device, but the credential can be discovered and used on multiple devices. & Created on a separately attached device. The credential cannot leave the authenticator, but the physical authenticator can be moved to login on multiple devices. \\
+        
+        \bottomrule
+    \end{tabularx}
+\end{table}
