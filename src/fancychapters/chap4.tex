@@ -1,12 +1,76 @@
-\chapter{Conclusions}
+\chapter{Evaluating Document Encryption Methods}
+\label{ch:evaluation}
 
-The purpose of this template is to provide basic instructions in creating your dissertation/thesis document. If you need assistance with writing, please visit the Writing Center in the JKB or consult with your advisor. If you need assistance with \LaTeX, there are tutorials and ample documentation online. You may want to consult with your graduate-student peers who use \LaTeX. If you discover something that would make this template more useful, please feel free to make recommendations. Here is an arbitrary citation to demonstrate how items cited multiple times show up in the References~\scite{Bringhurst19}.
+In this chapter, an analytical framework for measuring document protection methods is presented consistent with approaches taken to evaluate authentication schemes in related domains~\cite{alaca_comparative_2021-1,alaca_comparative_2021,bonneau_quest_2012,borisov_sok_2021}. This framework provides a semi-structured evaluation methodology and benchmark for future document protection methods~\cite{bonneau_quest_2012}. We aim to answer the first research question: \emph{What usability, deployability, and security limitations exist in current document encryption methods?}
 
-Regardless of whether this template or some other method of formatting is employed, you (the student) are responsible for following the guidelines found in \cref{ap:format}. Below is a brief checklist of things to look for as you review your thesis for formatting:
-\begin{itemize}
-	\item Check numbering of sections, figures, tables, equations to make sure they are consistent.	This is where you will be really glad that you are using \LaTeX.
-	\item Ensure that your table of contents, list of figures, and list of tables are up to date and that page numbers are correct. (Hurray for \LaTeX!)
-	\item Make sure all pages are numbered, beginning with the table of contents.
-	\item Be sure there is no extra white space at the bottom of any page except for the final page of a chapter.
-	\item Make sure there are no widows or orphans.\footnote{A \emph{widow} occurs when the last line of a paragraph ends up on the first line of a page. An \emph{orphan} occurs when the first line of a paragraph appears on the last line of a page. Your document may require manual tweaking when it is in final form to get rid of widows and orphans.}
-\end{itemize}
+\section{Usability-Deployability-Security (``UDS'') Framework}
+\label{sec:uds-framework}
+
+The usability-deployability-security (``UDS'') framework was first presented by Bonneau et al.~\cite{bonneau_quest_2012} to evaluate password replacement schemes and has subsequently been reused~\cite{alaca_comparative_2021-1,alaca_comparative_2021}, expanded~\cite{zimmermann_quest_2018}, and adapted~\cite{borisov_sok_2021}. The methodology draws on usability evaluation methods such as feature inspection and Nielsen's heuristic analysis~\cite{nielsen_heuristic_1994} to identify common design properties and develop a taxonomy comparing the benefits offered by each method. The focus is on empirical and technical metrics, limiting subjectivity. Research studies have adapted the UDS framework to specific contexts such as web authentication~\cite{alaca_comparative_2021-1}, single sign-on~\cite{alaca_comparative_2021}, and encrypted email~\cite{borisov_sok_2021}, tailoring the measured benefits to fit the unique needs of each domain.
+
+The categories and evaluation criteria presented in this work are consistent with how UDS frameworks have been developed and applied in prior literature. The development of this document encryption framework involved a review of related standardized evaluation frameworks, an analysis of technical specifications for each product, and expert consultation---with three information security academic researchers and two cybersecurity professionals---to validate decisions.
+
+Several caveats should be considered when interpreting the evaluation framework. First, the ordering does not imply importance or ranking. Second, the benefits chosen are not all of equal weight. Depending on the use case, different criteria may be more or less important (e.g., what matters for an enterprise may not matter for personal consumer use). The framework does not produce precise quantitative scores but enables structured comparison and benchmarking of new methods against existing solutions. The framework is not set in stone; changes in user familiarity, novel security attacks, and other technological advances may require updates over time. As such, the taxonomy is designed to be adaptable and reusable.
+
+Ultimately, the framework illuminates the benefits and limitations of current methods and establishes the design requirements for an ideal method that balances usability, deployability, and security.
+
+\section{Benefits}
+\label{sec:uds-benefits}
+
+We define 15 benefits or desirable properties of document encryption systems, which highlight important evaluation dimensions in Table~\ref{tab:evaluation-criteria}. We considered including additional benefits used in previous UDS frameworks, such as \emph{Physically-Effortless}, \emph{Efficient-to-Use}, and \emph{Accessible}; however, as these benefits are consistently present across current methods and do not provide comparative value, they were omitted from the framework. When evaluating, we assess the benefits provided in typical `in-the-wild' use cases instead of the idealistic use case, as our focus is on the practical benefits provided. For example, we assume users may recycle passwords or choose simple passwords.
+
+\input{tables/uds-benefits}
+
+\section{Groups}
+\label{sec:uds-groups}
+
+To structure the comparison, document encryption methods were grouped by authentication type. Three primary authentication types are used today for document encryption: \textbf{password-based} (a known secret is provided for authentication), \textbf{cloud-based} (authentication takes place between a client and server), and \textbf{passwordless} (a cryptographic key is provided for authentication). Each authentication type can be applied at various scopes: individual file level, full disk, or file share. These authentication methods and scopes, combined with the licensing model (open-source or proprietary), provide the structure for comparison. For this evaluation, password-based file encryption serves as the incumbent solution against which alternative methods are compared.
+
+The nine methods evaluated are organized into four groups. Password-based file encryption includes the built-in encryption features of Microsoft Word and Adobe Acrobat, as well as full-disk encryption tools such as BitLocker and VeraCrypt. Cloud-based encryption includes managed file transfer and cloud storage providers such as Box and SharePoint, as well as privacy-focused productivity suites such as CryptPad. Passwordless file encryption includes open-source tools such as age.
+
+\section{Evaluation and Analysis of Solutions}
+\label{sec:uds-eval-analysis}
+
+The evaluation---summarized in Table~\ref{tab:uds-comparison}---shows that no document encryption method today provides all benefits. As such, the choice of which method to use depends on the importance of each benefit and the tradeoffs associated with a particular use case. We summarize key findings by method below. The filled circle indicates the benefit is provided or satisfied by the method, the half circle indicates partially-satisfies and the empty circle indicates the method does not satisfy the benefit.
+
+\begin{landscape}
+\input{tables/uds-comparison}
+\end{landscape}
+
+\subsection{Password-based encryption}
+\label{sec:eval-password}
+
+One of the most common forms of document encryption today is password-based file-level encryption, which is built into tools like Microsoft Word\textregistered{} and Adobe Acrobat\textregistered{}. Typically, AES 256-bit encryption is used to protect the entire document with a single password (up to 15 characters) used to derive the encryption key.
+
+A major limitation of this method is that, unlike web-based authentication, a password cannot be changed or recovered if forgotten~\cite{microsoft_forgot_password} violating \emph{U4 Easy-Recovery-from-Loss}. This method also lacks \emph{U1 Memorywise-Effortless} and \emph{U2 Scalable-for-Users}, as users must remember unique passwords for each file. In practice, this leads to weak or reused passwords, undermining the potential \emph{S4 Granular-Protection} benefit of file-level encryption.
+
+Password-based encryption also often fails to provide \emph{S2 Resilient-to-Guessing}. Unlike web authentication, which can throttle login attempts, encrypted files are vulnerable to unthrottled offline bruteforce attacks. Researchers have studied how to crack the password of an encrypted PDF using GPUs~\cite{danczul_cuteforce_2013} and tuned software~\cite{hranicky_experimental_2024}. This research found that nearly any password-based document encryption can be cracked with ``little overhead'' given enough time and the proper computational resources~\cite{danczul_cuteforce_2013}. While some implementations use strong key derivation functions---such as PBKDF2 or Argon2---and high iterations, which make brute-force guessing nonfeasible, dictionary attacks remain effective due to users' tendency to choose common, simple passwords.
+
+Password-based encryption can also be applied at the full disk level, which does not provide \emph{S4 Granular-Protection} or \emph{U4 Easy-Recovery-from-Loss} and is typically used for personal device protection instead of sharing documents with others.
+
+Given the usability and security limitations of password-based methods, one may wonder why they are still widely used. It is important to note that password-based encryption performs very well in the deployability category. Bonneau et al.~\cite{bonneau_quest_2012} found that passwords remain a dominant web-based authentication scheme largely because no alternative method provides the same or better levels of deployability benefits. The same holds true in this evaluation of document encryption methods. The familiar password-based encryption of Microsoft Word and PDF documents offers negligible costs (\emph{D1}, \emph{D2}), broad compatibility (\emph{D3}), and wide adoption (\emph{D4}).
+
+Perhaps most importantly, it is one of the few methods that provides a level of the \emph{D6 Guest-Friendly} benefit---the ability for a third party to access shared items without requiring provisioning or unique credentials. While the password must be shared, no user account is needed (thus it partially satisfies \emph{D6}). An example illustrating the importance of this benefit is the United States Department of Justice's instructions for submitting Claims Collection Litigation Reports. These instructions advise users to create a PDF document, encrypt it with a password, and then to ``send the password\ldots\ in a separate email for decryption\ldots\ Never send the decryption password in the same email as the encrypted files''~\cite{doj_claims}. This guidance highlights the lack of usability inherent in password-based document encryption methods but also demonstrates the need for document protection and the reasoning why password-based file encryption remains widely used in this context: it's free, it's interoperable, and it's simple to use for both the public and government agencies.
+
+\subsection{Cloud-based encryption}
+\label{sec:eval-cloud}
+
+Cloud- or server-based encryption methods (such as MFTs and cloud storage applications) are a second popular document encryption method used today. There are several security and usability benefits that the software-as-a-service (SaaS) model provides. Many of the benefits come from the authentication process functioning at the identity level instead of the individual file level. Often SSO (single sign-on) is used, which can provide the benefit of \emph{S1 Resilient-to-Observation} by enforcing MFA (multi-factor authentication). Access to documents is not confined to a single device, and account recovery provides effective \emph{U4 Easy-Recovery-from-Loss}. Furthermore, cloud-based models typically provide familiar and effective methods for sharing files within or outside of an organization. Cloud-based encryption methods are the only schemes to provide both \emph{U5 Seamless-Sharing} and \emph{D6 Guest-Friendly}. Both of which are frequently valued in enterprise and personal use cases.
+
+A major limitation of cloud-based encryption methods is the lack of \emph{S4 Granular-Protection} and \emph{S3 Resilient-to-Third-Party-Leak}. These security limitations come because the cloud provider handles both encryption and authentication. Once a user's session is authenticated, all documents they are authorized to access are effectively decrypted. While a vulnerability in any encryption method can lead to a confidentiality breach, managed cloud-based encryption introduces an additional risk: a breach can occur on the provider's side even if the customer's system has no vulnerability. Additionally, a supply chain incident affecting the provider can impact all customers using the managed service. This scenario occurred five times between 2021 and 2025 as cyber-criminal groups targeting managed file transfer (MFT) applications discovered vulnerabilities and exfiltrated millions of documents from thousands of customers using the same platforms~\cite{cisa_cl0p_2023,kondruss_moveit_2023,simas_unpacking_2023}.
+
+Similar to password-based encryption, while there are limitations of cloud-based encryption, there are other benefits that outweigh the limitations in certain use cases. Again, the importance of deployability and shareability is shown to outweigh security and usability benefits in many real-world scenarios.
+
+\subsection{Passwordless encryption}
+\label{sec:eval-passwordless}
+
+Passwordless file-level encryption offers strong security benefits relative to other methods, particularly in terms of \emph{S2 Resilient-to-Guessing}, \emph{S3 Resilient-to-Third-Party-Leak}, and \emph{S4 Granular-Protection}, because it relies on cryptographic private keys rather than identity verification or user-generated passwords. However, these security benefits come with notable usability and deployability challenges. Sharing passwordless encrypted documents requires secure key exchange, and without integration into widely used platforms, this process often lacks \emph{U5 Seamless-Sharing} and \emph{D6 Guest-Friendly}. Additionally, recovery from lost keys is difficult or impossible, making \emph{U4 Easy-Recovery-from-Loss} a significant limitation.
+
+Today, using passwordless encryption to provide confidentiality of documents remains uncommon in both enterprise and personal domains due to complex deployment and limited interoperability. However, if barriers to adoption, especially around interoperability and sharing, are addressed, passwordless encryption could offer the strongest overall security of any method evaluated in this framework.
+
+These findings align with evaluations of FIDO2 authentication using the original Bonneau et al.\ framework. As discussed in Section~\ref{sec:fido2-evals}, Lyastani et al.\ applied the Bonneau framework to FIDO2 with hardware security keys and found it scored nearly perfectly, with four remaining gaps: \emph{Nothing-to-Carry}, \emph{Easy-Recovery-from-Loss}, \emph{Server-Compatible}, and \emph{Resilience-to-Theft}. B\"uttner et al.\ performed a similar comparison of synced versus device-bound passkeys, finding that synced passkeys address portability and recovery but shift security concentration to the passkey provider. Translating to the document encryption context, these gaps map to this framework's \emph{U4 Easy-Recovery-from-Loss}, \emph{D3 Compatible}, and \emph{D6 Guest-Friendly}. The weaknesses of hardware-bound and synced passkeys are largely complementary: hardware provides no trusted third party while synced provides portability and recovery. If a passwordless document encryption system could support both authenticator types, leveraging the strengths of each, it could address the primary barriers identified in this evaluation. This possibility is explored in Chapter~\ref{ch:system-design}.
+
+\section{Summary of Analysis}
+\label{sec:eval-summary}
+
+Since password-based encryption was introduced in standard document editing tools, innovation in protecting documents has lagged. While digital signatures are commonly used in PDF software to verify the owner or editor of a document (integrity and non-repudiation), protecting the content of a document (confidentiality) often still relies on a simple, fixed password. The framework presented in this chapter provides a structured benchmark for comparing current and future document encryption methods. The 15 benefits identified serve as design requirements for an ideal system: one that is open-source, passwordless, and integrates with widely used identity providers. The design and implementation of such a system is presented in Chapter~\ref{ch:system-design}.
