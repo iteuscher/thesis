@@ -222,17 +222,20 @@ month = aug
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Additional references added for the full thesis (beyond the DocEng25 paper)
-%% TODO: many of these are stub entries to allow \cite{} to compile; replace
-%% with full Zotero-exported BibTeX records before submission.
+%% Additional references for the full thesis (beyond the DocEng25 paper).
+%% Web/software entries include urldate; sync major changes from Zotero.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 @inproceedings{lyastani_fido2_2020,
-    title     = {Is {FIDO2} the Kingslayer of User Authentication? {A} Comparative Usability Study of {FIDO2} Passwordless Authentication},
+    title     = {Is {FIDO2} the {Kingslayer} of {User} {Authentication}? {A} {Comparative} {Usability} {Study} of {FIDO2} {Passwordless} {Authentication}},
     author    = {Lyastani, Sanam Ghorbani and Schilling, Michael and Neumayr, Michaela and Backes, Michael and Bugiel, Sven},
     booktitle = {2020 {IEEE} Symposium on Security and Privacy ({SP})},
     year      = {2020},
-    publisher = {IEEE},
+    month     = may,
+    publisher = {IEEE Computer Society},
+    pages     = {268--285},
+    doi       = {10.1109/SP40000.2020.00047},
+    url       = {https://ieeexplore.ieee.org/document/9152694},
 }
 
 @inproceedings{wursching_fido2_2023,
@@ -240,7 +243,10 @@ month = aug
     author    = {W{\"u}rsching, Leon and Putz, Florentin and Haesler, Steffen and Hollick, Matthias},
     booktitle = {Proceedings of the 2023 {CHI} Conference on Human Factors in Computing Systems},
     year      = {2023},
+    month     = apr,
+    publisher = {ACM},
     doi       = {10.1145/3544548.3580993},
+    url       = {https://dl.acm.org/doi/10.1145/3544548.3580993},
 }
 
 @article{brooke_sus_1996,
@@ -352,15 +358,18 @@ month = aug
     number  = {2},
     pages   = {77--101},
     year    = {2006},
+    doi     = {10.1191/1478088706qp063oa},
 }
 
-@inproceedings{nielsen_heuristic_1994,
+@incollection{nielsen_heuristic_1994,
     title     = {Heuristic Evaluation},
     author    = {Nielsen, Jakob},
     booktitle = {Usability Inspection Methods},
     editor    = {Nielsen, Jakob and Mack, Robert L.},
     publisher = {John Wiley \& Sons},
+    address   = {New York, NY},
     year      = {1994},
+    pages     = {25--62},
 }
 
 @inproceedings{teuscher_document_2025,
@@ -459,22 +468,27 @@ month = aug
     title        = {Security Deep Dive into {CTAP2} hmac-secret},
     author       = {{Yubico}},
     howpublished = {\url{https://developers.yubico.com/WebAuthn/Concepts/PRF_Extension/CTAP2_HMAC_Secret_Deep_Dive.html}},
+    urldate      = {2025-12-15},
 }
 
 @misc{bitwarden_prf_2024,
     title        = {Bitwarden announces support for passkey-based encryption via {WebAuthn} {PRF}},
-    author       = {Bitwarden},
+    author       = {{Bitwarden}},
     year         = {2024},
+    month        = oct,
     howpublished = {Bitwarden Blog},
+    url          = {https://bitwarden.com/blog/bitwarden-announces-support-for-passkey-based-encryption-via-webauthn-prf/},
+    urldate      = {2025-12-15},
 }
 
-@article{buttner_passkey_2025,
+@inproceedings{buttner_passkey_2025,
     title     = {Device-Bound vs. {Synced} Credentials: {A} Comparative Evaluation of Passkey Authentication},
     author    = {B{\"u}ttner, Andre and Gruschka, Nils},
     booktitle = {Proceedings of the 11th International Conference on Information Systems Security and Privacy ({ICISSP})},
     pages     = {651--659},
     year      = {2025},
     doi       = {10.5220/0013380600003899},
+    url       = {https://www.scitepress.org/Link.aspx?doi=10.5220/0013380600003899},
 }
 
 @inproceedings{barbosa_provable_2021,
@@ -576,10 +590,14 @@ month = aug
 }
 
 @inproceedings{ramat_passkey_2025,
-    title     = {Passkey Implementation Patterns Across 111 Websites},
-    author    = {Ramat, Yannick and others},
-    booktitle = {Symposium on Usable Privacy and Security ({SOUPS}) 2025 Posters},
+    title     = {A {Systematic} {Analysis} of the {Passkey} {User} {Experience}},
+    author    = {Ramat, Bernhardt and Kartchner, Dave and Seamons, Kent},
+    booktitle = {Symposium on Usable Privacy and Security ({SOUPS} 2025) --- Poster},
     year      = {2025},
+    month     = aug,
+    address   = {Seattle, WA},
+    publisher = {{USENIX} Association},
+    url       = {https://www.usenix.org/conference/soups2025/presentation/ramat-poster},
 }
 
 @inproceedings{jannett_webauthn_2026,
@@ -606,11 +624,13 @@ month = aug
     doi       = {10.1145/3613904.3642432},
 }
 
-@misc{grothe_rms_2016,
-    title     = {How to Break Microsoft Rights Management Services},
+@inproceedings{grothe_rms_2016,
+    title     = {How to Break {Microsoft} {Rights} {Management} {Services}},
     author    = {Grothe, Martin and Mainka, Christian and R{\"o}sler, Paul and Schwenk, J{\"o}rg},
-    booktitle = {Proceedings of the 10th {USENIX} Conference on Offensive Technologies ({WOOT}'16)},
+    booktitle = {Proceedings of the 10th {USENIX} Conference on Offensive Technologies ({WOOT} '16)},
     year      = {2016},
+    month     = aug,
+    publisher = {{USENIX} Association},
     pages     = {26--39},
 }
 
@@ -624,8 +644,10 @@ month = aug
 
 @misc{adobe_pdf_timeline,
     title        = {History of the {PDF} {Timeline}},
-    author       = {Adobe},
+    author       = {{Adobe}},
+    year         = {2024},
     howpublished = {\url{https://www.adobe.com/acrobat/resources/pdf-timeline.html}},
+    urldate      = {2025-02-10},
 }
 
 @misc{us_census_2023,
@@ -652,43 +674,57 @@ month = aug
 @misc{age_repo,
     title        = {age: A simple, modern and secure file encryption tool, format, and {Go} library},
     author       = {Valsorda, Filippo},
+    year         = {2026},
     howpublished = {\url{https://github.com/FiloSottile/age}},
+    urldate      = {2026-05-26},
 }
 
 @misc{age_spec,
     title        = {{c2sp.org/age}: The age specification},
     author       = {{Community Cryptography Specification Project}},
+    year         = {2026},
     howpublished = {\url{https://c2sp.org/age}},
+    urldate      = {2026-05-26},
 }
 
 @misc{typage_repo,
     title        = {typage: A {TypeScript} implementation of age file encryption},
     author       = {Valsorda, Filippo},
+    year         = {2026},
     howpublished = {\url{https://github.com/FiloSottile/typage}},
+    urldate      = {2026-05-26},
 }
 
 @misc{picocrypt_repo,
     title        = {Picocrypt: A small, secure, and audited file encryption tool},
     author       = {{Picocrypt}},
+    year         = {2026},
     howpublished = {\url{https://github.com/Picocrypt/Picocrypt}},
+    urldate      = {2026-05-26},
 }
 
 @misc{opentdf_spec,
     title        = {{OpenTDF} Specification},
     author       = {{OpenTDF Project}},
+    year         = {2026},
     howpublished = {\url{https://github.com/opentdf/spec}},
+    urldate      = {2026-05-26},
 }
 
 @misc{dni_tdf,
     title        = {Trusted Data Format ({TDF})},
     author       = {{U.S. Office of the Director of National Intelligence}},
+    year         = {2026},
     howpublished = {\url{https://www.dni.gov/index.php/who-we-are/organizations/ic-cio/ic-cio-related-menus/ic-cio-related-links/ic-technical-specifications/trusted-data-format}},
+    urldate      = {2026-05-26},
 }
 
 @misc{nist_abac,
     title        = {Attribute-Based Access Control},
     author       = {{NIST}},
+    year         = {2026},
     howpublished = {\url{https://csrc.nist.gov/projects/attribute-based-access-control}},
+    urldate      = {2026-05-26},
 }
 
 @misc{stauble_age_thesis,
@@ -696,12 +732,16 @@ month = aug
     author       = {St{\"a}uble, Mirco},
     year         = {2022},
     howpublished = {Semester project, {ETH} Z{\"u}rich},
+    url          = {https://ethz.ch/content/dam/ethz/special-interest/infk/inst-infsec/appliedcrypto/education/theses/semester-project_mirco-stauble.pdf},
+    urldate      = {2026-05-26},
 }
 
 @misc{docprotect_repo,
     title        = {doc-protect: Passwordless document encryption prototype},
     author       = {Teuscher, Isaac Henry},
+    year         = {2026},
     howpublished = {\url{https://github.com/iteuscher/doc-protect}},
+    urldate      = {2026-05-26},
 }
 
 @misc{doe_encryption,
@@ -712,11 +752,17 @@ month = aug
     urldate      = {2026-05-26},
 }
 
-@misc{garfinkel_email_2005,
+@inproceedings{garfinkel_email_2005,
     title     = {How to make secure email easier to use},
     author    = {Garfinkel, Simson L. and Margrave, David and Schiller, Jeffrey I. and Nordlander, Erik and Miller, Robert C.},
-    booktitle = {Proceedings of the {SIGCHI} Conference on Human Factors in Computing Systems ({CHI})},
+    booktitle = {Proceedings of the {SIGCHI} Conference on Human Factors in Computing Systems},
     year      = {2005},
+    month     = apr,
+    publisher = {Association for Computing Machinery},
+    address   = {New York, NY, USA},
+    pages     = {701--710},
+    doi       = {10.1145/1054972.1055069},
+    url       = {https://dl.acm.org/doi/10.1145/1054972.1055069},
 }
 
 @article{herley_research_2011,
@@ -726,7 +772,10 @@ month = aug
     volume  = {10},
     number  = {1},
     pages   = {28--36},
-    year    = {2011},
+    year    = {2012},
+    month   = jan,
+    doi     = {10.1109/MSP.2011.150},
+    url     = {https://ieeexplore.ieee.org/document/6035662},
 }
 
 @inproceedings{herley_so_2009,
@@ -757,7 +806,7 @@ month = aug
     doi     = {10.1109/ACCESS.2023.3267717},
 }
 
-@misc{kortum_bangor_2013,
+@article{kortum_bangor_2013,
     title   = {Usability ratings for everyday products measured with the {System} {Usability} {Scale}},
     author  = {Kortum, Philip T. and Bangor, Aaron},
     journal = {International Journal of Human-Computer Interaction},
@@ -765,6 +814,7 @@ month = aug
     number  = {2},
     pages   = {67--76},
     year    = {2013},
+    doi     = {10.1080/10447318.2012.704215},
 }
 
 @misc{sauro_lewis_2016,
@@ -791,14 +841,18 @@ month = aug
 
 @misc{ibm_xforce_mft,
     title        = {{X-Force} Releases Detection \& Response Framework for Managed File Transfer Software},
-    author       = {{IBM}},
+    author       = {{IBM X-Force Security Research Team}},
+    year         = {2024},
     howpublished = {\url{https://www.ibm.com/think/x-force/x-force-releases-detection-response-framework-managed-file-transfer-software}},
+    urldate      = {2025-02-06},
 }
 
 @misc{msspalert_accellion,
     title        = {Accellion Vulnerabilities: Victim List},
     author       = {{MSSP Alert}},
+    year         = {2021},
     howpublished = {\url{https://www.msspalert.com/news/accellion-vulnerabilities-victim-list}},
+    urldate      = {2025-04-10},
 }
 
 @misc{cisa_accellion,
@@ -811,13 +865,17 @@ month = aug
 @misc{lyon_moveit,
     title        = {{MOVEit} Data Breach Class Action Lawsuit},
     author       = {{The Lyon Firm}},
+    year         = {2023},
     howpublished = {\url{https://thelyonfirm.com/blog/moveit-data-breach-clop-ransomware/}},
+    urldate      = {2025-04-10},
 }
 
 @misc{passkeys_dev_terms,
     title        = {Reference: {Terms}},
     author       = {{passkeys.dev}},
+    year         = {2026},
     howpublished = {\url{https://passkeys.dev/docs/reference/terms/}},
+    urldate      = {2025-12-15},
 }
 
 @misc{age_wasm,
@@ -831,13 +889,19 @@ month = aug
 @misc{microsoft_word_encryption,
     title        = {Add or remove protection in your document, workbook, or presentation},
     author       = {{Microsoft}},
+    year         = {2026},
     howpublished = {Microsoft Support},
+    url          = {https://support.microsoft.com/en-us/office/add-or-remove-protection-in-your-document-workbook-or-presentation-05084cc3-300d-4c1a-84e5-8e50a80fdf43},
+    urldate      = {2025-02-10},
 }
 
 @misc{adobe_pdf_encryption,
     title        = {Securing {PDFs} with passwords},
     author       = {{Adobe}},
+    year         = {2026},
     howpublished = {Adobe Acrobat User Guide},
+    url          = {https://helpx.adobe.com/acrobat/using/securing-pdfs-passwords.html},
+    urldate      = {2025-02-10},
 }
 
 @misc{microsoft_forgot_password,
@@ -849,23 +913,29 @@ month = aug
 @misc{doj_claims,
     title        = {{CCLR} Submission Instructions},
     author       = {{U.S. Department of Justice}},
+    year         = {2024},
     howpublished = {\url{https://www.justice.gov/jmd/file/789256/dl}},
+    urldate      = {2025-02-10},
 }
 
 @inproceedings{whitten_why_1999,
     title     = {Why {Johnny} Can't Encrypt: A Usability Evaluation of {PGP} 5.0},
     author    = {Whitten, Alma and Tygar, J.~D.},
     booktitle = {Proceedings of the 8th {USENIX} Security Symposium},
+    publisher = {{USENIX} Association},
+    address   = {San Antonio, TX},
     pages     = {169--184},
     year      = {1999},
+    url       = {https://www.usenix.org/legacy/event/sec99/full_papers/whitten/whitten.pdf},
 }
 
 @article{zhang_self_efficacy_2017,
     title   = {User Acceptance of Mobile Health Services from Users' Perspectives: The Role of Self-Efficacy and Response-Efficacy in Technology Acceptance},
-    author  = {Zhang, Xiaofei and others},
+    author  = {Zhang, Xiao Wei and Guo, Xitong and Lai, Kee Hung and McLeod, Dennis},
     journal = {Informatics for Health and Social Care},
     volume  = {42},
     number  = {2},
     pages   = {194--206},
     year    = {2017},
+    doi     = {10.1080/17538157.2016.1177765},
 }
