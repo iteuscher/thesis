@@ -1,7 +1,7 @@
 \chapter{Study Instruments}
 \label{ap:instruments}
 
-This appendix contains the survey instruments and interview questions used in the user study described in Chapter~\ref{ch:user-study}. The Qualtrics surveys captured demographic information, validated scale responses (PC, ATI, SUS, VdL), and the counterbalanced presentation order. The semi-structured interview was used to gather qualitative feedback after participants completed the tasks on both systems.
+This appendix contains the survey instruments and interview questions used in the user study described in Chapter~\ref{ch:user-study}. The Qualtrics screening survey captured demographic information, validated scale responses (PC and ATI), informed consent, and scheduling. The Qualtrics in-session survey captured the SUS and VdL responses for each system after task completion. The semi-structured interview was used to gather qualitative feedback after participants completed the tasks on both systems.
 
 \section{Qualtrics Screening Survey: Passwordless Document Encryption}
 \label{sec:screening-survey}
@@ -126,15 +126,35 @@ If you have questions regarding your rights as a research subject, contact the H
     \item Please specify what days and locations you are available to meet with a researcher from the following options. A researcher will contact you by email to confirm the date, time, and location.
 \end{enumerate}
 
-\section{Qualtrics In-Session Survey}
+\section{In-Session Usability Study: Passwordless Document Encryption}
 \label{sec:in-session-survey}
 
-The Qualtrics in-session survey captured the System Usability Scale (SUS)~\cite{brooke_sus_1996} and Van der Laan System Acceptance Scale (VdL)~\cite{vanderlaan_simple_1997} after each system was used. The presentation order of the two systems was counterbalanced and recorded as a data field so the SUS and VdL responses could be correctly assigned to the password-based or passwordless condition during analysis. The full SUS and VdL item sets administered in the in-session survey are reproduced in Sections~\ref{sec:sus-items} and~\ref{sec:vdl-items}, respectively.
+The in-session usability study presented participants with a study scenario, two task sets (one per system), the System Usability Scale (SUS)~\cite{brooke_sus_1996}, and the Van der Laan System Acceptance Scale (VdL)~\cite{vanderlaan_simple_1997} after each system was used. The presentation order of the two systems was counterbalanced and recorded as a data field so the SUS and VdL responses could be correctly assigned to the password-based or passwordless condition during analysis. The full in-session study instrument is reproduced below.
 
-\section{System Usability Scale (SUS)}
+\subsection*{Study Scenario}
+Imagine you are a contractor handling sensitive financial and HR data. You need to encrypt a sensitive contract and send it to your business partner who works remotely. You must ensure that if your email is intercepted, a thief cannot read the file.
+
+\subsection*{Tasks: Password-Based Method}
+\textbf{Context:} For this set of tasks you will use Adobe Acrobat Online to encrypt a file with a password.
+
+\begin{enumerate}
+    \item \textbf{Task 1 (Encryption):} You have a contract with sensitive information that needs to stay secure. You want to encrypt the document before sending it to an external company. Use Adobe Acrobat Online to encrypt the document with a password.
+    \item \textbf{Task 2 (Open encrypted file):} Now you want to download the encrypted file, open it, and decrypt it to ensure the data is protected and everything looks correct.
+    \item \textbf{Task 3 (Sharing):} Now you want to share the encrypted file with the external business partner. Please email the encrypted file to the researcher. You must ensure your business partner has the password to open the file. Please communicate the password in a method you would consider secure in a real office environment.
+\end{enumerate}
+
+\subsection*{Tasks: Passwordless Method}
+\textbf{Context:} For this set of tasks you will use a Passwordless system to encrypt a file with a passkey.
+
+\begin{enumerate}
+    \item \textbf{Task 1 (Encryption):} You have a contract with sensitive information that needs to stay secure. You want to encrypt the document before sending it to an external company. Use the Passwordless Document Encryption tool to encrypt the document with a passkey. You do not need to create a password; instead, authorize the file so your business partner can decrypt it.
+    \item \textbf{Task 2 (Open encrypted file):} Now you want to download the encrypted file, open it, and decrypt it to ensure the data is protected and everything looks correct.
+    \item \textbf{Task 3 (Sharing):} Now you want to share the encrypted \texttt{.rico} file with the external business partner. Please email the encrypted file to the researcher. You do not need to send a password, but ensure the file is attached correctly.
+\end{enumerate}
+
+\subsection*{System Usability Scale (SUS)}
 \label{sec:sus-items}
-
-The System Usability Scale~\cite{brooke_sus_1996} consists of the following ten items, each rated on a five-point Likert scale from ``Strongly Disagree'' (1) to ``Strongly Agree'' (5).
+Participants were asked to rate their immediate reaction to each tool on a 5-point Likert scale ranging from \textit{Strongly disagree} to \textit{Strongly agree}.
 
 \begin{enumerate}
     \item I think that I would like to use this system frequently.
@@ -144,36 +164,35 @@ The System Usability Scale~\cite{brooke_sus_1996} consists of the following ten 
     \item I found the various functions in this system were well integrated.
     \item I thought there was too much inconsistency in this system.
     \item I would imagine that most people would learn to use this system very quickly.
-    \item I found the system very cumbersome to use.
+    \item I found the system very awkward to use.
     \item I felt very confident using the system.
     \item I needed to learn a lot of things before I could get going with this system.
 \end{enumerate}
 
-Scoring follows Brooke's standard procedure~\cite{brooke_sus_1996}: for odd-numbered items, the score contribution is the scale position minus 1; for even-numbered items, the contribution is 5 minus the scale position. The sum of the 10 item contributions is multiplied by 2.5 to produce a final SUS score on a 0--100 scale.
+\textbf{Scoring.} For odd-numbered items, the score contribution is the scale position minus 1; for even-numbered items, the contribution is 5 minus the scale position. The sum of the 10 item contributions is multiplied by 2.5 to produce a final SUS score on a 0--100 scale~\cite{brooke_sus_1996}.
 
-\section{Van der Laan System Acceptance Scale (VdL)}
+\subsection*{Van der Laan Acceptance Scale}
 \label{sec:vdl-items}
+Participants rated their immediate reaction to each tool by selecting the term that best described their experience (``I find such a system\ldots'') on a 5-point semantic-differential scale between each pair of opposing adjectives.
 
-The Van der Laan Acceptance Scale~\cite{vanderlaan_simple_1997} is a nine-item semantic differential instrument with a five-point scale ($-2$ to $+2$) between each pair of opposing adjectives:
+\begin{itemize}
+    \item Useful
+    \item Pleasant
+    \item Bad
+    \item Nice
+    \item Effective
+    \item Irritating
+    \item Assisting
+    \item Undesirable
+    \item Raising Alertness
+\end{itemize}
 
-\begin{enumerate}
-    \item Useful--Useless (Usefulness)
-    \item Pleasant--Unpleasant (Satisfaction)
-    \item Bad--Good (Usefulness)
-    \item Nice--Annoying (Satisfaction)
-    \item Effective--Superfluous (Usefulness)
-    \item Irritating--Likeable (Satisfaction)
-    \item Assisting--Worthless (Usefulness)
-    \item Undesirable--Desirable (Satisfaction)
-    \item Raising Alertness--Sleep Inducing (Usefulness)
-\end{enumerate}
+\textbf{Scoring.} Responses were converted from the raw 1--5 Likert scale to the standard $-2$ to $+2$ scale, with polarity reversals applied to items where the positive pole appeared first in the semantic-differential pair. The five usefulness items (1, 3, 5, 7, 9) and four satisfaction items (2, 4, 6, 8) were then averaged into their respective subscale scores.
 
-After applying polarity reversals to items where the positive pole appeared first in the differential pair, the five usefulness items (1, 3, 5, 7, 9) and four satisfaction items (2, 4, 6, 8) are averaged into their respective subscale scores.
-
-\section{Interview Questions}
+\section{Post-Session Interview Questions}
 \label{sec:interview-questions}
 
-The following 10 semi-structured interview questions were used at the conclusion of each study session to gather qualitative feedback from the participants. Participants were informed of audio recording prior to the questions and reminded that responses would be stored anonymously (pseudonymized).
+The following semi-structured interview questions were used at the conclusion of each study session to gather qualitative feedback from the participants. Participants were informed of audio recording prior to the questions and reminded that responses would be stored anonymously (pseudonymized).
 
 \begin{quote}
 \textit{I will now ask you a few open-ended questions to get your feedback and thoughts. If it is still okay with you, I will start an audio recording to capture your responses; your answers will be stored anonymously (pseudonymized).}
@@ -191,8 +210,3 @@ The following 10 semi-structured interview questions were used at the conclusion
     \item If you had to send 10 encrypted documents a day to different clients, which method would you prefer? Please explain your reasoning.
     \item Did the passwordless method feel ``secure'' to you, or did the lack of a password make it feel less safe?
 \end{enumerate}
-
-\section{Participant Task Instructions}
-\label{sec:task-instructions}
-
-The participant task instructions provided during the in-person session are documented in Appendix~\ref{ap:recruitment}, Table~\ref{tab:task-instructions}.
