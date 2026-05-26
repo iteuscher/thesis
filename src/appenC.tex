@@ -3,15 +3,133 @@
 
 This appendix contains the survey instruments and interview questions used in the user study described in Chapter~\ref{ch:user-study}. The Qualtrics surveys captured demographic information, validated scale responses (PC, ATI, SUS, VdL), and the counterbalanced presentation order. The semi-structured interview was used to gather qualitative feedback after participants completed the tasks on both systems.
 
-\section{Qualtrics Screening Survey}
+\section{Qualtrics Screening Survey: Passwordless Document Encryption}
 \label{sec:screening-survey}
 
-The Qualtrics screening survey captured the items required to determine eligibility for participation in the study. The screening survey included items for participant age (excluding individuals under 18), willingness to meet in person, basic demographic information (gender, occupation/industry, technical background), familiarity with sensitive electronic documents, and experience with passwordless authentication. The full Qualtrics screening survey instrument is available from the author upon request.
+The Qualtrics screening survey captured demographic and background information, the Affinity for Technology Interaction (ATI) Scale~\cite{franke_personal_2019}, the Privacy Concerns Scale~\cite{langer_information_2018}, the informed consent statement, and scheduling preferences. The full screening survey is reproduced below.
+
+\subsection*{Demographics \& Background}
+\begin{enumerate}
+    \item How old (in years) are you?
+    \item What is your gender?
+    \begin{itemize}
+        \item Male, Female, Other, Prefer not to say
+    \end{itemize}
+    \item What is your highest educational degree?
+    \begin{itemize}
+        \item Less than High school, High school graduate, Some college, Bachelor's degree, Master's degree, Ph.D, Other
+    \end{itemize}
+    \item Do you have a background or degree in Computer Science, Cybersecurity, or a related technical field?
+    \begin{itemize}
+        \item Yes, No
+    \end{itemize}
+    \item What is your area of study or work?
+    \item How often do you work with electronic documents that contain sensitive or controlled information?
+    \begin{itemize}
+        \item Often (every day or every few days)
+        \item Sometimes / occasionally (every month)
+        \item Rarely / Not at all (I can't remember the last time)
+    \end{itemize}
+    \item What types of passwordless authentication have you used? (mark all that you have used)
+    \begin{itemize}
+        \item Push notifications on a smartphone, Confirmation codes via SMS / email, Confirmation codes via authentication app (e.g., Duo, Google Authenticator), Biometric methods (e.g., fingerprint, Face ID), Passkeys, Hardware security key (e.g., Yubikey), None of the above
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Affinity for Technology Interaction (ATI) Scale}
+In the following section, we will ask you about your interaction with technical systems. The term ``technical systems'' refers to apps and other software applications, as well as entire digital devices (e.g., mobile phone, computer, TV, car navigation).
+
+Participants were asked to rate their agreement with the following statements on a 6-point Likert scale ranging from 1 (\textit{Completely disagree}) to 6 (\textit{Completely agree}). They were instructed that there are no right or wrong answers.
+
+\begin{enumerate}
+    \item I like to occupy myself in greater detail with technical systems.
+    \item I like testing the functions of new technical systems.
+    \item I predominantly deal with technical systems because I have to.
+    \item When I have a new technical system in front of me, I try it out intensively.
+    \item I enjoy spending time becoming acquainted with a new technical system.
+    \item It is enough for me that a technical system works; I don't care how or why.
+    \item I try to understand how a technical system exactly works.
+    \item It is enough for me to know the basic functions of a technical system.
+    \item I try to make full use of the capabilities of a technical system.
+\end{enumerate}
+
+\subsection*{Privacy Concerns Scale}
+Participants were asked to rate their agreement with the following statements on a 7-point Likert scale ranging from 1 (\textit{Strongly disagree}) to 7 (\textit{Strongly agree}). They were instructed that there are no right or wrong answers.
+
+\begin{enumerate}
+    \item I am concerned that companies are collecting too much information about me.
+    \item I am concerned about my privacy.
+    \item To me it is important to keep my privacy intact.
+    \item Novel technologies are threatening privacy increasingly.
+\end{enumerate}
+
+\subsection*{Informed Consent}
+
+\textbf{Title of the Research Study:} Passwordless Document Encryption \\
+\textbf{Principal Investigator:} Ben Schooley
+
+\subsubsection*{Introduction}
+This research study is being conducted by Isaac Teuscher under the supervision of Dr.~Ben Schooley at Brigham Young University to determine the usability and user acceptance of passwordless document encryption. You were invited to participate because you are eligible to participate and willing to assist.
+
+\subsubsection*{Procedures}
+If you agree to participate in this research study, you will schedule a time to meet with the research staff at a time and place that works for you. At the scheduled appointment the following will occur:
+
+\begin{itemize}
+    \item You will imagine yourself working in a business context.
+    \item You will perform two sets of tasks on a provided computer to encrypt and share a file (20 minutes).
+    \item You will answer a set of multiple choice and free response questions about your experience (5 minutes).
+    \item The investigator will ask you concluding questions and record your responses (5 minutes).
+    \item The concluding interview will be audio-recorded to make sure the investigator remembers what you said correctly.
+    \item You'll spend 40--45 minutes in total between the initial survey (10 mins) and research session (30--35 mins).
+\end{itemize}
+
+\subsubsection*{Risks/Discomforts}
+This research study is not expected to cause any harm. If you feel uncomfortable for any reason you may stop being in the study at any time.
+
+\subsubsection*{Benefits}
+There are no direct benefits to the participant, but the potential benefits to society are:
+\begin{enumerate}
+    \item Learning about encryption methods that may improve security and usability of data protection software.
+    \item Enabling protection of sensitive information in electronic documents.
+    \item Understanding how to design passwordless software systems to be easy to use.
+\end{enumerate}
+
+\subsubsection*{Confidentiality}
+Each research subject will be assigned a unique ID number for each data source and personal identifiers such as name and email which are used to coordinate the appointment will be deleted after the session is completed. The research data (survey responses, transcripts of interviews, and time on tasks) will be kept in a secure Google Drive folder during analysis and only the investigators will have access to the data. At the end of the study, all your information that could directly identify you will be deleted, and your responses will be kept anonymized in a secure Google spreadsheet. Data will be retained for three years after study completion as is required by federal regulations for research. Any publications or presentations that result from the research will only reference ID numbers or aggregated data.
+
+\subsubsection*{Data Sharing}
+We may share your data with other researchers or institutions to help with this study or related research. If this occurs, we will remove your name and any direct identifiers before sharing---this means the data cannot easily be linked back to you. Audio data and interview question responses will be shared with a third-party service for transcription and analysis, your name and direct identifiers will be removed before sharing with the third-party service.
+
+\subsubsection*{Compensation}
+There is no compensation or payment for participating in this study.
+
+\subsubsection*{Participation}
+Participation in this research study is voluntary. You have the right to withdraw at any time or refuse to participate entirely, and it will not affect your standing with the university.
+
+\subsubsection*{Questions about the Research}
+If you have questions, concerns, or complaints, you can contact the Principal Investigator Dr.~Ben Schooley at ben\_schooley@byu.edu and Co-Investigator Isaac Teuscher at iteusch@byu.edu or 510-206-8202.
+
+\subsubsection*{Questions about Your Rights as a Research Subject}
+If you have questions regarding your rights as a research subject, contact the Human Research Protection Program by phone at (801) 422-1461; or by email: BYU.HRPP@byu.edu.
+
+\subsubsection*{Statement of Consent}
+\textbf{I have read, understood, and have been offered a copy of the above consent and desire of my own free will to participate in this study.}
+
+\vspace{0.5cm}
+\noindent Signature: \hrulefill \quad Date: \hrulefill
+
+\subsection*{Scheduling}
+
+\begin{enumerate}
+    \item Please provide your name.
+    \item Please provide an email address to receive confirmation and details about the research session.
+    \item Please specify what days and locations you are available to meet with a researcher from the following options. A researcher will contact you by email to confirm the date, time, and location.
+\end{enumerate}
 
 \section{Qualtrics In-Session Survey}
 \label{sec:in-session-survey}
 
-The Qualtrics in-session survey captured the Privacy Concern (PC) Scale~\cite{langer_information_2018} and the Affinity for Technology Interaction (ATI) Scale~\cite{franke_personal_2019} prior to the in-person tasks, then captured the System Usability Scale (SUS)~\cite{brooke_sus_1996} and Van der Laan System Acceptance Scale (VdL)~\cite{vanderlaan_simple_1997} after each system was used. The presentation order of the two systems was counterbalanced and recorded as a data field so the SUS and VdL responses could be correctly assigned to the password-based or passwordless condition during analysis. The full Qualtrics in-session survey instrument is available from the author upon request.
+The Qualtrics in-session survey captured the System Usability Scale (SUS)~\cite{brooke_sus_1996} and Van der Laan System Acceptance Scale (VdL)~\cite{vanderlaan_simple_1997} after each system was used. The presentation order of the two systems was counterbalanced and recorded as a data field so the SUS and VdL responses could be correctly assigned to the password-based or passwordless condition during analysis. The full SUS and VdL item sets administered in the in-session survey are reproduced in Sections~\ref{sec:sus-items} and~\ref{sec:vdl-items}, respectively.
 
 \section{System Usability Scale (SUS)}
 \label{sec:sus-items}
