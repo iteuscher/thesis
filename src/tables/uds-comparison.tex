@@ -5,7 +5,7 @@
 \renewcommand{\multirowsetup}{\centering\arraybackslash}
 \renewcommand{\arraystretch}{1.2}
 \footnotesize
-\begin{adjustbox}{max width=\textheight,max totalheight=\textwidth,center}
+\begin{adjustbox}{max width=\linewidth,center}
 \begin{tabular}{C{2cm}C{1.4cm}M{2cm}L{2.2cm}cccccGccccccGcccc}
 
 \raisebox{-4ex}[0pt][0pt]{\textbf{Auth. Type}} &
@@ -59,11 +59,11 @@
 \noalign{\vskip 2pt}
 \noalign{\hrule height 0.6pt}
 \end{tabular}
-{\rule{0pt}{0.2ex}
-\makebox[\textwidth][c]{\footnotesize
-\scalebox{1.15}\CIRCLE~Satisfies~~\quad
-\scalebox{1.15}\LEFTcircle~Partially Satisfies~~\quad
-\scalebox{1.15}\Circle~Does Not Satisfy
-}}
 \end{adjustbox}
+
+\vspace{0.4em}
+{\centering\footnotesize
+\scalebox{1.15}\CIRCLE~Satisfies\quad
+\scalebox{1.15}\LEFTcircle~Partially Satisfies\quad
+\scalebox{1.15}\Circle~Does Not Satisfy\par}
 \end{table}
