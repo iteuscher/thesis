@@ -4,15 +4,22 @@
 \centering
 \footnotesize
 \setlength{\tabcolsep}{4pt}
+\newlength{\udscatwidth}
+\setlength{\udscatwidth}{2.25cm}
 \begin{adjustbox}{max width=\linewidth,center}
-\begin{tabularx}{\linewidth}{@{}c c >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\linewidth}{@{}>{\centering\arraybackslash}p{\udscatwidth} c >{\raggedright\arraybackslash}p{2.15cm} >{\raggedright\arraybackslash}X@{}}
 \noalign{\hrule height 1pt}
 \noalign{\vskip 3pt}
 \small\textbf{Category} & \small\textbf{ID} & \small\textbf{Benefit} & \small\textbf{Description} \\
 \noalign{\vskip 2pt}
 \noalign{\hrule height 1pt}
 \noalign{\vskip 3pt}
-\multirow{5}{*}{\rule{0pt}{11ex}\parbox{1.75cm}{\centering\normalsize\textbf{Usability}\\[3pt]\footnotesize How easily the primary user can perform necessary tasks.}} 
+\multirow{5}{*}{%
+  \begin{minipage}[c]{\udscatwidth}
+    \centering
+    \footnotesize\textbf{Usability}\\[3pt]
+    \footnotesize How easily the primary user can perform necessary tasks.
+  \end{minipage}} 
 & U1 & Memorywise-Effortless & Users do not have to remember any secrets. Partially satisfies if users have to remember one secret for everything (as opposed to one per document). \\
 \cmidrule(lr){2-4}
 & U2 & Scalable-for-Users & Users' cognitive load does not increase when managing hundreds of documents. \\
@@ -25,7 +32,12 @@
 \noalign{\vskip 3pt}
 \noalign{\hrule height 1pt}
 \noalign{\vskip 3.5pt}
-\multirow{6}{*}{\rule{0pt}{14ex}\parbox{1.75cm}{\centering\normalsize\textbf{Deployability}\\[3pt]\footnotesize How easily a method can be adopted and used in real-world use cases.}} 
+\multirow{6}{*}{%
+  \begin{minipage}[c]{\udscatwidth}
+    \centering
+    \footnotesize\textbf{Deployability}\\[3pt]
+    \footnotesize How easily a method can be adopted and used in real-world use cases.
+  \end{minipage}} 
 & D1 & Negligible-Cost-per-User & Cost per user is negligible. \\
 \cmidrule(lr){2-4}
 & D2 & Negligible-IT-Support-Cost & Cost of IT support is negligible. \\
@@ -40,7 +52,12 @@
 \noalign{\vskip 3pt}
 \noalign{\hrule height 1pt}
 \noalign{\vskip 3pt}
-\multirow{4}{*}{\rule{0pt}{8ex}\parbox{1.75cm}{\centering\normalsize\textbf{Security}\\[3pt]\footnotesize How well the method protects against unauthorized access attempts.}} 
+\multirow{4}{*}{%
+  \begin{minipage}[c]{\udscatwidth}
+    \centering
+    \footnotesize\textbf{Security}\\[3pt]
+    \footnotesize How well the method protects against unauthorized access attempts.
+  \end{minipage}} 
 & S1 & Resilient-to-Observation & Attacker cannot succeed by observation (e.g., shoulder surfing, recording keystrokes, keylogger malware). \\
 \cmidrule(lr){2-4}
 & S2 & Resilient-to-Guessing & Attacker cannot succeed by guessing including offline dictionary attacks. \\

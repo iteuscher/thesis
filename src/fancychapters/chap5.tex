@@ -70,7 +70,7 @@ The cloud/server-based model (Figure~\ref{fig:cloud-arch}) extends the offline a
 \begin{landscape}
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.88\textheight,keepaspectratio]{cloud-server-architecture}
+    \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{cloud-server-architecture}
     \caption[Cloud/server-based architecture.]{Cloud/server-based architecture. Alice generates the private owner key and uploads the encrypted bundle to the server, then can update permissions or contents at any time. Bob downloads the bundle, pulls the latest approved public key list, and verifies his identity to decrypt.}
     \label{fig:cloud-arch}
 \end{figure}
@@ -122,6 +122,8 @@ The system is implemented as a Next.js web application using React 19 and TypeSc
     \label{fig:ui-save-passkey}
 \end{figure}
 
+\clearpage
+\paragraph{Existing Credential.}
 An expandable ``Use existing'' section (Figure~\ref{fig:ui-use-existing}) provides two additional paths: selecting a previously created credential stored in IndexedDB, or using a passkey from an external password manager such as iCloud Keychain, Google Password Manager, or Bitwarden. Each stored credential displays its name and creation date, and can be deleted from IndexedDB.
 
 \begin{figure}[H]
@@ -131,7 +133,9 @@ An expandable ``Use existing'' section (Figure~\ref{fig:ui-use-existing}) provid
     \label{fig:ui-use-existing}
 \end{figure}
 
-\paragraph{Recipients.} After encryption, the user can optionally add recipients by email address (Figure~\ref{fig:ui-recipients}). Recipients can be added individually or as a comma-separated list. This step can also be skipped entirely for single-user encryption.
+\clearpage
+\paragraph{Recipients.}
+After encryption, the user can optionally add recipients by email address (Figure~\ref{fig:ui-recipients}). Recipients can be added individually or as a comma-separated list. This step can also be skipped entirely for single-user encryption.
 
 \begin{figure}[H]
     \centering

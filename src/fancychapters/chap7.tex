@@ -16,7 +16,7 @@ Both systems scored within the ``Acceptable'' range of system usability defined 
 \begin{landscape}
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.88\textheight,keepaspectratio]{figures/sus-violin.pdf}
+    \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{figures/sus-violin.pdf}
     \caption[Distribution of SUS scores for the two encryption systems.]{Distribution of System Usability Scale (SUS) scores for the password-based system (gray) and the passwordless system (blue), $N=21$. Violin widths reflect density estimates. Overlaid boxes show the interquartile range (IQR) with a line at the median; whiskers extend to $1.5\times$IQR. Background shading indicates acceptability ranges from Bangor et al.~\cite{bangor_determining_2009}. A Wilcoxon signed-rank test found no significant difference between conditions ($W=113.5$, $p=.944$).}
     \label{fig:sus-violin}
 \end{figure}
@@ -35,7 +35,7 @@ On the Van der Laan acceptance scale, the passwordless system was rated signific
 \begin{landscape}
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.88\textheight,keepaspectratio]{figures/vdl-violin.pdf}
+    \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{figures/vdl-violin.pdf}
     \caption[Distribution of Van der Laan Usefulness and Satisfaction scores.]{Distribution of Van der Laan Usefulness (left) and Satisfaction (right) scores for the password-based system (gray) and the passwordless system (blue), $N=21$. Overlaid boxes show the IQR with a line at the median; whiskers extend to $1.5\times$IQR. Background shading distinguishes negative ($<0$) from positive ($>0$) regions of the scale. * indicates significant difference on the Usefulness subscale (Wilcoxon signed-rank test, $p=.014$).}
     \label{fig:vdl-violin}
 \end{figure}
@@ -54,7 +54,7 @@ Affinity for technology interaction (ATI; $M = 4.11$, $SD = 0.91$) was found to 
 \begin{landscape}
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.88\textheight,keepaspectratio]{figures/ati-sus-scatter.pdf}
+    \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{figures/ati-sus-scatter.pdf}
     \caption[Scatterplots of ATI scores against SUS scores.]{Scatterplots of Affinity for Technology Interaction (ATI) scores against SUS scores for the password-based system (left, gray) and the passwordless system (right, blue), $N=21$. Dashed lines show ordinary least-squares linear fits as visual aids. Statistics are Spearman rank correlations. ATI was not significantly associated with password-based usability ($\rho=+.192$, $p=.405$) but was a significant positive predictor of passwordless usability ($\rho=+.578$, $p=.006^{*}$).}
     \label{fig:ati-sus-scatter}
 \end{figure}
@@ -159,9 +159,9 @@ Three participants (N=3/21) ran into errors during the passkey creation process.
 
 Despite these frustrations, none of the three participants dismissed the value of the passwordless approach. P28 said ``despite my little hiccups with it working, both of them were actually quite easy to use. They weren't cumbersome or anything.'' P29 similarly noted ``it didn't feel too bad. The UI could be a little more intuitive, but overall it's pretty good.''
 
-\subsubsection*{D. File differentiation}
+\subsubsection*{File differentiation}
 
-Two participants (N=2/21) mentioned their desire for clearer differentiation between the non-encrypted and the encrypted file. The password-based method produced a visibly renamed file (e.g.\ \texttt{XXXX-protected.pdf}) while the passwordless output added a unique file ending (e.g.\ \texttt{XXXX.pdf.secure}). Depending on the device and file explorer, the filename or file type ending may be more or less apparent. P7 said ``I really liked that it was `protected.pdf.' I could see that the file had changed\ldots whereas I don't feel like the file really changed on the passwordless one.'' P23 had a similar but inverse preference, noting ``the protected PDF from Adobe looks the exact same as the normal PDF because it's the same file type\ldots if I wasn't actually looking at it, I wouldn't have noticed that the protected one moved above the unprotected one in my file explorer. And I probably would have sent the non-encrypted one.'' A best practice may be to use both a distinct file extension and a modified filename to clearly differentiate the encrypted from the non-encrypted file across all operating systems and devices.
+Two participants (N=2/21) mentioned their desire for clearer differentiation between the non-encrypted and the encrypted file. The password-based method produced a visibly renamed file (e.g.\ \texttt{XXXX-protected.pdf}) while the passwordless output added a unique file ending (e.g.\ \texttt{XXXX.pdf.\allowbreak secure}). Depending on the device and file explorer, the filename or file type ending may be more or less apparent. P7 said ``I really liked that it was `protected.pdf.' I could see that the file had changed\ldots whereas I don't feel like the file really changed on the passwordless one.'' P23 had a similar but inverse preference, noting ``the protected PDF from Adobe looks the exact same as the normal PDF because it's the same file type\ldots if I wasn't actually looking at it, I wouldn't have noticed that the protected one moved above the unprotected one in my file explorer. And I probably would have sent the non-encrypted one.'' A best practice may be to use both a distinct file extension and a modified filename to clearly differentiate the encrypted from the non-encrypted file across all operating systems and devices.
 
 \subsubsection*{E. Simple user interfaces}
 
