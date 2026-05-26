@@ -1,15 +1,11 @@
-\begin{table}[htbp]
+\begin{table}[p]
 \caption{Comparison of Document Encryption Methods by Usability, Deployability, and Security Benefits}
 \label{tab:uds-comparison}
 \centering
 \renewcommand{\multirowsetup}{\centering\arraybackslash}
 \renewcommand{\arraystretch}{1.2}
-\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
-\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
-\newcolumntype{G}{!{\color{gray!50}\vrule}}
 \footnotesize
-\resizebox{\textwidth}{!}{%
+\begin{adjustbox}{max width=\textwidth,max height=\textheight,center}
 \begin{tabular}{C{2cm}C{1.4cm}M{2cm}L{2.2cm}cccccGccccccGcccc}
 
 \raisebox{-4ex}[0pt][0pt]{\textbf{Auth. Type}} &
@@ -63,11 +59,11 @@
 \noalign{\vskip 2pt}
 \noalign{\hrule height 0.6pt}
 \end{tabular}
-}
 {\rule{0pt}{0.2ex}
 \makebox[\textwidth][c]{\footnotesize
 \scalebox{1.15}\CIRCLE~Satisfies~~\quad
 \scalebox{1.15}\LEFTcircle~Partially Satisfies~~\quad
 \scalebox{1.15}\Circle~Does Not Satisfy
 }}
+\end{adjustbox}
 \end{table}

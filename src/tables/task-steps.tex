@@ -1,12 +1,13 @@
 ﻿% ============================================================
 % TABLE: Task Instructions by Condition (Appendix)
 % ============================================================
-\begin{table}[htbp]
+\begin{table}[p]
     \centering
-    \renewcommand{\arraystretch}{1.5} % Gives breathing room between rows
+    \renewcommand{\arraystretch}{1.25} % Reduce height to help fit on page
     \caption{Task Instructions by Condition}
     \label{tab:task-instructions}
     \small
+    \begin{adjustbox}{max width=\textwidth,max height=\textheight,center}
     \begin{tabularx}{\textwidth}{
         >{\raggedright\arraybackslash}p{2.2cm} % Left column for Task Names
         >{\raggedright\arraybackslash}X        % Auto-scaling paragraph column
@@ -40,4 +41,5 @@
         
         \bottomrule
     \end{tabularx}
+    \end{adjustbox}
 \end{table}
