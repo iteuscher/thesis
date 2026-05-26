@@ -9,7 +9,7 @@ This appendix provides information for accessing the open-source artifacts and t
 The complete source code for the passwordless document encryption system (DocProtect) is available as an open-source project. The repository includes the TypeScript-based web application, WebAuthn PRF integration, age encryption pipeline using typage, OpenTDF-style manifest implementation, and accompanying documentation.
 
 \begin{itemize}
-    \item \textbf{Repository:} \url{https://github.com/isaacteuscher/doc-protect}\footnote{Please confirm the correct public URL for the code base repository before final submission.}
+    \item \textbf{Repository:} \url{https://github.com/iteuscher/doc-protect}
 \end{itemize}
 
 \section{Working Website and Access Instructions}
@@ -28,6 +28,6 @@ A working deployment of the passwordless document encryption system is publicly 
     \item Upload a document to be encrypted using the file upload control on the home page.
     \item When prompted, create a passkey using your device's available authenticator (e.g., fingerprint, facial recognition, PIN, or hardware security key).
     \item Add one or more recipients by entering their email addresses. The recipient must also have created a passkey to be able to decrypt the file.
-    \item Download the encrypted file (with the \texttt{.secure} extension) and share it with the intended recipients through your preferred file transfer or email channel.
+    \item Download the encrypted file (with the \texttt{.rico} extension) and share it with the intended recipients through your preferred file transfer or email channel.
     \item To decrypt a file, return to the website, upload the encrypted file, and authenticate with the passkey that was used to encrypt the file (or, if you are a designated recipient, with your own passkey).
 \end{enumerate}

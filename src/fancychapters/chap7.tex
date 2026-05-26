@@ -13,12 +13,15 @@ Quantitative analysis was conducted using the System Usability Scale (SUS) and V
 
 Both systems scored within the ``Acceptable'' range of system usability defined by Bangor et al.~\cite{bangor_determining_2009}: the password-based system at $M=73.3$ ($SD=15.7$) and the passwordless system at $M=72.0$ ($SD=20.3$). A Wilcoxon signed-rank test found no significant difference between conditions ($W=113.5$, $p=.944$, $r=.017$), indicating usability parity between the passwordless system and the password-based system (Figure~\ref{fig:sus-violin}). That the novel passwordless prototype achieved statistical parity with a mature, widely deployed commercial tool on first use is itself a meaningful result. Neither system reached the ``above average'' SUS benchmark of 80~\cite{sauro_lewis_2016}, but this is unsurprising for encryption software. Kortum and Bangor~\cite{kortum_bangor_2013} demonstrated that SUS scores vary markedly across product types, with utilitarian tools consistently scoring lower than consumer-facing applications.
 
-\begin{figure}[htbp]
+\begin{landscape}
+\begin{figure}[p]
     \centering
-    \includegraphics[width=0.85\textwidth]{figures/sus-violin.pdf}
+    \includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{figures/sus-violin.pdf}
     \caption[Distribution of SUS scores for the two encryption systems.]{Distribution of System Usability Scale (SUS) scores for the password-based system (gray) and the passwordless system (blue), $N=21$. Violin widths reflect density estimates. Overlaid boxes show the interquartile range (IQR) with a line at the median; whiskers extend to $1.5\times$IQR. Background shading indicates acceptability ranges from Bangor et al.~\cite{bangor_determining_2009}. A Wilcoxon signed-rank test found no significant difference between conditions ($W=113.5$, $p=.944$).}
     \label{fig:sus-violin}
 \end{figure}
+\end{landscape}
+\clearpage
 
 Despite near-identical group means, per-participant SUS differences ranged from $-40.0$ to $+40.0$ points, and the passwordless system exhibited higher variance ($SD=20.3$ vs.\ $15.7$). These results suggest that while the passwordless approach was usable for some users on first exposure, others found the unfamiliar workflow challenging. This is explored further in the covariate analysis (Section~\ref{sec:covariate-analysis}) and qualitative results (Section~\ref{sec:qualitative-results}).
 
@@ -29,12 +32,15 @@ On the Van der Laan acceptance scale, the passwordless system was rated signific
 
 \input{tables/vdl-results}
 
-\begin{figure}[htbp]
+\begin{landscape}
+\begin{figure}[p]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/vdl-violin.pdf}
+    \includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{figures/vdl-violin.pdf}
     \caption[Distribution of Van der Laan Usefulness and Satisfaction scores.]{Distribution of Van der Laan Usefulness (left) and Satisfaction (right) scores for the password-based system (gray) and the passwordless system (blue), $N=21$. Overlaid boxes show the IQR with a line at the median; whiskers extend to $1.5\times$IQR. Background shading distinguishes negative ($<0$) from positive ($>0$) regions of the scale. * indicates significant difference on the Usefulness subscale (Wilcoxon signed-rank test, $p=.014$).}
     \label{fig:vdl-violin}
 \end{figure}
+\end{landscape}
+\clearpage
 
 \subsection{Covariate Analysis}
 \label{sec:covariate-analysis}
@@ -45,12 +51,15 @@ Spearman rank correlations were computed to examine whether individual differenc
 
 Affinity for technology interaction (ATI; $M = 4.11$, $SD = 0.91$) was found to be a significant positive predictor of passwordless SUS scores ($\rho=+.578$, $p=.006$), indicating that participants with higher technology affinity tended to rate the passwordless system as more usable. In contrast, ATI was not significantly associated with password-based SUS scores ($\rho=+.192$, $p=.405$) (Figure~\ref{fig:ati-sus-scatter}). This suggests that the novel passwordless system's perceived usability is more sensitive to an individual's technology interest and ability than the widely familiar password-based approach.
 
-\begin{figure}[htbp]
+\begin{landscape}
+\begin{figure}[p]
     \centering
-    \includegraphics[width=0.95\textwidth]{figures/ati-sus-scatter.pdf}
+    \includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{figures/ati-sus-scatter.pdf}
     \caption[Scatterplots of ATI scores against SUS scores.]{Scatterplots of Affinity for Technology Interaction (ATI) scores against SUS scores for the password-based system (left, gray) and the passwordless system (right, blue), $N=21$. Dashed lines show ordinary least-squares linear fits as visual aids. Statistics are Spearman rank correlations. ATI was not significantly associated with password-based usability ($\rho=+.192$, $p=.405$) but was a significant positive predictor of passwordless usability ($\rho=+.578$, $p=.006^{*}$).}
     \label{fig:ati-sus-scatter}
 \end{figure}
+\end{landscape}
+\clearpage
 
 Notably, ATI was not significantly correlated with the VdL usefulness difference ($\rho=+.367$, $p=.102$) or satisfaction difference ($\rho=+.168$, $p=.467$), suggesting that the acceptance advantage of the passwordless system was not driven primarily by technology-savvy participants.
 
