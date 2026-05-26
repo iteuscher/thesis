@@ -144,7 +144,9 @@ After encryption, the user can optionally add recipients by email address (Figur
     \label{fig:ui-recipients}
 \end{figure}
 
-\paragraph{Sharing.} The sharing step (Figure~\ref{fig:ui-share}) presents three options for distributing the encrypted file: downloading the bundle directly for manual sharing via email or messaging, uploading to cloud storage (Google Drive), or generating a shareable link via the Supabase backend. The download option produces a \texttt{.rico} file, which is a ZIP archive containing a \texttt{manifest.json} (metadata, policy, and recipient list) and a \texttt{0.payload} file (the age-encrypted data). The cloud storage and shareable link options create realistic-looking links but do not actually integrate with those file storage services to upload the bundle as the focus for this system was to develop a proof-of-concept that is realistic enough for user acceptance and usability testing of the core steps.
+\clearpage
+\paragraph{Sharing.}
+The sharing step (Figure~\ref{fig:ui-share}) presents three options for distributing the encrypted file: downloading the bundle directly for manual sharing via email or messaging, uploading to cloud storage (Google Drive), or generating a shareable link via the Supabase backend. The download option produces a \texttt{.rico} file, which is a ZIP archive containing a \texttt{manifest.json} (metadata, policy, and recipient list) and a \texttt{0.payload} file (the age-encrypted data). The cloud storage and shareable link options create realistic-looking links but do not actually integrate with those file storage services to upload the bundle as the focus for this system was to develop a proof-of-concept that is realistic enough for user acceptance and usability testing of the core steps.
 
 \begin{figure}[H]
     \centering
@@ -153,7 +155,9 @@ After encryption, the user can optionally add recipients by email address (Figur
     \label{fig:ui-share}
 \end{figure}
 
-\paragraph{Decryption.} When a \texttt{.rico} file is uploaded, the interface presents the decryption path (Figure~\ref{fig:ui-decrypt}). The user selects a stored credential or uses their password manager's passkey picker, then clicks ``Decrypt File.'' The system parses the bundle, extracts the manifest and encrypted payload, triggers a WebAuthn ceremony to derive the decryption key via PRF, and presents the decrypted file for download.
+\clearpage
+\paragraph{Decryption.}
+When a \texttt{.rico} file is uploaded, the interface presents the decryption path (Figure~\ref{fig:ui-decrypt}). The user selects a stored credential or uses their password manager's passkey picker, then clicks ``Decrypt File.'' The system parses the bundle, extracts the manifest and encrypted payload, triggers a WebAuthn ceremony to derive the decryption key via PRF, and presents the decrypted file for download.
 
 \begin{figure}[H]
     \centering
@@ -162,7 +166,9 @@ After encryption, the user can optionally add recipients by email address (Figur
     \label{fig:ui-decrypt}
 \end{figure}
 
-\paragraph{Settings.} A settings panel (Figure~\ref{fig:ui-settings}) allows the user to select between three encryption algorithms: WebAuthn Passkey (PRF) as the default, Post-Quantum Hybrid (ML-KEM-768 + X25519), or Classic (X25519). This panel is collapsed by default.
+\clearpage
+\paragraph{Settings.}
+A settings panel (Figure~\ref{fig:ui-settings}) allows the user to select between three encryption algorithms: WebAuthn Passkey (PRF) as the default, Post-Quantum Hybrid (ML-KEM-768 + X25519), or Classic (X25519). This panel is collapsed by default.
 
 \begin{figure}[H]
     \centering
