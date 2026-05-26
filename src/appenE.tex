@@ -9,7 +9,7 @@ This appendix contains supplementary architectural diagrams that complement the 
 \begin{landscape}
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.92\textheight,height=0.82\textwidth,keepaspectratio]{figures/offline-architecture.pdf}
+    \includegraphics[width=0.95\textwidth,height=0.88\textheight,keepaspectratio]{figures/offline-architecture.pdf}
     \caption[Basic offline architecture.]{Basic offline architecture of the passwordless document encryption system. All encryption, key derivation, and file handling occurs locally in the browser using WebAuthn PRF; no server-side state or session data is required.}
     \label{fig:offline-arch}
 \end{figure}
@@ -22,7 +22,7 @@ This appendix contains supplementary architectural diagrams that complement the 
 \begin{landscape}
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.92\textheight,height=0.82\textwidth,keepaspectratio]{figures/request-access-flow.pdf}
+    \includegraphics[width=0.95\textwidth,height=0.88\textheight,keepaspectratio]{figures/request-access-flow.pdf}
     \caption[Request access flow.]{Request access flow showing the interaction between a recipient (Bob), the server, and the sender (Alice). Bob requests access to an encrypted file by providing his public key; Alice reviews and approves the request after verifying her identity, and the server updates the approved key list.}
     \label{fig:request-access-flow}
 \end{figure}
@@ -35,7 +35,7 @@ This appendix contains supplementary architectural diagrams that complement the 
 \begin{landscape}
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.92\textheight,height=0.82\textwidth,keepaspectratio]{figures/share-access-link.pdf}
+    \includegraphics[width=0.95\textwidth,height=0.88\textheight,keepaspectratio]{figures/share-access-link.pdf}
     \caption[Share access link flow.]{Share access link flow showing how a sender (Alice) proactively shares an encrypted file with a recipient (Bob) using a generated link. Bob opens the link, provides his public key, and Alice approves the association, granting Bob access to the encrypted file.}
     \label{fig:share-access-link}
 \end{figure}
