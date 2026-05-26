@@ -1,0 +1,80 @@
+\chapter{Study Instruments}
+\label{ap:instruments}
+
+This appendix contains the survey instruments and interview questions used in the user study described in Chapter~\ref{ch:user-study}. The Qualtrics surveys captured demographic information, validated scale responses (PC, ATI, SUS, VdL), and the counterbalanced presentation order. The semi-structured interview was used to gather qualitative feedback after participants completed the tasks on both systems.
+
+\section{Qualtrics Screening Survey}
+\label{sec:screening-survey}
+
+The Qualtrics screening survey captured the items required to determine eligibility for participation in the study. The screening survey included items for participant age (excluding individuals under 18), willingness to meet in person, basic demographic information (gender, occupation/industry, technical background), familiarity with sensitive electronic documents, and experience with passwordless authentication. The full Qualtrics screening survey instrument is available from the author upon request.
+
+\section{Qualtrics In-Session Survey}
+\label{sec:in-session-survey}
+
+The Qualtrics in-session survey captured the Privacy Concern (PC) Scale~\cite{langer_information_2018} and the Affinity for Technology Interaction (ATI) Scale~\cite{franke_personal_2019} prior to the in-person tasks, then captured the System Usability Scale (SUS)~\cite{brooke_sus_1996} and Van der Laan System Acceptance Scale (VdL)~\cite{vanderlaan_simple_1997} after each system was used. The presentation order of the two systems was counterbalanced and recorded as a data field so the SUS and VdL responses could be correctly assigned to the password-based or passwordless condition during analysis. The full Qualtrics in-session survey instrument is available from the author upon request.
+
+\section{System Usability Scale (SUS)}
+\label{sec:sus-items}
+
+The System Usability Scale~\cite{brooke_sus_1996} consists of the following ten items, each rated on a five-point Likert scale from ``Strongly Disagree'' (1) to ``Strongly Agree'' (5).
+
+\begin{enumerate}
+    \item I think that I would like to use this system frequently.
+    \item I found the system unnecessarily complex.
+    \item I thought the system was easy to use.
+    \item I think that I would need the support of a technical person to be able to use this system.
+    \item I found the various functions in this system were well integrated.
+    \item I thought there was too much inconsistency in this system.
+    \item I would imagine that most people would learn to use this system very quickly.
+    \item I found the system very cumbersome to use.
+    \item I felt very confident using the system.
+    \item I needed to learn a lot of things before I could get going with this system.
+\end{enumerate}
+
+Scoring follows Brooke's standard procedure~\cite{brooke_sus_1996}: for odd-numbered items, the score contribution is the scale position minus 1; for even-numbered items, the contribution is 5 minus the scale position. The sum of the 10 item contributions is multiplied by 2.5 to produce a final SUS score on a 0--100 scale.
+
+\section{Van der Laan System Acceptance Scale (VdL)}
+\label{sec:vdl-items}
+
+The Van der Laan Acceptance Scale~\cite{vanderlaan_simple_1997} is a nine-item semantic differential instrument with a five-point scale ($-2$ to $+2$) between each pair of opposing adjectives:
+
+\begin{enumerate}
+    \item Useful--Useless (Usefulness)
+    \item Pleasant--Unpleasant (Satisfaction)
+    \item Bad--Good (Usefulness)
+    \item Nice--Annoying (Satisfaction)
+    \item Effective--Superfluous (Usefulness)
+    \item Irritating--Likeable (Satisfaction)
+    \item Assisting--Worthless (Usefulness)
+    \item Undesirable--Desirable (Satisfaction)
+    \item Raising Alertness--Sleep Inducing (Usefulness)
+\end{enumerate}
+
+After applying polarity reversals to items where the positive pole appeared first in the differential pair, the five usefulness items (1, 3, 5, 7, 9) and four satisfaction items (2, 4, 6, 8) are averaged into their respective subscale scores.
+
+\section{Interview Questions}
+\label{sec:interview-questions}
+
+The following 10 semi-structured interview questions were used at the conclusion of each study session to gather qualitative feedback from the participants. Participants were informed of audio recording prior to the questions and reminded that responses would be stored anonymously (pseudonymized).
+
+\begin{quote}
+\textit{I will now ask you a few open-ended questions to get your feedback and thoughts. If it is still okay with you, I will start an audio recording to capture your responses; your answers will be stored anonymously (pseudonymized).}
+\end{quote}
+
+\begin{enumerate}
+    \item How would you describe your user experience with each of the encryption methods you used?
+    \item Which method did you trust more to keep the document secure, and why?
+    \item What advantages do you see in using each method?
+    \item What disadvantages do you see in using each method?
+    \item What did you like?
+    \item How would you improve it?
+    \item How do you typically work with electronic documents that contain sensitive or controlled information?
+    \item Would you want to use the tested passwordless encryption method for your own sensitive documents if it were available today?
+    \item If you had to send 10 encrypted documents a day to different clients, which method would you prefer? Please explain your reasoning.
+    \item Did the passwordless method feel ``secure'' to you, or did the lack of a password make it feel less safe?
+\end{enumerate}
+
+\section{Participant Task Instructions}
+\label{sec:task-instructions}
+
+The participant task instructions provided during the in-person session are documented in Appendix~\ref{ap:recruitment}, Table~\ref{tab:task-instructions}.

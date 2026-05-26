@@ -1,0 +1,39 @@
+\chapter{Supplementary System Diagrams}
+\label{ap:system-diagrams}
+
+This appendix contains supplementary architectural diagrams that complement the system design discussion in Chapter~\ref{ch:system-design}.
+
+\section{Basic Offline Architecture}
+\label{sec:diagram-offline}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/offline-architecture.pdf}
+    \caption[Basic offline architecture.]{Basic offline architecture of the passwordless document encryption system. All encryption, key derivation, and file handling occurs locally in the browser using WebAuthn PRF; no server-side state or session data is required.}
+    \label{fig:offline-arch}
+\end{figure}
+
+\section{Request Access Flow (as recipient)}
+\label{sec:diagram-request-access}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/request-access-flow.pdf}
+    \caption[Request access flow.]{Request access flow showing the interaction between a recipient (Bob), the server, and the sender (Alice). Bob requests access to an encrypted file by providing his public key; Alice reviews and approves the request after verifying her identity, and the server updates the approved key list.}
+    \label{fig:request-access-flow}
+\end{figure}
+
+\section{Share Access Link (as sender)}
+\label{sec:diagram-share-link}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/share-access-link.pdf}
+    \caption[Share access link flow.]{Share access link flow showing how a sender (Alice) proactively shares an encrypted file with a recipient (Bob) using a generated link. Bob opens the link, provides his public key, and Alice approves the association, granting Bob access to the encrypted file.}
+    \label{fig:share-access-link}
+\end{figure}
+
+\section{Credential Creation Sequence Diagram}
+\label{sec:diagram-credential-creation}
+
+\todofigure[5in]{Credential creation sequence diagram}{fig:credential-creation}{Sequence diagram showing the steps performed across the user, browser, authenticator, and relying party during WebAuthn PRF passkey credential creation and the subsequent derivation of the file encryption key (image29).}

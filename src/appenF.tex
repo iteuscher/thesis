@@ -1,0 +1,33 @@
+\chapter{System Artifact and Source Code}
+\label{ap:artifact}
+
+This appendix provides information for accessing the open-source artifacts and the live deployment of the passwordless document encryption system developed during this research.
+
+\section{Code Base Repository}
+\label{sec:code-repository}
+
+The complete source code for the passwordless document encryption system (DocProtect) is available as an open-source project. The repository includes the TypeScript-based web application, WebAuthn PRF integration, age encryption pipeline using typage, OpenTDF-style manifest implementation, and accompanying documentation.
+
+\begin{itemize}
+    \item \textbf{Repository:} \url{https://github.com/isaacteuscher/doc-protect}\footnote{Please confirm the correct public URL for the code base repository before final submission.}
+\end{itemize}
+
+\section{Working Website and Access Instructions}
+\label{sec:website-access}
+
+A working deployment of the passwordless document encryption system is publicly accessible at the URL below. The website may be used to encrypt, decrypt, and share documents using passkeys directly from a standard web browser. No installation is required; only a modern browser with WebAuthn PRF support and a compatible authenticator (platform authenticator such as Windows Hello or Apple Touch ID, or a roaming authenticator such as a YubiKey) are needed.
+
+\begin{itemize}
+    \item \textbf{Website:} \url{https://doc-protect.vercel.app}
+\end{itemize}
+
+\subsection*{Access Instructions}
+
+\begin{enumerate}
+    \item Navigate to \url{https://doc-protect.vercel.app} in a modern web browser (e.g., Chrome, Safari, Edge, or Firefox) that supports the WebAuthn PRF extension.
+    \item Upload a document to be encrypted using the file upload control on the home page.
+    \item When prompted, create a passkey using your device's available authenticator (e.g., fingerprint, facial recognition, PIN, or hardware security key).
+    \item Add one or more recipients by entering their email addresses. The recipient must also have created a passkey to be able to decrypt the file.
+    \item Download the encrypted file (with the \texttt{.secure} extension) and share it with the intended recipients through your preferred file transfer or email channel.
+    \item To decrypt a file, return to the website, upload the encrypted file, and authenticate with the passkey that was used to encrypt the file (or, if you are a designated recipient, with your own passkey).
+\end{enumerate}
