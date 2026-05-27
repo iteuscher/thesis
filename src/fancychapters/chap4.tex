@@ -28,7 +28,7 @@ We define 15 benefits or desirable properties of document encryption systems, wh
 
 To structure the comparison, document encryption methods were grouped by authentication type. Three primary authentication types are used today for document encryption: \textbf{password-based} (a known secret is provided for authentication), \textbf{cloud-based} (authentication takes place between a client and server), and \textbf{passwordless} (a cryptographic key is provided for authentication). Each authentication type can be applied at various scopes: individual file level, full disk, or file share. These authentication methods and scopes, combined with the licensing model (open-source or proprietary), provide the structure for comparison. For this evaluation, password-based file encryption serves as the incumbent solution against which alternative methods are compared.
 
-The nine methods evaluated are organized into four groups. Password-based file encryption includes the built-in encryption features of Microsoft Word and Adobe Acrobat, as well as full-disk encryption tools such as BitLocker and VeraCrypt. Cloud-based encryption includes managed file transfer and cloud storage providers such as Box and SharePoint, as well as privacy-focused productivity suites such as CryptPad. Passwordless file encryption includes open-source tools such as age.
+The nine methods evaluated are organized into four groups. Password-based file encryption includes the built-in encryption features of Microsoft Word and Adobe Acrobat, as well as full-disk encryption tools such as BitLocker\textregistered{} and VeraCrypt. Cloud-based encryption includes managed file transfer and cloud storage providers such as Box\textregistered{} and SharePoint\textregistered{}, as well as privacy-focused productivity suites such as CryptPad. Passwordless file encryption includes open-source tools such as age.
 
 \section{Evaluation and Analysis of Solutions}
 \label{sec:uds-eval-analysis}
@@ -42,7 +42,7 @@ The evaluation---summarized in Table~\ref{tab:uds-comparison}---shows that no do
 \subsection{Password-based encryption}
 \label{sec:eval-password}
 
-One of the most common forms of document encryption today is password-based file-level encryption, which is built into tools like Microsoft Word\textregistered{} and Adobe Acrobat\textregistered{}. Typically, AES 256-bit encryption is used to protect the entire document with a single password (up to 15 characters) used to derive the encryption key.
+One of the most common forms of document encryption today is password-based file-level encryption, which is built into tools like Microsoft Word and Adobe Acrobat. Typically, AES 256-bit encryption is used to protect the entire document with a single password (up to 15 characters) used to derive the encryption key.
 
 A major limitation of this method is that, unlike web-based authentication, a password cannot be changed or recovered if forgotten~\cite{microsoft_forgot_password}, violating \emph{U4 Easy-Recovery-from-Loss}. This method also lacks \emph{U1 Memorywise-Effortless} and \emph{U2 Scalable-for-Users}, as users must remember unique passwords for each file. In practice, this leads to weak or reused passwords, undermining the potential \emph{S4 Granular-Protection} benefit of file-level encryption.
 
