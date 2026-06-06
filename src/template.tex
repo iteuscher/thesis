@@ -43,6 +43,22 @@
 % Multirow alignment used by the comparison table
 \renewcommand{\multirowsetup}{\centering\arraybackslash}
 
+% Width for figures/tables that extend into the side margin (fancy layout)
+\newlength{\marginfigurewidth}
+\setlength{\marginfigurewidth}{\dimexpr\textwidth+1.75in\relax}
+
+% Full-page landscape figure (matches cloud architecture layout)
+\newcommand{\landscapefigurepage}[3]{%
+    \begin{landscape}
+    \begin{figure}[p]
+        \centering
+        \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{#1}
+        \caption{#2}
+        \label{#3}
+    \end{figure}
+    \end{landscape}%
+}
+
 % Full-page centered figure: lead-in text (figure title block) + image + caption
 \newcommand{\centeredfigurepage}[5][0.86\textwidth]{%
     \clearpage

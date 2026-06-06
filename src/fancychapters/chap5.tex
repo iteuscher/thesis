@@ -135,6 +135,15 @@ The system is implemented as a Next.js\texttrademark{} web application using Rea
     A settings panel (Figure~\ref{fig:ui-settings}) allows the user to select between three encryption algorithms: WebAuthn Passkey (PRF) as the default, Post-Quantum Hybrid (ML-KEM-768 + X25519), or Classic (X25519). This panel is collapsed by default.%
 }{figures/ui-settings.png}{Settings panel with encryption algorithm selection.}{fig:ui-settings}
 
+\centeredfigurepage[0.88\textwidth]{%
+    \textbf{Technical Information.}\par\smallskip
+    An expandable ``Technical Info'' panel (Figure~\ref{fig:ui-techinfo}) displays the current encryption algorithm setting, PRF support status for the platform, stored credentials with their type and PRF capability, and the current workflow state. This panel was included for transparency during the user study and for debugging during development.%
+}{figures/ui-techinfo.png}{Technical Info panel for transparency and debugging.}{fig:ui-techinfo}
+
+\paragraph{Bundle Format.} The \texttt{.rico} bundle format is a ZIP archive containing two files: \texttt{manifest.json}, which stores file metadata, encryption algorithm, recipient list, and an OpenTDF-inspired policy object with ABAC scaffolding (see Section~\ref{sec:opentdf}); and \texttt{0.payload}, which contains the age-encrypted binary data. The manifest tracks the encryption algorithm used (\texttt{age}, \texttt{age-pq}, \texttt{age-x25519}, or \texttt{age-fallback}), enabling the system to select the correct decryption path automatically.
+
+\paragraph{Technology Stack.} The implementation uses Next.js 16 as the application framework, the \texttt{age-encryption} npm package (typage) for all encryption operations, IndexedDB via localForage for local credential storage, JSZip for bundle creation and parsing, and Playwright\texttrademark{} for end-to-end testing. The application requires a modern browser with WebAuthn support. PRF is supported on macOS, iOS, Android, and Chrome OS platform authenticators, as well as YubiKey 5+ hardware tokens; Windows Hello added hmac-secret support in February 2026. A PBKDF2 fallback mode is provided for platforms without PRF support. The code was developed with assistance from Claude Code (Opus 4.6 AI model).
+
 \clearpage
 \section{Evaluation Against Requirements}
 \label{sec:eval-requirements}
@@ -152,12 +161,3 @@ In short, the designed and implemented system presents a near-ideal document enc
 \begin{landscape}
 \input{tables/uds-evaluation}
 \end{landscape}
-
-\centeredfigurepage[0.88\textwidth]{%
-    \textbf{Technical Information.}\par\smallskip
-    An expandable ``Technical Info'' panel (Figure~\ref{fig:ui-techinfo}) displays the current encryption algorithm setting, PRF support status for the platform, stored credentials with their type and PRF capability, and the current workflow state. This panel was included for transparency during the user study and for debugging during development.%
-}{figures/ui-techinfo.png}{Technical Info panel for transparency and debugging.}{fig:ui-techinfo}
-
-\paragraph{Bundle Format.} The \texttt{.rico} bundle format is a ZIP archive containing two files: \texttt{manifest.json}, which stores file metadata, encryption algorithm, recipient list, and an OpenTDF-inspired policy object with ABAC scaffolding (see Section~\ref{sec:opentdf}); and \texttt{0.payload}, which contains the age-encrypted binary data. The manifest tracks the encryption algorithm used (\texttt{age}, \texttt{age-pq}, \texttt{age-x25519}, or \texttt{age-fallback}), enabling the system to select the correct decryption path automatically.
-
-\paragraph{Technology Stack.} The implementation uses Next.js 16 as the application framework, the \texttt{age-encryption} npm package (typage) for all encryption operations, IndexedDB via localForage for local credential storage, JSZip for bundle creation and parsing, and Playwright\texttrademark{} for end-to-end testing. The application requires a modern browser with WebAuthn support. PRF is supported on macOS, iOS, Android, and Chrome OS platform authenticators, as well as YubiKey 5+ hardware tokens; Windows Hello added hmac-secret support in February 2026. A PBKDF2 fallback mode is provided for platforms without PRF support. The code was developed with assistance from Claude Code (Opus 4.6 AI model).

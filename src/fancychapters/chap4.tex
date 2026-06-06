@@ -32,10 +32,13 @@ The nine methods evaluated are organized into four groups. Password-based file e
 \section{Evaluation and Analysis of Solutions}
 \label{sec:uds-eval-analysis}
 
-\enlargethispage{3\baselineskip}
 The evaluation---summarized in Table~\ref{tab:uds-comparison}---shows that no document encryption method today provides all benefits. As such, the choice of which method to use depends on the importance of each benefit and the tradeoffs associated with a particular use case. We summarize key findings by method below. The filled circle indicates the benefit is provided or satisfied by the method, the half circle indicates partially-satisfies and the empty circle indicates the method does not satisfy the benefit.
 
-\FloatBarrier
+\subsection{Password-based encryption}
+\label{sec:eval-password}
+
+One of the most common forms of document encryption today is password-based file-level encryption, which is built into tools like Microsoft Word and Adobe Acrobat. Typically, AES 256-bit encryption is used to protect the entire document with a single password (up to 15 characters) used to derive the encryption key.
+
 \begin{landscape}
 \input{tables/uds-benefits}
 \end{landscape}
@@ -43,11 +46,6 @@ The evaluation---summarized in Table~\ref{tab:uds-comparison}---shows that no do
 \begin{landscape}
 \input{tables/uds-comparison}
 \end{landscape}
-
-\subsection{Password-based encryption}
-\label{sec:eval-password}
-
-One of the most common forms of document encryption today is password-based file-level encryption, which is built into tools like Microsoft Word and Adobe Acrobat. Typically, AES 256-bit encryption is used to protect the entire document with a single password (up to 15 characters) used to derive the encryption key.
 
 A major limitation of this method is that, unlike web-based authentication, a password cannot be changed or recovered if forgotten~\cite{microsoft_forgot_password}, violating \emph{U4 Easy-Recovery-from-Loss}. This method also lacks \emph{U1 Memorywise-Effortless} and \emph{U2 Scalable-for-Users}, as users must remember unique passwords for each file. In practice, this leads to weak or reused passwords, undermining the potential \emph{S4 Granular-Protection} benefit of file-level encryption.
 
