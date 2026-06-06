@@ -1,7 +1,10 @@
 \chapter{Framework for Analysis}
 \label{ch:evaluation}
 
-In this chapter, an analytical framework for measuring document protection methods is presented consistent with approaches taken to evaluate authentication schemes in related domains~\cite{alaca_comparative_2021-1,alaca_comparative_2021,bonneau_quest_2012,borisov_sok_2021}. This framework provides a semi-structured evaluation methodology and benchmark for future document protection methods~\cite{bonneau_quest_2012}. The framework and analysis was initially published in ACM DocEng 2025~\cite{teuscher_document_2025}. We aim to answer the first research question: \emph{What usability, deployability, and security limitations exist in current document encryption methods?}
+This chapter is composed from a paper titled ``Document Encryption in Practice: A Comparative Framework and Evaluation'' published in the \textit{Proceedings of the ACM Symposium on Document Engineering (DocEng '25)}~\cite{teuscher_document_2025}.
+I confirm that the use of this article's contents is compliant with all publishing agreements.
+
+In this chapter, an analytical framework for measuring document protection methods is presented consistent with approaches taken to evaluate authentication schemes in related domains~\cite{alaca_comparative_2021-1,alaca_comparative_2021,bonneau_quest_2012,borisov_sok_2021}. This framework provides a semi-structured evaluation methodology and benchmark for future document protection methods~\cite{bonneau_quest_2012}. We aim to answer the first research question: \emph{What usability, deployability, and security limitations exist in current document encryption methods?}
 
 \section{Usability-Deployability-Security Framework}
 \label{sec:uds-framework}
@@ -19,10 +22,6 @@ Ultimately, the framework illuminates the benefits and limitations of current me
 
 We define 15 benefits or desirable properties of document encryption systems, which highlight important evaluation dimensions in Table~\ref{tab:evaluation-criteria}. We considered including additional benefits used in previous UDS frameworks, such as \emph{Physically-Effortless}, \emph{Efficient-to-Use}, and \emph{Accessible}; however, as these benefits are consistently present across current methods and do not provide comparative value, they were omitted from the framework. When evaluating, we assess the benefits provided in typical ``in-the-wild'' use cases instead of the idealistic use case, as our focus is on the practical benefits provided. For example, we assume users may recycle passwords or choose simple passwords.
 
-\begin{landscape}
-\input{tables/uds-benefits}
-\end{landscape}
-
 \section{Groups}
 \label{sec:uds-groups}
 
@@ -33,7 +32,13 @@ The nine methods evaluated are organized into four groups. Password-based file e
 \section{Evaluation and Analysis of Solutions}
 \label{sec:uds-eval-analysis}
 
+\enlargethispage{3\baselineskip}
 The evaluation---summarized in Table~\ref{tab:uds-comparison}---shows that no document encryption method today provides all benefits. As such, the choice of which method to use depends on the importance of each benefit and the tradeoffs associated with a particular use case. We summarize key findings by method below. The filled circle indicates the benefit is provided or satisfied by the method, the half circle indicates partially-satisfies and the empty circle indicates the method does not satisfy the benefit.
+
+\FloatBarrier
+\begin{landscape}
+\input{tables/uds-benefits}
+\end{landscape}
 
 \begin{landscape}
 \input{tables/uds-comparison}

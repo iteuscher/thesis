@@ -75,7 +75,6 @@ The cloud/server-based model (Figure~\ref{fig:cloud-arch}) extends the offline a
     \label{fig:cloud-arch}
 \end{figure}
 \end{landscape}
-\clearpage
 
 The flow begins with Alice setting the private owner key and specifying which public keys have access to the file (step~1). The private owner key is generated through WebAuthn PRF via a FIDO2 passkey or other authenticator, which could be managed through a password manager, identity provider, or hardware token such as a YubiKey. By specifying who has access, Alice determines which public keys will be valid to decrypt the file. In step~2, Alice verifies her identity to demonstrate ownership of the private owner key. This may coincide with key creation---for example, a new passkey is created to serve as the owner key, or a YubiKey is tapped---or it may involve presenting an existing credential. In step~3, the encrypted bundle is uploaded to the server. Critically, the server only ever holds already-encrypted ciphertext and cannot decrypt the document because private keys remain at the client level and are not transmitted to or accessible by the server.
 
@@ -97,107 +96,50 @@ The share access link flow addresses the scenario where Alice proactively shares
 
 The system is implemented as a Next.js\texttrademark{} web application using React\texttrademark{} 19 and TypeScript, with age encryption provided by the typage library, credential storage in IndexedDB, and an optional Supabase\texttrademark{} backend for link sharing. The complete source code is available as an open-source repository~\cite{docprotect_repo}. This section walks through the implementation organized by user-facing workflow steps, corresponding to the guided workflow presented in the application interface.
 
-\paragraph{File Upload.} The application presents a single interface for both encryption and decryption (Figure~\ref{fig:ui-upload}). The user uploads any file to encrypt it, or uploads a \texttt{.rico} file to decrypt it. The system detects the file type automatically and adjusts the workflow accordingly: encryption proceeds through a five-step flow (Upload, Identity, Recipients, Share, Done) while decryption uses a shortened three-step flow (Upload, Identity, Done).
+\centeredfigurepage[0.88\textwidth]{%
+    \textbf{File Upload.}\par\smallskip
+    The application presents a single interface for both encryption and decryption (Figure~\ref{fig:ui-upload}). The user uploads any file to encrypt it, or uploads a \texttt{.rico} file to decrypt it. The system detects the file type automatically and adjusts the workflow accordingly: encryption proceeds through a five-step flow (Upload, Identity, Recipients, Share, Done) while decryption uses a shortened three-step flow (Upload, Identity, Done).%
+}{figures/ui-upload.png}{File upload interface of the DocProtect application.}{fig:ui-upload}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=5in]{figures/ui-upload.png}
-    \caption{File upload interface of the DocProtect application.}
-    \label{fig:ui-upload}
-\end{figure}
+\centeredfigurepage[0.88\textwidth]{%
+    \textbf{Identity Verification (Encryption).}\par\smallskip
+    For encryption, the user verifies their identity by creating or selecting a passkey credential (Figure~\ref{fig:ui-identity}). The primary path presents a ``New Passkey'' option where the user sets a name for the credential (defaulted to the uploaded file's filename) and clicks ``Create \& Encrypt,'' which triggers a WebAuthn ceremony in the browser to create a credential (passkey or security key). Upon completion a second WebAuthn ceremony is immediately begun which uses the newly created credential to encrypt the file.%
+}{figures/ui-identity.png}{Identity verification step with the New Passkey option and Create \& Encrypt action.}{fig:ui-identity}
 
-\paragraph{Identity Verification (Encryption).} For encryption, the user verifies their identity by creating or selecting a passkey credential (Figure~\ref{fig:ui-identity}). The primary path presents a ``New Passkey'' option where the user sets a name for the credential (defaulted to the uploaded file's filename) and clicks ``Create \& Encrypt,'' which triggers a WebAuthn ceremony in the browser to create a credential (passkey or security key). Upon completion a second WebAuthn ceremony is immediately begun which uses the newly created credential to encrypt the file. The credential creation prompt comes from the user's default platform or third-party passkey provider (Figure~\ref{fig:ui-save-passkey}). The credential creation flow, including PRF detection and fallback handling, is detailed in the sequence diagram in Appendix~\ref{ap:system-diagrams}.
+\centeredfigurepage[0.88\textwidth]{%
+    The credential creation prompt comes from the user's default platform or third-party passkey provider (Figure~\ref{fig:ui-save-passkey}). The credential creation flow, including PRF detection and fallback handling, is detailed in the sequence diagram in Appendix~\ref{ap:system-diagrams}.%
+}{figures/ui-save-passkey.png}{Save-a-passkey prompts presented by the user's passkey provider during credential creation.}{fig:ui-save-passkey}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=5in]{figures/ui-identity.png}
-    \caption{Identity verification step with the New Passkey option and Create \& Encrypt action.}
-    \label{fig:ui-identity}
-\end{figure}
+\centeredfigurepage[0.88\textwidth]{%
+    \textbf{Existing Credential.}\par\smallskip
+    An expandable ``Use existing'' section (Figure~\ref{fig:ui-use-existing}) provides two additional paths: selecting a previously created credential stored in IndexedDB, or using a passkey from an external password manager such as iCloud Keychain, Google Password Manager, or Bitwarden. Each stored credential displays its name and creation date, and can be deleted from IndexedDB.%
+}{figures/ui-use-existing.png}{The ``Use existing'' panel for selecting a previously created or third-party credential.}{fig:ui-use-existing}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=5in]{figures/ui-save-passkey.png}
-    \caption{Save-a-passkey prompts presented by the user's passkey provider during credential creation.}
-    \label{fig:ui-save-passkey}
-\end{figure}
+\centeredfigurepage[0.88\textwidth]{%
+    \textbf{Recipients.}\par\smallskip
+    After encryption, the user can optionally add recipients by email address (Figure~\ref{fig:ui-recipients}). Recipients can be added individually or as a comma-separated list. This step can also be skipped entirely for single-user encryption.%
+}{figures/ui-recipients.png}{Add-recipients step of the encryption workflow.}{fig:ui-recipients}
 
-\clearpage
-\paragraph{Existing Credential.}
-An expandable ``Use existing'' section (Figure~\ref{fig:ui-use-existing}) provides two additional paths: selecting a previously created credential stored in IndexedDB, or using a passkey from an external password manager such as iCloud Keychain, Google Password Manager, or Bitwarden. Each stored credential displays its name and creation date, and can be deleted from IndexedDB.
+\centeredfigurepage[0.88\textwidth]{%
+    \textbf{Sharing.}\par\smallskip
+    The sharing step (Figure~\ref{fig:ui-share}) presents three options for distributing the encrypted file: downloading the bundle directly for manual sharing via email or messaging, uploading to cloud storage (Google Drive), or generating a shareable link via the Supabase backend. The download option produces a \texttt{.rico} file, which is a ZIP archive containing a \texttt{manifest.json} (metadata, policy, and recipient list) and a \texttt{0.payload} file (the age-encrypted data). The cloud storage and shareable link options create realistic-looking links but do not actually integrate with those file storage services to upload the bundle as the focus for this system was to develop a proof-of-concept that is realistic enough for user acceptance and usability testing of the core steps.%
+}{figures/ui-share.png}{Share options presented after encryption.}{fig:ui-share}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=5in]{figures/ui-use-existing.png}
-    \caption{The ``Use existing'' panel for selecting a previously created or third-party credential.}
-    \label{fig:ui-use-existing}
-\end{figure}
+\centeredfigurepage[0.88\textwidth]{%
+    \textbf{Decryption.}\par\smallskip
+    When a \texttt{.rico} file is uploaded, the interface presents the decryption path (Figure~\ref{fig:ui-decrypt}). The user selects a stored credential or uses their password manager's passkey picker, then clicks ``Decrypt File.'' The system parses the bundle, extracts the manifest and encrypted payload, triggers a WebAuthn ceremony to derive the decryption key via PRF, and presents the decrypted file for download.%
+}{figures/ui-decrypt.png}{Decryption-side identity step with Decrypt File action.}{fig:ui-decrypt}
 
-\clearpage
-\paragraph{Recipients.}
-After encryption, the user can optionally add recipients by email address (Figure~\ref{fig:ui-recipients}). Recipients can be added individually or as a comma-separated list. This step can also be skipped entirely for single-user encryption.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=5in]{figures/ui-recipients.png}
-    \caption{Add-recipients step of the encryption workflow.}
-    \label{fig:ui-recipients}
-\end{figure}
+\centeredfigurepage[0.88\textwidth]{%
+    \textbf{Settings.}\par\smallskip
+    A settings panel (Figure~\ref{fig:ui-settings}) allows the user to select between three encryption algorithms: WebAuthn Passkey (PRF) as the default, Post-Quantum Hybrid (ML-KEM-768 + X25519), or Classic (X25519). This panel is collapsed by default.%
+}{figures/ui-settings.png}{Settings panel with encryption algorithm selection.}{fig:ui-settings}
 
 \clearpage
-\paragraph{Sharing.}
-The sharing step (Figure~\ref{fig:ui-share}) presents three options for distributing the encrypted file: downloading the bundle directly for manual sharing via email or messaging, uploading to cloud storage (Google Drive), or generating a shareable link via the Supabase backend. The download option produces a \texttt{.rico} file, which is a ZIP archive containing a \texttt{manifest.json} (metadata, policy, and recipient list) and a \texttt{0.payload} file (the age-encrypted data). The cloud storage and shareable link options create realistic-looking links but do not actually integrate with those file storage services to upload the bundle as the focus for this system was to develop a proof-of-concept that is realistic enough for user acceptance and usability testing of the core steps.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=5in]{figures/ui-share.png}
-    \caption{Share options presented after encryption.}
-    \label{fig:ui-share}
-\end{figure}
-
-\clearpage
-\paragraph{Decryption.}
-When a \texttt{.rico} file is uploaded, the interface presents the decryption path (Figure~\ref{fig:ui-decrypt}). The user selects a stored credential or uses their password manager's passkey picker, then clicks ``Decrypt File.'' The system parses the bundle, extracts the manifest and encrypted payload, triggers a WebAuthn ceremony to derive the decryption key via PRF, and presents the decrypted file for download.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=5in]{figures/ui-decrypt.png}
-    \caption{Decryption-side identity step with Decrypt File action.}
-    \label{fig:ui-decrypt}
-\end{figure}
-
-\clearpage
-\paragraph{Settings.}
-A settings panel (Figure~\ref{fig:ui-settings}) allows the user to select between three encryption algorithms: WebAuthn Passkey (PRF) as the default, Post-Quantum Hybrid (ML-KEM-768 + X25519), or Classic (X25519). This panel is collapsed by default.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=5in]{figures/ui-settings.png}
-    \caption{Settings panel with encryption algorithm selection.}
-    \label{fig:ui-settings}
-\end{figure}
-
-\paragraph{Technical Information.} An expandable ``Technical Info'' panel (Figure~\ref{fig:ui-techinfo}) displays the current encryption algorithm setting, PRF support status for the platform, stored credentials with their type and PRF capability, and the current workflow state. This panel was included for transparency during the user study and for debugging during development.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=5in]{figures/ui-techinfo.png}
-    \caption{Technical Info panel for transparency and debugging.}
-    \label{fig:ui-techinfo}
-\end{figure}
-
-\paragraph{Bundle Format.} The \texttt{.rico} bundle format is a ZIP archive containing two files: \texttt{manifest.json}, which stores file metadata, encryption algorithm, recipient list, and an OpenTDF-inspired policy object with ABAC scaffolding (see Section~\ref{sec:opentdf}); and \texttt{0.payload}, which contains the age-encrypted binary data. The manifest tracks the encryption algorithm used (\texttt{age}, \texttt{age-pq}, \texttt{age-x25519}, or \texttt{age-fallback}), enabling the system to select the correct decryption path automatically.
-
-\paragraph{Technology Stack.} The implementation uses Next.js 16 as the application framework, the \texttt{age-encryption} npm package (typage) for all encryption operations, IndexedDB via localForage for local credential storage, JSZip for bundle creation and parsing, and Playwright\texttrademark{} for end-to-end testing. The application requires a modern browser with WebAuthn support. PRF is supported on macOS, iOS, Android, and Chrome OS platform authenticators, as well as YubiKey 5+ hardware tokens; Windows Hello added hmac-secret support in February 2026. A PBKDF2 fallback mode is provided for platforms without PRF support. The code was developed with assistance from Claude Code (Opus 4.6 AI model).
-
 \section{Evaluation Against Requirements}
 \label{sec:eval-requirements}
 
 This section evaluates the implemented system against the 15 design requirements derived from the Chapter~\ref{ch:evaluation} evaluation framework. Table~\ref{tab:uds-evaluation} summarizes the evaluation, rating each benefit as fully satisfied, partially satisfied, or not satisfied, with justification.
-
-\begin{landscape}
-\input{tables/uds-evaluation}
-\end{landscape}
 
 The system in its current state fully satisfies 10 of the 15 benefits, partially satisfies 4, and does not satisfy 1 (\emph{D4 Mature}). The four partial ratings reflect current state constraints rather than architectural limitations. Two partial ratings (\emph{U5 Seamless-Sharing} and \emph{D6 Guest-Friendly}) come from the proof-of-concept nature of the research reflecting the scoping decision to prioritize the core encryption workflow over the full access management feature set. These benefits could be fully satisfied with additional development. \emph{D3 Compatible} reflects the current state of PRF platform support which is maturing rapidly. \emph{U4 Easy-Recovery-from-Loss} depends on the user's choice of authenticator type and is rated as partial since it maintains the tradeoff decision between device-bound and synced passkeys.
 
@@ -206,3 +148,16 @@ The system in its current state fully satisfies 10 of the 15 benefits, partially
 \paragraph{Threat Model Coverage.} Evaluating against the adversary threat model from Section~\ref{sec:threat-summary}, the system counters each identified threat. Bulk server-side file access yields only encrypted bundles, each with a unique key (\emph{S4 Granular-Protection}). Brute-force cracking post-exfiltration is not feasible because keys are derived from authenticator secrets, not passwords (\emph{S2 Resilient-to-Guessing}). Unauthorized redistribution is constrained by recipient-bound encryption where only designated identities can unwrap the file key (\emph{S3 Resilient-to-Third-Party-Leak}). Server compromise exposes no key material because all key derivation occurs client-side (\emph{S3 Resilient-to-Third-Party-Leak}).
 
 In short, the designed and implemented system presents a near-ideal document encryption system with a few benefits limited by the prototype's current scope and maturity. The system presented would render exfiltrated data unreadable in the MFT mass-exfiltration scenarios described in Section~\ref{sec:threat-analysis}. The implemented system is passwordless and non-custodial, performs all encryption locally in the browser, derives phishing-resistant keys that can be anchored in hardware, and supports post-quantum cryptographic algorithms.
+
+\begin{landscape}
+\input{tables/uds-evaluation}
+\end{landscape}
+
+\centeredfigurepage[0.88\textwidth]{%
+    \textbf{Technical Information.}\par\smallskip
+    An expandable ``Technical Info'' panel (Figure~\ref{fig:ui-techinfo}) displays the current encryption algorithm setting, PRF support status for the platform, stored credentials with their type and PRF capability, and the current workflow state. This panel was included for transparency during the user study and for debugging during development.%
+}{figures/ui-techinfo.png}{Technical Info panel for transparency and debugging.}{fig:ui-techinfo}
+
+\paragraph{Bundle Format.} The \texttt{.rico} bundle format is a ZIP archive containing two files: \texttt{manifest.json}, which stores file metadata, encryption algorithm, recipient list, and an OpenTDF-inspired policy object with ABAC scaffolding (see Section~\ref{sec:opentdf}); and \texttt{0.payload}, which contains the age-encrypted binary data. The manifest tracks the encryption algorithm used (\texttt{age}, \texttt{age-pq}, \texttt{age-x25519}, or \texttt{age-fallback}), enabling the system to select the correct decryption path automatically.
+
+\paragraph{Technology Stack.} The implementation uses Next.js 16 as the application framework, the \texttt{age-encryption} npm package (typage) for all encryption operations, IndexedDB via localForage for local credential storage, JSZip for bundle creation and parsing, and Playwright\texttrademark{} for end-to-end testing. The application requires a modern browser with WebAuthn support. PRF is supported on macOS, iOS, Android, and Chrome OS platform authenticators, as well as YubiKey 5+ hardware tokens; Windows Hello added hmac-secret support in February 2026. A PBKDF2 fallback mode is provided for platforms without PRF support. The code was developed with assistance from Claude Code (Opus 4.6 AI model).

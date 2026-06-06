@@ -43,6 +43,24 @@
 % Multirow alignment used by the comparison table
 \renewcommand{\multirowsetup}{\centering\arraybackslash}
 
+% Full-page centered figure: lead-in text (figure title block) + image + caption
+\newcommand{\centeredfigurepage}[5][0.86\textwidth]{%
+    \clearpage
+    \begin{figure}[H]
+        \centering
+        \vspace*{\fill}
+        \begin{minipage}{0.9\textwidth}
+            \centering
+            #2
+        \end{minipage}
+        \par\vspace{1em}
+        \includegraphics[width=#1,keepaspectratio]{#3}
+        \caption{#4}
+        \label{#5}
+        \vspace*{\fill}
+    \end{figure}
+}
+
 % --- Placeholder macro for figures whose source file is not yet supplied ---
 % Renders a clearly labeled grey TODO box at the requested width.
 % Usage: \todofigure[<width>]{<caption>}{<label>}{<description of intended figure>}

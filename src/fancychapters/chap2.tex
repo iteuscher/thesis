@@ -169,7 +169,7 @@ FIDO2 and WebAuthn provide a robust authentication ceremony with many benefits, 
 WebAuthn PRF is an optional extension in the Web Authentication Level 3 specification (Section 10.1.4) where the relying party provides a salt to the authenticator via WebAuthn which the browser hashes with a context string before passing it to the authenticator. The authenticator then combines the hashed salt with its internal key via HMAC-SHA-256 to produce a deterministic 32-byte string which is returned to the relying party~\cite{w3c_webauthn_l3}. The WebAuthn PRF process is described in Figure~\ref{fig:prf-flow}. A pseudo-random function (PRF) produces output that is deterministic for a given input but computationally indistinguishable from random, which makes the output string suitable for use as symmetric key material. The W3C specification directly names symmetric key encryption as the motivating example for the inclusion of the PRF extension~\cite{w3c_webauthn_l3}. The underlying protocol mechanism is the CTAP2 hmac-secret extension, which provides access to the hardware-backed HMAC-SHA-256 computation. The WebAuthn PRF extension acts as a standardized browser API for web applications to access this capability~\cite{corbado_prf_2026}.
 
 \begin{figure}[htbp]
-    \centering
+	\centering
     \includegraphics[width=5in]{webauthn-prf-flow}
     \caption[WebAuthn PRF extension flow.]{WebAuthn PRF extension flow across the four required layers (authenticator, operating system, browser, and web application) showing the process for deriving a symmetric key from the authenticator's internal secret.}
     \label{fig:prf-flow}
@@ -226,7 +226,7 @@ Researchers consistently identify account recovery as ``one of the most controve
 A few approaches to device-bound FIDO2 credential recovery have been proposed and evaluated in research but have not been widely adopted as the FIDO Alliance generally presents synced passkeys or registering a second security token as the solution for account recovery~\cite{kunke_evaluation_2021,buttner_passkey_2025}. B\"uttner and Gruschka note that there are levels of access and sharing for passkeys from device-bound which is single-user, single-device to synced which is typically single-user but multi-device, shared which enables multiple users to access the same key, and exported where the credentials are bundled and removed from the passkey-provider~\cite{buttner_passkey_2025} (see Figure~\ref{fig:passkey-sharing}). Each level of sharing increases the access level for account recovery and third-party risk. Various users and organizations may adjust their permitted access levels for passkey sharing based on their risk tolerance for third-party breaches and their needs for efficient account recovery.
 
 \begin{figure}[htbp]
-    \centering
+	\centering
     \includegraphics[width=5in]{passkey-sharing-levels}
     \caption[Access levels of passkey sharing.]{Access levels of passkey sharing, from device-bound to synced, shared, and exported. Adapted from B\"uttner and Gruschka (2025)~\cite{buttner_passkey_2025}.}
     \label{fig:passkey-sharing}
