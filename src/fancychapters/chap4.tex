@@ -29,6 +29,14 @@ To structure the comparison, document encryption methods were grouped by authent
 
 The nine methods evaluated are organized into four groups. Password-based file encryption includes the built-in encryption features of Microsoft Word and Adobe Acrobat, as well as full-disk encryption tools such as BitLocker\textregistered{} and VeraCrypt. Cloud-based encryption includes managed file transfer and cloud storage providers such as Box\textregistered{} and SharePoint\textregistered{}, as well as privacy-focused productivity suites such as CryptPad. Passwordless file encryption includes open-source tools such as age.
 
+\begin{landscape}
+\input{tables/uds-benefits}
+\end{landscape}
+
+\begin{landscape}
+\input{tables/uds-comparison}
+\end{landscape}
+
 \section{Evaluation and Analysis of Solutions}
 \label{sec:uds-eval-analysis}
 
@@ -38,14 +46,6 @@ The evaluation---summarized in Table~\ref{tab:uds-comparison}---shows that no do
 \label{sec:eval-password}
 
 One of the most common forms of document encryption today is password-based file-level encryption, which is built into tools like Microsoft Word and Adobe Acrobat. Typically, AES 256-bit encryption is used to protect the entire document with a single password (up to 15 characters) used to derive the encryption key.
-
-\begin{landscape}
-\input{tables/uds-benefits}
-\end{landscape}
-
-\begin{landscape}
-\input{tables/uds-comparison}
-\end{landscape}
 
 A major limitation of this method is that, unlike web-based authentication, a password cannot be changed or recovered if forgotten~\cite{microsoft_forgot_password}, violating \emph{U4 Easy-Recovery-from-Loss}. This method also lacks \emph{U1 Memorywise-Effortless} and \emph{U2 Scalable-for-Users}, as users must remember unique passwords for each file. In practice, this leads to weak or reused passwords, undermining the potential \emph{S4 Granular-Protection} benefit of file-level encryption.
 

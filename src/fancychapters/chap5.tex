@@ -67,15 +67,6 @@ The simplest expression of the architecture is the offline, client-only model (s
 
 The cloud/server-based model (Figure~\ref{fig:cloud-arch}) extends the offline architecture by introducing a server that hosts the latest encrypted bundle, enabling the owner to update permissions and file contents without redistributing the bundle.
 
-\begin{landscape}
-\begin{figure}[p]
-    \centering
-    \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{cloud-server-architecture}
-    \caption[Cloud/server-based architecture diagram.]{Cloud/server-based architecture. Alice generates the private owner key and uploads the encrypted bundle to the server, then can update permissions or contents at any time. Bob downloads the bundle, pulls the latest approved public key list, and verifies his identity to decrypt.}
-    \label{fig:cloud-arch}
-\end{figure}
-\end{landscape}
-
 The flow begins with Alice setting the private owner key and specifying which public keys have access to the file (step~1). The private owner key is generated through WebAuthn PRF via a FIDO2 passkey or other authenticator, which could be managed through a password manager, identity provider, or hardware token such as a YubiKey. By specifying who has access, Alice determines which public keys will be valid to decrypt the file. In step~2, Alice verifies her identity to demonstrate ownership of the private owner key. This may coincide with key creation---for example, a new passkey is created to serve as the owner key, or a YubiKey is tapped---or it may involve presenting an existing credential. In step~3, the encrypted bundle is uploaded to the server. Critically, the server only ever holds already-encrypted ciphertext and cannot decrypt the document because private keys remain at the client level and are not transmitted to or accessible by the server.
 
 Step~4 introduces the key advantage of the server-based model over the offline architecture: Alice can update the approved public key list, remove the file, re-encrypt with a new owner key, or change other permissions at any time by repeating the process of steps~1--3 and uploading the updated bundle. In step~5, Bob downloads the encrypted bundle from the server. In step~6, Bob pulls the latest approved public key list. In step~7, Bob verifies his identity by demonstrating he holds a valid private key matching an approved public key. In step~8, decryption of the bundle proceeds if Bob's key pair matches an entry in the current approved public key list.
@@ -144,7 +135,10 @@ The system is implemented as a Next.js\texttrademark{} web application using Rea
 
 \paragraph{Technology Stack.} The implementation uses Next.js 16 as the application framework, the \texttt{age-encryption} npm package (typage) for all encryption operations, IndexedDB via localForage for local credential storage, JSZip for bundle creation and parsing, and Playwright\texttrademark{} for end-to-end testing. The application requires a modern browser with WebAuthn support. PRF is supported on macOS, iOS, Android, and Chrome OS platform authenticators, as well as YubiKey 5+ hardware tokens; Windows Hello added hmac-secret support in February 2026. A PBKDF2 fallback mode is provided for platforms without PRF support. The code was developed with assistance from Claude Code (Opus 4.6 AI model).
 
-\clearpage
+\begin{landscape}
+\input{tables/uds-evaluation}
+\end{landscape}
+
 \section{Evaluation Against Requirements}
 \label{sec:eval-requirements}
 
@@ -157,7 +151,3 @@ The system in its current state fully satisfies 10 of the 15 benefits, partially
 \paragraph{Threat Model Coverage.} Evaluating against the adversary threat model from Section~\ref{sec:threat-summary}, the system counters each identified threat. Bulk server-side file access yields only encrypted bundles, each with a unique key (\emph{S4 Granular-Protection}). Brute-force cracking post-exfiltration is not feasible because keys are derived from authenticator secrets, not passwords (\emph{S2 Resilient-to-Guessing}). Unauthorized redistribution is constrained by recipient-bound encryption where only designated identities can unwrap the file key (\emph{S3 Resilient-to-Third-Party-Leak}). Server compromise exposes no key material because all key derivation occurs client-side (\emph{S3 Resilient-to-Third-Party-Leak}).
 
 In short, the designed and implemented system presents a near-ideal document encryption system with a few benefits limited by the prototype's current scope and maturity. The system presented would render exfiltrated data unreadable in the MFT mass-exfiltration scenarios described in Section~\ref{sec:threat-analysis}. The implemented system is passwordless and non-custodial, performs all encryption locally in the browser, derives phishing-resistant keys that can be anchored in hardware, and supports post-quantum cryptographic algorithms.
-
-\begin{landscape}
-\input{tables/uds-evaluation}
-\end{landscape}

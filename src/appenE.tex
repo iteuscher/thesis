@@ -3,51 +3,50 @@
 
 This appendix contains supplementary architectural diagrams that complement the system design discussion in Chapter~\ref{ch:system-design}.
 
+\begin{landscape}
 \section{Basic Offline Architecture}
 \label{sec:diagram-offline}
 
-\begin{landscape}
-\begin{figure}[p]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{figures/offline-architecture.pdf}
+    \includegraphics[width=\linewidth,height=0.82\paperheight,keepaspectratio]{figures/offline-architecture.pdf}
     \caption[Basic offline architecture diagram.]{Basic offline architecture of the passwordless document encryption system. All encryption, key derivation, and file handling occurs locally in the browser using WebAuthn PRF; no server-side state or session data is required.}
     \label{fig:offline-arch}
 \end{figure}
 \end{landscape}
-\clearpage
 
+\begin{landscape}
 \section{Request Access Flow (as recipient)}
 \label{sec:diagram-request-access}
 
-\begin{landscape}
-\begin{figure}[p]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{figures/request-access-flow.pdf}
+    \includegraphics[width=\linewidth,height=0.82\paperheight,keepaspectratio]{figures/request-access-flow.pdf}
     \caption[Request access flow diagram.]{Request access flow showing the interaction between a recipient (Bob), the server, and the sender (Alice). Bob requests access to an encrypted file by providing his public key; Alice reviews and approves the request after verifying her identity, and the server updates the approved key list.}
     \label{fig:request-access-flow}
 \end{figure}
 \end{landscape}
-\clearpage
 
+\begin{landscape}
 \section{Share Access Link (as sender)}
 \label{sec:diagram-share-link}
 
-\begin{landscape}
-\begin{figure}[p]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{figures/share-access-link.pdf}
+    \includegraphics[width=\linewidth,height=0.82\paperheight,keepaspectratio]{figures/share-access-link.pdf}
     \caption[Share access link flow diagram.]{Share access link flow showing how a sender (Alice) proactively shares an encrypted file with a recipient (Bob) using a generated link. Bob opens the link, provides his public key, and Alice approves the association, granting Bob access to the encrypted file.}
     \label{fig:share-access-link}
 \end{figure}
 \end{landscape}
-\clearpage
 
+\begin{landscape}
 \section{Credential Creation Sequence Diagram}
 \label{sec:diagram-credential-creation}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{figures/credential-creation-sequence.png}
+    \includegraphics[width=\linewidth,height=0.82\paperheight,keepaspectratio]{figures/credential-creation-sequence.png}
     \caption[Credential creation sequence diagram.]{Sequence diagram showing the steps performed across the user, browser, authenticator, and relying party during WebAuthn PRF passkey credential creation and the subsequent derivation of the file encryption key.}
     \label{fig:credential-creation}
 \end{figure}
+\end{landscape}
