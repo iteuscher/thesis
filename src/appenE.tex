@@ -4,14 +4,14 @@
 This appendix contains supplementary architectural diagrams that complement the system design discussion in Chapter~\ref{ch:system-design}.
 
 \begin{landscape}
-\landscapeappendixdiagram{Basic Offline Architecture}{sec:diagram-offline}{figures/offline-architecture.pdf}{Basic offline architecture diagram.}{Basic offline architecture of the passwordless document encryption system. All encryption, key derivation, and file handling occurs locally in the browser using WebAuthn PRF; no server-side state or session data is required.}{fig:offline-arch}
+\landscapeappendixdiagram[0.80\textheight]{Basic Offline Architecture}{sec:diagram-offline}{figures/offline-architecture.pdf}{Basic offline architecture diagram.}{Basic offline architecture of the passwordless document encryption system. All encryption, key derivation, and file handling occurs locally in the browser using WebAuthn PRF; no server-side state or session data is required.}{fig:offline-arch}
 
-\clearpage
-\landscapeappendixdiagram[0.60\textheight]{Request Access Flow (as recipient)}{sec:diagram-request-access}{figures/request-access-flow.pdf}{Request access flow diagram.}{Request access flow showing the interaction between a recipient (Bob), the server, and the sender (Alice). Bob requests access to an encrypted file by providing his public key; Alice reviews and approves the request after verifying her identity, and the server updates the approved key list.}{fig:request-access-flow}
+\newpage
+\landscapeappendixdiagram[0.72\textheight]{Request Access Flow (as recipient)}{sec:diagram-request-access}{figures/request-access-flow.pdf}{Request access flow diagram.}{Request access flow showing the interaction between a recipient (Bob), the server, and the sender (Alice). Bob requests access to an encrypted file by providing his public key; Alice reviews and approves the request after verifying her identity, and the server updates the approved key list.}{fig:request-access-flow}
 
-\clearpage
-\landscapeappendixdiagram[0.60\textheight]{Share Access Link (as sender)}{sec:diagram-share-link}{figures/share-access-link.pdf}{Share access link flow diagram.}{Share access link flow showing how a sender (Alice) proactively shares an encrypted file with a recipient (Bob) using a generated link. Bob opens the link, provides his public key, and Alice approves the association, granting Bob access to the encrypted file.}{fig:share-access-link}
+\newpage
+\landscapeappendixdiagram[0.72\textheight]{Share Access Link (as sender)}{sec:diagram-share-link}{figures/share-access-link.pdf}{Share access link flow diagram.}{Share access link flow showing how a sender (Alice) proactively shares an encrypted file with a recipient (Bob) using a generated link. Bob opens the link, provides his public key, and Alice approves the association, granting Bob access to the encrypted file.}{fig:share-access-link}
 
-\clearpage
-\landscapeappendixdiagram{Credential Creation Sequence Diagram}{sec:diagram-credential-creation}{figures/credential-creation-sequence.png}{Credential creation sequence diagram.}{Sequence diagram showing the steps performed across the user, browser, authenticator, and relying party during WebAuthn PRF passkey credential creation and the subsequent derivation of the file encryption key.}{fig:credential-creation}
+\newpage
+\landscapeappendixdiagram[0.80\textheight]{Credential Creation Sequence Diagram}{sec:diagram-credential-creation}{figures/credential-creation-sequence.png}{Credential creation sequence diagram.}{Sequence diagram showing the steps performed across the user, browser, authenticator, and relying party during WebAuthn PRF passkey credential creation and the subsequent derivation of the file encryption key.}{fig:credential-creation}
 \end{landscape}

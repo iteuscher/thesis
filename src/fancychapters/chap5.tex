@@ -73,7 +73,7 @@ Step~4 introduces the key advantage of the server-based model over the offline a
 
 This model retains the core benefits of the offline architecture---no passwords, per-file encryption, recipient verification using the recipient's preferred authenticator---while adding the ability for the owner to modify permissions after sharing. The server hosts encrypted data and public key lists but has no ability to decrypt documents, preserving the non-custodial property. Even if the server is compromised, the attacker obtains only ciphertext and public keys, not the private keys needed for decryption.
 
-\landscapefigurepage{figures/cloud-server-architecture.pdf}{Cloud/server-based architecture diagram.}{Cloud/server-based architecture. Alice generates the private owner key and uploads the encrypted bundle to the server, then can update permissions or contents at any time. Bob downloads the bundle, pulls the latest approved public key list, and verifies his identity to decrypt.}{fig:cloud-arch}
+\landscapefigurepage[0.84\textheight]{figures/cloud-server-architecture.pdf}{Cloud/server-based architecture diagram.}{Cloud/server-based architecture. Alice generates the private owner key and uploads the encrypted bundle to the server, then can update permissions or contents at any time. Bob downloads the bundle, pulls the latest approved public key list, and verifies his identity to decrypt.}{fig:cloud-arch}
 
 \subsection{Request Access and Share Access Link Flows}
 \label{sec:request-share-flows}
@@ -137,9 +137,9 @@ The system is implemented as a Next.js\texttrademark{} web application using Rea
 
 \paragraph{Technology Stack.} The implementation uses Next.js 16 as the application framework, the \texttt{age-encryption} npm package (typage) for all encryption operations, IndexedDB via localForage for local credential storage, JSZip for bundle creation and parsing, and Playwright\texttrademark{} for end-to-end testing. The application requires a modern browser with WebAuthn support. PRF is supported on macOS, iOS, Android, and Chrome OS platform authenticators, as well as YubiKey 5+ hardware tokens; Windows Hello added hmac-secret support in February 2026. A PBKDF2 fallback mode is provided for platforms without PRF support. The code was developed with assistance from Claude Code (Opus 4.6 AI model).
 
-\begin{landscape}
+\FloatBarrier
 \input{tables/uds-evaluation}
-\end{landscape}
+\FloatBarrier
 
 \section{Evaluation Against Requirements}
 \label{sec:eval-requirements}

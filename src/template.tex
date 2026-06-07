@@ -45,25 +45,29 @@
 % Multirow alignment used by the comparison table
 \renewcommand{\multirowsetup}{\centering\arraybackslash}
 
+% Category column width for the UDS benefits table
+\newlength{\udscatwidth}
+\setlength{\udscatwidth}{2.25cm}
+
 % Width for figures/tables that extend into the side margin (fancy layout)
 \newlength{\marginfigurewidth}
 \setlength{\marginfigurewidth}{\dimexpr\textwidth+1.75in\relax}
 
 % Full-page landscape figure (no float wrapper; reliable inside pdflscape)
-% Usage: \landscapefigurepage{image}{LOF caption}{figure caption}{label}
-\newcommand{\landscapefigurepage}[4]{%
+% Usage: \landscapefigurepage[image height]{image}{LOF caption}{figure caption}{label}
+\newcommand{\landscapefigurepage}[5][0.78\textheight]{%
     \begin{landscape}%
     \centering
-    \includegraphics[width=\linewidth,height=0.72\textheight,keepaspectratio]{#1}%
+    \includegraphics[width=\linewidth,height=#1,keepaspectratio]{#2}%
     \par\vspace{0.75em}%
-    \captionof{figure}[#2]{#3}%
-    \label{#4}%
+    \captionof{figure}[#3]{#4}%
+    \label{#5}%
     \end{landscape}%
 }
 
 % Appendix landscape diagram: section title + figure on one page (inside pdflscape)
 % Usage: \landscapeappendixdiagram[image height]{section title}{section label}{image}{LOF caption}{figure caption}{figure label}
-\newcommand{\landscapeappendixdiagram}[7][0.68\textheight]{%
+\newcommand{\landscapeappendixdiagram}[7][0.74\textheight]{%
     \section{#2}%
     \label{#3}%
     \par\vspace{0.35em}%
@@ -72,7 +76,7 @@
     \par\vspace{0.75em}%
     \captionof{figure}[#5]{#6}%
     \label{#7}%
-    \par\vspace{1.25em}%
+    \par\vspace{0.75em}%
 }
 
 % Full-page centered figure: lead-in text (figure title block) + image + caption
