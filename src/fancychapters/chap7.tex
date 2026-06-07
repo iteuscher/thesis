@@ -15,11 +15,11 @@ Both systems scored within the ``Acceptable'' range of system usability defined 
 
 A Wilcoxon signed-rank test found no significant difference between conditions ($W=113.5$, $p=.944$, $r=.017$), indicating usability parity between the passwordless system and the password-based system (Figure~\ref{fig:sus-violin}).
 
+\landscapefigurepage[0.84\textheight]{figures/sus-violin.pdf}{Distribution of system usability scale scores.}{Distribution of System Usability Scale (SUS) scores for the password-based system (gray) and the passwordless system (blue), $N=21$. Violin widths reflect density estimates. Overlaid boxes show the interquartile range (IQR) with a line at the median; whiskers extend to $1.5\times$IQR. Background shading indicates acceptability ranges from Bangor et al.~\cite{bangor_determining_2009}. A Wilcoxon signed-rank test found no significant difference between conditions ($W=113.5$, $p=.944$).}{fig:sus-violin}
+
 That the novel passwordless prototype achieved statistical parity with a mature, widely deployed commercial tool on first use is itself a meaningful result. Neither system reached the ``above average'' SUS benchmark of 80~\cite{sauro_lewis_2016}, but this is unsurprising for encryption software. Kortum and Bangor~\cite{kortum_bangor_2013} demonstrated that SUS scores vary markedly across product types, with utilitarian tools consistently scoring lower than consumer-facing applications.
 
 Despite near-identical group means, per-participant SUS differences ranged from $-40.0$ to $+40.0$ points, and the passwordless system exhibited higher variance ($SD=20.3$ vs.\ $15.7$). These results suggest that while the passwordless approach was usable for some users on first exposure, others found the unfamiliar workflow challenging. This is explored further in the covariate analysis (Section~\ref{sec:covariate-analysis}) and qualitative results (Section~\ref{sec:qualitative-results}).
-
-\landscapefigurepage[0.84\textheight]{figures/sus-violin.pdf}{Distribution of system usability scale scores.}{Distribution of System Usability Scale (SUS) scores for the password-based system (gray) and the passwordless system (blue), $N=21$. Violin widths reflect density estimates. Overlaid boxes show the interquartile range (IQR) with a line at the median; whiskers extend to $1.5\times$IQR. Background shading indicates acceptability ranges from Bangor et al.~\cite{bangor_determining_2009}. A Wilcoxon signed-rank test found no significant difference between conditions ($W=113.5$, $p=.944$).}{fig:sus-violin}
 
 \subsection{Van der Laan Acceptance Scale}
 \label{sec:vdl-results}
@@ -78,6 +78,7 @@ When asked whether they would use the passwordless method for their own sensitiv
 
 When asked which method they would prefer if they had to send ten encrypted documents a day to different clients, the response was near-unanimous in favor of the passwordless method (N=19/21). One participant (P8) preferred the password-based method, citing its simplicity, and one participant (P9) was torn between the two. The ``why'' behind the consistent preference for the passwordless method at scale is rooted in challenges with password management and sharing burdens which are explored in the next section.
 
+\FloatBarrier
 \subsection{Password Sharing Challenges}
 \label{sec:password-sharing-challenges}
 
