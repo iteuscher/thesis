@@ -48,19 +48,21 @@
 \setlength{\marginfigurewidth}{\dimexpr\textwidth+1.75in\relax}
 
 % Full-page landscape figure (matches cloud architecture layout)
-\newcommand{\landscapefigurepage}[3]{%
+% Usage: \landscapefigurepage{image}{LOF caption}{figure caption}{label}
+\newcommand{\landscapefigurepage}[4]{%
     \begin{landscape}
     \begin{figure}[p]
         \centering
         \includegraphics[width=\linewidth,height=0.92\paperheight,keepaspectratio]{#1}
-        \caption{#2}
-        \label{#3}
+        \caption[#2]{#3}
+        \label{#4}
     \end{figure}
     \end{landscape}%
 }
 
 % Full-page centered figure: lead-in text (figure title block) + image + caption
-\newcommand{\centeredfigurepage}[5][0.86\textwidth]{%
+% Usage: \centeredfigurepage[width]{lead-in}{image}{LOF caption}{figure caption}{label}
+\newcommand{\centeredfigurepage}[6][0.86\textwidth]{%
     \clearpage
     \begin{figure}[H]
         \centering
@@ -71,8 +73,8 @@
         \end{minipage}
         \par\vspace{1em}
         \includegraphics[width=#1,keepaspectratio]{#3}
-        \caption{#4}
-        \label{#5}
+        \caption[#4]{#5}
+        \label{#6}
         \vspace*{\fill}
     \end{figure}
 }
