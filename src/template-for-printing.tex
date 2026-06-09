@@ -85,33 +85,40 @@
 }
 
 % Portrait page with figure rotated 90 degrees (for print-friendly all-portrait PDFs)
-\newlength{\printrotatedfigurewidth}
-\newlength{\printrotatedfigureheight}
-\setlength{\printrotatedfigurewidth}{\dimexpr\textheight-2.15in\relax}
-\setlength{\printrotatedfigureheight}{0.86\textwidth}
+\newlength{\printfigwidth}
+\newlength{\printfigheight}
 
 % Shared layout: rotated figure + caption kept together on one portrait page
-\newcommand{\printrotatedfigurelayout}[4]{%
-    \par\vspace{0.15em}%
-    \vspace*{\fill}
+% Optional size: large (Fig.~5.1) or slight (Figs.~7.1--7.3)
+\newcommand{\printrotatedfigurelayout}[5][slight]{%
+    \def\printfigopt{#1}%
+    \def\printfiglarge{large}%
+    \ifx\printfigopt\printfiglarge
+        \setlength{\printfigwidth}{\dimexpr\textheight-0.8in\relax}%
+        \setlength{\printfigheight}{0.98\textwidth}%
+    \else
+        \setlength{\printfigwidth}{\dimexpr\textheight-1.05in\relax}%
+        \setlength{\printfigheight}{0.96\textwidth}%
+    \fi
+    \par\vspace{0.25em}%
     \noindent\begin{minipage}{\textwidth}
         \centering
         \rotatebox{90}{%
             \includegraphics[%
-                width=\printrotatedfigurewidth,%
-                height=\printrotatedfigureheight,%
-                keepaspectratio]{#1}%
+                width=\printfigwidth,%
+                height=\printfigheight,%
+                keepaspectratio]{#2}%
         }%
-        \par\vspace{0.25em}%
-        \captionof{figure}[#2]{#3}%
-        \label{#4}%
+        \par\vspace{0.2em}%
+        \captionof{figure}[#3]{#4}%
+        \label{#5}%
     \end{minipage}%
-    \vspace*{\fill}
+    \par\vspace{0.25em}%
 }
 
-% Usage: \landscapefigurepage[image height]{image}{LOF caption}{figure caption}{label}
-\newcommand{\landscapefigurepage}[5][0.78\textheight]{%
-    \printrotatedfigurelayout{#2}{#3}{#4}{#5}%
+% Usage: \landscapefigurepage[large|slight]{image}{LOF caption}{figure caption}{label}
+\newcommand{\landscapefigurepage}[5][slight]{%
+    \printrotatedfigurelayout[#1]{#2}{#3}{#4}{#5}%
 }
 
 % Appendix diagram: section title + rotated figure on one portrait page
@@ -119,7 +126,7 @@
 \newcommand{\landscapeappendixdiagram}[7][0.74\textheight]{%
     \section{#2}%
     \label{#3}%
-    \printrotatedfigurelayout{#4}{#5}{#6}{#7}%
+    \printrotatedfigurelayout[slight]{#4}{#5}{#6}{#7}%
 }
 
 % Full-page portrait figure with lead-in text (figure title block) + image + caption

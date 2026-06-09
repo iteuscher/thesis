@@ -79,11 +79,17 @@
 }
 
 % Full-page landscape figure (no float wrapper; reliable inside pdflscape)
-% Usage: \landscapefigurepage[image height]{image}{LOF caption}{figure caption}{label}
+% Usage: \landscapefigurepage[image height|large|slight]{image}{LOF caption}{figure caption}{label}
 \newcommand{\landscapefigurepage}[5][0.78\textheight]{%
+    \def\landscapefigopt{#1}%
+    \def\landscapefiglarge{large}%
+    \def\landscapefigslight{slight}%
+    \def\landscapefigheight{#1}%
+    \ifx\landscapefigopt\landscapefiglarge\def\landscapefigheight{0.84\textheight}\fi
+    \ifx\landscapefigopt\landscapefigslight\def\landscapefigheight{0.84\textheight}\fi
     \begin{landscape}%
     \centering
-    \includegraphics[width=\linewidth,height=#1,keepaspectratio]{#2}%
+    \includegraphics[width=\linewidth,height=\landscapefigheight,keepaspectratio]{#2}%
     \par\vspace{0.75em}%
     \captionof{figure}[#3]{#4}%
     \label{#5}%
