@@ -1,15 +1,15 @@
-﻿\begin{sidewaystable}[p]
+﻿\begin{udstable}[p]
 \centering
 \caption{Evaluation of Implemented System Against Design Requirements}
 \label{tab:uds-evaluation}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{0.98}
-\begin{adjustbox}{max width=\textwidth,max height=\dimexpr\textheight-6\baselineskip\relax,center}
-\begin{tabularx}{\textwidth}{
+{\udsevaluationtablesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.0}
+\begin{adjustbox}{max width=\udstablewidth,max height=\udstablemaxheight,center}
+\begin{tabularx}{\udstablewidth}{
     >{\bfseries\centering\arraybackslash}m{0.55cm}
-    >{\raggedright\arraybackslash}m{2.35cm}
-    >{\raggedright\arraybackslash}m{1.85cm}
+    >{\raggedright\arraybackslash}m{2.55cm}
+    >{\raggedright\arraybackslash}m{2.0cm}
     >{\raggedright\arraybackslash}X
 }
     \toprule
@@ -64,5 +64,5 @@
     
     \bottomrule
 \end{tabularx}
-\end{adjustbox}
-\end{sidewaystable}
+\end{adjustbox}}
+\end{udstable}

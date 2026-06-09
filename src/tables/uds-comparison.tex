@@ -1,12 +1,12 @@
-\begin{sidewaystable}[p]
+\begin{udscomparisontable}[p]
 \centering
 \caption{Comparison of Document Encryption Methods by Usability, Deployability, and Security Benefits}
 \label{tab:uds-comparison}
 \renewcommand{\multirowsetup}{\centering\arraybackslash}
-\renewcommand{\arraystretch}{1.08}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth,max height=\dimexpr\textheight-12\baselineskip\relax,center}
-\begin{tabular}{C{2cm}C{1.4cm}M{2cm}L{2.2cm}cccccGccccccGcccc}
+\renewcommand{\arraystretch}{1.12}
+{\udscomparisontablesize
+\begin{adjustbox}{max width=\udstablewidth,center}
+\begin{tabular}{C{2.15cm}C{1.5cm}M{2.15cm}L{2.4cm}cccccGccccccGcccc}
 
 \textbf{Auth. Type} &
 \textbf{Scope} &
@@ -59,11 +59,11 @@
 \noalign{\vskip 2pt}
 \noalign{\hrule height 0.6pt}
 \end{tabular}
-\end{adjustbox}
+\end{adjustbox}}
 
 \vspace{0.5em}
 {\footnotesize
 \udssymbol{\CIRCLE}~Satisfies\quad
 \udssymbol{\LEFTcircle}~Partially Satisfies\quad
 \udssymbol{\Circle}~Does Not Satisfy\par}
-\end{sidewaystable}
+\end{udscomparisontable}

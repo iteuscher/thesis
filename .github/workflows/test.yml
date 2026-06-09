@@ -22,7 +22,7 @@ jobs:
       - name: Check PDF Page Count
         run: |
           expected_pages=26
-          actual_pages=$(pdfinfo src/template.pdf | grep Pages | awk '{print $2}')
+          actual_pages=$(pdfinfo template.pdf | grep Pages | awk '{print $2}')
           if [ "$actual_pages" -ne "$expected_pages" ]; then
             echo "Error: PDF does not have the expected number of pages (expected $expected_pages, got $actual_pages)."
             exit 1
@@ -44,7 +44,7 @@ jobs:
       - name: Check PDF Page Count
         run: |
           expected_pages=40
-          actual_pages=$(pdfinfo src/template_twosided.pdf | grep Pages | awk '{print $2}')
+          actual_pages=$(pdfinfo template_twosided.pdf | grep Pages | awk '{print $2}')
           if [ "$actual_pages" -ne "$expected_pages" ]; then
             echo "Error: PDF does not have the expected number of pages (expected $expected_pages, got $actual_pages)."
             exit 1

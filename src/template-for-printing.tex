@@ -2,6 +2,9 @@
 % Class options are simple/fancy and phd.
 % Leave options blank for defaults.
 % Defaults are simple for document style, and masters for degree type.
+%
+% Print-oriented build: full-page figures use portrait orientation.
+% Build with: latexmk -pdf template-for-printing.tex
 
 % Allow inclusion of PDF figures generated with newer PDF versions (1.7).
 \pdfminorversion=7
@@ -27,6 +30,9 @@
 \usepackage{threeparttable}  % captioned tables with notes
 \usepackage{caption}           % \captionof for landscape tables without float wrappers
 \usepackage{pdflscape}       % landscape pages for wide tables
+\makeatletter
+\renewenvironment{landscape}{}{}% portrait figure pages; tables may still use sidewaystable
+\makeatother
 \usepackage{float}           % [H] float placement for screenshots
 \usepackage{placeins}        % \FloatBarrier to keep floats near text
 \usepackage{tikz}            % TikZ for the procedure diagram
@@ -47,62 +53,73 @@
 
 % Category column width for the UDS benefits table
 \newlength{\udscatwidth}
-\setlength{\udscatwidth}{2.5cm}
+\setlength{\udscatwidth}{2.25cm}
 
-% Landscape UDS table sizing (screen build)
+% UDS table sizing (print build)
 \newlength{\udstablewidth}
-\newcommand{\udstablemaxheight}{\dimexpr\textheight-1.5\baselineskip\relax}
+\newcommand{\udstablemaxheight}{\dimexpr\textheight-6\baselineskip\relax}
 \newcommand{\udsbenefitstablesize}{\footnotesize}
-\newcommand{\udscomparisontablesize}{\small}
-\newcommand{\udsevaluationtablesize}{\footnotesize}
+\newcommand{\udscomparisontablesize}{\footnotesize}
+\newcommand{\udsevaluationtablesize}{\scriptsize}
 
 % Width for figures/tables that extend into the side margin (fancy layout)
 \newlength{\marginfigurewidth}
 \setlength{\marginfigurewidth}{\dimexpr\textwidth+1.75in\relax}
 
-% Wide UDS tables on dedicated landscape pages (screen build)
+% Wide UDS tables on portrait pages (print build)
 \newenvironment{udstable}[1][p]{%
-    \begin{landscape}%
-    \setlength{\udstablewidth}{\linewidth}%
+    \setlength{\udstablewidth}{\textwidth}%
     \begin{table}[#1]%
     \centering
 }{%
     \end{table}%
-    \end{landscape}%
 }
 
-% Table 4.2: same landscape-page treatment as other wide UDS tables
+% Table 4.2: portrait page with table rotated 90 degrees (larger than compressing in portrait)
 \newenvironment{udscomparisontable}[1][p]{%
-    \begin{udstable}[#1]%
+    \begin{sidewaystable}[#1]%
+    \setlength{\udstablewidth}{\textwidth}%
+    \centering
 }{%
-    \end{udstable}%
+    \end{sidewaystable}%
 }
 
-% Full-page landscape figure (no float wrapper; reliable inside pdflscape)
+% Portrait page with figure rotated 90 degrees (for print-friendly all-portrait PDFs)
+\newlength{\printrotatedfigurewidth}
+\newlength{\printrotatedfigureheight}
+\setlength{\printrotatedfigurewidth}{\dimexpr\textheight-2.15in\relax}
+\setlength{\printrotatedfigureheight}{0.86\textwidth}
+
+% Shared layout: rotated figure + caption kept together on one portrait page
+\newcommand{\printrotatedfigurelayout}[4]{%
+    \par\vspace{0.15em}%
+    \vspace*{\fill}
+    \noindent\begin{minipage}{\textwidth}
+        \centering
+        \rotatebox{90}{%
+            \includegraphics[%
+                width=\printrotatedfigurewidth,%
+                height=\printrotatedfigureheight,%
+                keepaspectratio]{#1}%
+        }%
+        \par\vspace{0.25em}%
+        \captionof{figure}[#2]{#3}%
+        \label{#4}%
+    \end{minipage}%
+    \vspace*{\fill}
+}
+
 % Usage: \landscapefigurepage[image height]{image}{LOF caption}{figure caption}{label}
 \newcommand{\landscapefigurepage}[5][0.78\textheight]{%
-    \begin{landscape}%
-    \centering
-    \includegraphics[width=\linewidth,height=#1,keepaspectratio]{#2}%
-    \par\vspace{0.75em}%
-    \captionof{figure}[#3]{#4}%
-    \label{#5}%
-    \end{landscape}%
+    \printrotatedfigurelayout{#2}{#3}{#4}{#5}%
 }
 
-% Appendix landscape diagram: section title + figure on one page (inside pdflscape)
+% Appendix diagram: section title + rotated figure on one portrait page
 % Usage: \landscapeappendixdiagram[image height]{section title}{section label}{image}{LOF caption}{figure caption}{figure label}
 \newcommand{\landscapeappendixdiagram}[7][0.74\textheight]{%
     \section{#2}%
     \label{#3}%
-    \par\vspace{0.25em}%
-    \noindent\begin{minipage}{\linewidth}
-    \centering
-    \includegraphics[width=\linewidth,height=#1,keepaspectratio]{#4}%
-    \par\vspace{0.35em}%
-    \captionof{figure}[#5]{#6}%
-    \label{#7}%
-    \end{minipage}%
+    \printrotatedfigurelayout{#4}{#5}{#6}{#7}%
 }
 
 % Full-page portrait figure with lead-in text (figure title block) + image + caption
@@ -181,7 +198,7 @@
 
 % PDF document metadata (visible in PDF properties)
 \hypersetup{
-    pdftitle={Toward Passwordless Document Encryption},
+    pdftitle={Toward Passwordless Document Encryption (print)},
     pdfauthor={Isaac Henry Teuscher},
     pdfsubject={Master's thesis, Brigham Young University},
     pdfkeywords={document encryption, passwordless authentication, FIDO2, WebAuthn, passkeys, PRF extension, usable security}
