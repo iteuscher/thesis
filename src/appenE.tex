@@ -1,7 +1,7 @@
 \chapter{Supplementary System Diagrams}
 \label{ap:system-diagrams}
 
-This appendix contains supplementary architectural diagrams that complement the system design discussion in Chapter~\ref{ch:system-design}.
+This appendix contains supplementary architectural diagrams that complement the system design discussion in Chapter~\ref{ch:system-design}, and screenshots of the Adobe Acrobat online password-protection flow used as the password-based comparison condition in the user study (Chapter~\ref{ch:user-study}).
 
 \begin{landscape}
 \landscapeappendixdiagram[0.80\textheight]{Basic Offline Architecture}{sec:diagram-offline}{figures/offline-architecture.pdf}{Basic offline architecture diagram.}{Basic offline architecture of the passwordless document encryption system. All encryption, key derivation, and file handling occurs locally in the browser using WebAuthn PRF; no server-side state or session data is required.}{fig:offline-arch}
@@ -14,3 +14,18 @@ This appendix contains supplementary architectural diagrams that complement the 
 
 \landscapeappendixdiagram[0.70\textheight]{Credential Creation Sequence Diagram}{sec:diagram-credential-creation}{figures/credential-creation-sequence.png}{Credential creation sequence diagram.}{Sequence diagram showing the steps performed across the user, browser, authenticator, and relying party during WebAuthn PRF passkey credential creation and the subsequent derivation of the file encryption key.}{fig:credential-creation}
 \end{landscape}
+
+\section{Adobe Acrobat Comparison Condition}
+\label{sec:adobe-interface}
+
+\begingroup
+\centering
+\includegraphics[width=0.88\linewidth,height=0.26\textheight,keepaspectratio]{adobe-interface-1.png}\par\smallskip
+\textbf{(a)}\par\medskip
+\includegraphics[width=0.88\linewidth,height=0.26\textheight,keepaspectratio]{adobe-interface-2.png}\par\smallskip
+\textbf{(b)}\par\medskip
+\includegraphics[width=0.88\linewidth,height=0.26\textheight,keepaspectratio]{adobe-interface-3.png}\par\smallskip
+\textbf{(c)}\par\medskip
+\captionof{figure}[Adobe Acrobat online password-protection flow.]{The Adobe Acrobat online password-protection flow used as the password-based comparison condition: (a)~the landing page for selecting a file, (b)~setting and confirming the password, and (c)~the completed protected PDF ready for download.}
+\label{fig:adobe-interface}
+\endgroup
