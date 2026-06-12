@@ -29,9 +29,35 @@
 \usepackage{pdflscape}       % landscape pages for wide tables
 \usepackage{float}           % [H] float placement for screenshots
 \usepackage{placeins}        % \FloatBarrier to keep floats near text
+\usepackage{eso-pic}         % absolute page-number placement on landscape pages
 \usepackage{tikz}            % TikZ for the procedure diagram
 \usetikzlibrary{positioning, calc, decorations.pathreplacing}
 \usepackage{url}             % \url{}
+
+% Landscape page numbers: lscape rotates the shipped page, so memoir footers land on
+% the wrong edge. Suppress the landscape footer and paint the number on the physical
+% page with eso-pic (avoids overlap with rotated table/figure content).
+\makepagestyle{byulandscape}
+\makeoddhead{byulandscape}{}{}{}
+\makeevenhead{byulandscape}{}{}{}
+\makeoddfoot{byulandscape}{}{}{}
+\makeevenfoot{byulandscape}{}{}{}
+\newlength{\byulandscapepagex}
+\newlength{\byulandscapepagey}
+\setlength{\byulandscapepagex}{\dimexpr\paperwidth-2.35in\relax}
+\setlength{\byulandscapepagey}{\dimexpr-0.5\paperheight-38pt\relax}
+\AddToHook{shipout/foreground}{%
+  \ifdim\textwidth=\linewidth\relax
+  \else
+    \AtPageUpperLeft{%
+      \put(\LenToUnit{\byulandscapepagex},\LenToUnit{\byulandscapepagey}){%
+        \makebox(0,0){\rotatebox{90}{\normalfont\small\slshape\normalcolor\thepage}}%
+      }%
+    }%
+  \fi
+}
+\apptocmd{\landscape}{\pagestyle{byulandscape}}{}{}
+\apptocmd{\endlandscape}{\pagestyle{byu}}{}{}
 
 % Make tabularx X columns vertically centered by default
 \renewcommand{\tabularxcolumn}[1]{m{#1}}
@@ -51,7 +77,13 @@
 
 % Landscape UDS table sizing (screen build)
 \newlength{\udstablewidth}
-\newcommand{\udstablemaxheight}{\dimexpr\textheight-1.5\baselineskip\relax}
+\newcommand{\udstablecaptionheight}{5.5\baselineskip}
+\newcommand{\udstablefootreserve}{4.5\baselineskip}
+\newcommand{\udstablelegendheight}{3.5\baselineskip}
+\newcommand{\udstablemaxheight}{%
+  \dimexpr\textheight-\udstablecaptionheight-\udstablefootreserve\relax}
+\newcommand{\udscomparisontablemaxheight}{%
+  \dimexpr\textheight-\udstablecaptionheight-\udstablefootreserve-\udstablelegendheight\relax}
 \newcommand{\udsbenefitstablesize}{\footnotesize}
 \newcommand{\udscomparisontablesize}{\small}
 \newcommand{\udsevaluationtablesize}{\footnotesize}
@@ -60,20 +92,27 @@
 \newlength{\marginfigurewidth}
 \setlength{\marginfigurewidth}{\dimexpr\textwidth+1.75in\relax}
 
-% Wide UDS tables on dedicated landscape pages (screen build)
-\newenvironment{udstable}[1][p]{%
+% Wide UDS tables on dedicated landscape pages (screen build).
+% Caption above table (BYU convention). Do not wrap in minipage — inside lscape
+% \textheight is only ~361pt, so an unbreakable minipage taller than that leaves
+% a blank landscape page before the table.
+\newcommand{\udstablecaption}[2]{%
+  \captionof{table}{#1}%
+  \label{#2}%
+  \par\vspace{0.35em}%
+  \nopagebreak[4]%
+}
+\newenvironment{udstable}{%
     \begin{landscape}%
     \setlength{\udstablewidth}{\linewidth}%
-    \begin{table}[#1]%
     \centering
 }{%
-    \end{table}%
     \end{landscape}%
 }
 
 % Table 4.2: same landscape-page treatment as other wide UDS tables
-\newenvironment{udscomparisontable}[1][p]{%
-    \begin{udstable}[#1]%
+\newenvironment{udscomparisontable}{%
+    \begin{udstable}%
 }{%
     \end{udstable}%
 }

@@ -254,9 +254,11 @@
 %---------------- header and footer -----------------
 %\setlength{\headwidth}{\textwidth}
 
-% create page style for opening pages of chapter that puts
-% page number in the lower center of the page
+% create page style for chapter-opening and front-matter pages:
+% page number only, bottom center (consistent with body pages)
 \makepagestyle{byuchaptertitle}
+\makeoddhead{byuchaptertitle}{}{}{}
+\makeevenhead{byuchaptertitle}{}{}{}
 \makeoddfoot{byuchaptertitle}{}{\normalfont\small\slshape\thepage}{}
 \makeevenfoot{byuchaptertitle}{}{\normalfont\small\slshape\thepage}{}
 
@@ -282,26 +284,21 @@
 
 % Set up headers and footers for one-sided (default) or two-sided pagination
 \if@twoside
-	% two-sided pagination
-	% Place page number in top outer corner of all pages except chapter title pages
-	% Place chapter title in top inner corner of all pages except chapter title pages
+	% two-sided pagination: page number only, bottom center
 	\makeoddhead{byu}%
-	    {\normalfont\small\slshape\leftmark}{}{\normalfont\small\slshape\thepage}
+	    {}{}{}
 	\makeevenhead{byu}%
-	    {\normalfont\small\slshape\thepage}{}{\normalfont\small\slshape\leftmark}
-	\makeoddfoot{byu}%
 	    {}{}{}
+	\makeoddfoot{byu}%
+	    {}{\normalfont\small\slshape\thepage}{}
 	\makeevenfoot{byu}%
-	    {}{}{}
+	    {}{\normalfont\small\slshape\thepage}{}
 \else
-	% one-sided pagination (default)
-	% Place page number in top right corner of all pages except chapter title pages
-	% Place chapter title in top left corner of all pages except chapter title pages
+	% one-sided pagination (default): page number only, bottom center
 	\makeoddhead{byu}%
-		{\normalfont\small\slshape\leftmark}{}{\normalfont\small\slshape\thepage}	% include chapter title
-	%    {}{}{\normalfont\small\slshape\thepage}	% don't include chapter title
+		{}{}{}
 	\makeoddfoot{byu}%
-	    {}{}{}
+	    {}{\normalfont\small\slshape\thepage}{}
 \fi
 
 \pagestyle{byu}
@@ -313,6 +310,7 @@
 %\RequirePackage[colorlinks,bookmarks,bookmarksnumbered,allcolors=black,breaklinks]{hyperref}	   % make hyperlinks black
 %\RequirePackage[colorlinks,bookmarks,bookmarksnumbered,allcolors=mediumgray,breaklinks]{hyperref}	   % make hyperlinks mediumgray
 \RequirePackage[colorlinks,bookmarks,bookmarksnumbered,hidelinks,breaklinks]{hyperref}	   % make hyperlinks same color as surrounding text
+\hypersetup{pdfpagemode=UseNone}  % BYU ETD: open PDF to page view, not bookmarks panel
 
 % hack to suppress annoying hyperref warnings related to \listoffigures, \listoftables, and \printnomenclature
 \pdfstringdefDisableCommands{%
