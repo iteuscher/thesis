@@ -27,37 +27,53 @@
 \usepackage{threeparttable}  % captioned tables with notes
 \usepackage{caption}           % \captionof for landscape tables without float wrappers
 \usepackage{pdflscape}       % landscape pages for wide tables
+\usepackage{etoolbox}        % \apptocmd for landscape page-number hook
 \usepackage{float}           % [H] float placement for screenshots
 \usepackage{placeins}        % \FloatBarrier to keep floats near text
-\usepackage{eso-pic}         % absolute page-number placement on landscape pages
 \usepackage{tikz}            % TikZ for the procedure diagram
 \usetikzlibrary{positioning, calc, decorations.pathreplacing}
 \usepackage{url}             % \url{}
 
-% Landscape page numbers: lscape rotates the shipped page, so memoir footers land on
-% the wrong edge. Suppress the landscape footer and paint the number on the physical
-% page with eso-pic (avoids overlap with rotated table/figure content).
+% Landscape page numbers: empty the landscape footer and paint via shipout/foreground
+% inside the rotated lscape box. Use a landscape flag cleared at \end{landscape}
+% (dimension checks at shipout see portrait sizes and skip the number).
 \makepagestyle{byulandscape}
 \makeoddhead{byulandscape}{}{}{}
 \makeevenhead{byulandscape}{}{}{}
 \makeoddfoot{byulandscape}{}{}{}
 \makeevenfoot{byulandscape}{}{}{}
-\newlength{\byulandscapepagex}
-\newlength{\byulandscapepagey}
-\setlength{\byulandscapepagex}{\dimexpr\paperwidth-2.35in\relax}
-\setlength{\byulandscapepagey}{\dimexpr-0.5\paperheight-38pt\relax}
-\AddToHook{shipout/foreground}{%
-  \ifdim\textwidth=\linewidth\relax
-  \else
-    \AtPageUpperLeft{%
-      \put(\LenToUnit{\byulandscapepagex},\LenToUnit{\byulandscapepagey}){%
-        \makebox(0,0){\rotatebox{90}{\normalfont\small\slshape\normalcolor\thepage}}%
-      }%
-    }%
+\makeatletter
+\newif\ifbyulandscapepage
+\newlength{\byulandscapehfoot}
+\newlength{\byulandscapevfoot}
+\newcommand{\byulandscapepagenumber}{%
+  \ifbyulandscapepage
+    \setlength{\byulandscapehfoot}{-\topmargin}%
+    \addtolength{\byulandscapehfoot}{-\headheight}%
+    \addtolength{\byulandscapehfoot}{-\headsep}%
+    \addtolength{\byulandscapehfoot}{-.5\linewidth}%
+    % Positive hfoot nudge = right; negative = left.
+    \addtolength{\byulandscapehfoot}{-72pt}%
+    \setlength{\byulandscapevfoot}{\oddsidemargin}%
+    \addtolength{\byulandscapevfoot}{\textheight}%
+    \addtolength{\byulandscapevfoot}{\footskip}%
+    \addtolength{\byulandscapevfoot}{186pt}%
+    \begingroup\normalfont\small\slshape\normalcolor
+    \raisebox{\byulandscapehfoot}[0pt][0pt]{%
+      \rlap{\hspace{\byulandscapevfoot}\rotatebox[origin=cB]{90}{\thepage}}}%
+    \endgroup
   \fi
 }
-\apptocmd{\landscape}{\pagestyle{byulandscape}}{}{}
-\apptocmd{\endlandscape}{\pagestyle{byu}}{}{}
+\AddToHook{shipout/foreground}{\byulandscapepagenumber}
+\apptocmd{\landscape}{%
+  \global\byulandscapepagetrue
+  \pagestyle{byulandscape}%
+}{}{}
+\apptocmd{\endlandscape}{%
+  \global\byulandscapepagefalse
+  \pagestyle{byu}%
+}{}{}
+\makeatother
 
 % Make tabularx X columns vertically centered by default
 \renewcommand{\tabularxcolumn}[1]{m{#1}}
@@ -77,11 +93,15 @@
 
 % Landscape UDS table sizing (screen build)
 \newlength{\udstablewidth}
-\newcommand{\udstablecaptionheight}{5.5\baselineskip}
-\newcommand{\udstablefootreserve}{4.5\baselineskip}
+\newcommand{\udstablecaptionheight}{4\baselineskip}
+\newcommand{\udstablefootreserve}{3\baselineskip}
 \newcommand{\udstablelegendheight}{3.5\baselineskip}
 \newcommand{\udstablemaxheight}{%
   \dimexpr\textheight-\udstablecaptionheight-\udstablefootreserve\relax}
+% Tall tables (4.1, 5.1): caption is outside this adjustbox, so give the table
+% nearly all remaining page height — one scaling pass only, no outer shrink.
+\newcommand{\udsbenefitsmaxheight}{%
+  \dimexpr\textheight-\footskip-\udstablecaptionheight\relax}
 \newcommand{\udscomparisontablemaxheight}{%
   \dimexpr\textheight-\udstablecaptionheight-\udstablefootreserve-\udstablelegendheight\relax}
 \newcommand{\udsbenefitstablesize}{\footnotesize}
@@ -93,29 +113,39 @@
 \setlength{\marginfigurewidth}{\dimexpr\textwidth+1.75in\relax}
 
 % Wide UDS tables on dedicated landscape pages (screen build).
-% Caption above table (BYU convention). Do not wrap in minipage — inside lscape
-% \textheight is only ~361pt, so an unbreakable minipage taller than that leaves
-% a blank landscape page before the table.
+% Caption above table (BYU convention). Savebox keeps title + table on one page;
+% inner adjustbox max height is the only scaler. \enlargethispage absorbs any
+% sub-baseline overflow so LaTeX does not ship a blank page before the table.
+\makeatletter
+\newbox\uds@tablebox
+\newdimen\uds@tablepagegoal
 \newcommand{\udstablecaption}[2]{%
   \captionof{table}{#1}%
   \label{#2}%
-  \par\vspace{0.35em}%
-  \nopagebreak[4]%
+  \par\vspace{0.2em}%
 }
 \newenvironment{udstable}{%
-    \begin{landscape}%
-    \setlength{\udstablewidth}{\linewidth}%
-    \centering
+  \begin{landscape}%
+  \setlength{\udstablewidth}{\linewidth}%
+  \global\setbox\uds@tablebox\vbox\bgroup\centering
 }{%
-    \end{landscape}%
+  \egroup
+  \uds@tablepagegoal=\dimexpr\textheight-\footskip\relax
+  \dimen@=\ht\uds@tablebox
+  \advance\dimen@ by \dp\uds@tablebox
+  \advance\dimen@ by -\uds@tablepagegoal\relax
+  \ifdim\dimen@>0pt\relax
+    \null\enlargethispage{\dimen@}%
+  \fi
+  \par\noindent\centering\box\uds@tablebox
+  \end{landscape}%
 }
-
-% Table 4.2: same landscape-page treatment as other wide UDS tables
 \newenvironment{udscomparisontable}{%
-    \begin{udstable}%
+  \begin{udstable}%
 }{%
-    \end{udstable}%
+  \end{udstable}%
 }
+\makeatother
 
 % Full-page landscape figure (no float wrapper; reliable inside pdflscape)
 % Usage: \landscapefigurepage[image height|large|slight]{image}{LOF caption}{figure caption}{label}
@@ -124,8 +154,8 @@
     \def\landscapefiglarge{large}%
     \def\landscapefigslight{slight}%
     \def\landscapefigheight{#1}%
-    \ifx\landscapefigopt\landscapefiglarge\def\landscapefigheight{0.84\textheight}\fi
-    \ifx\landscapefigopt\landscapefigslight\def\landscapefigheight{0.84\textheight}\fi
+    \ifx\landscapefigopt\landscapefiglarge\def\landscapefigheight{0.80\textheight}\fi
+    \ifx\landscapefigopt\landscapefigslight\def\landscapefigheight{0.80\textheight}\fi
     \begin{landscape}%
     \centering
     \includegraphics[width=\linewidth,height=\landscapefigheight,keepaspectratio]{#2}%
@@ -141,7 +171,7 @@
     \section{#2}%
     \label{#3}%
     \par\vspace{0.25em}%
-    \noindent\begin{minipage}{\linewidth}
+    \noindent\begin{minipage}{\linewidth}%
     \centering
     \includegraphics[width=\linewidth,height=#1,keepaspectratio]{#4}%
     \par\vspace{0.35em}%

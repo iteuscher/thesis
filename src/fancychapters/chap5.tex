@@ -137,9 +137,7 @@ The system is implemented as a Next.js\texttrademark{} web application using Rea
 
 \paragraph{Technology Stack.} The implementation uses Next.js 16 as the application framework, the \texttt{age-encryption} npm package (typage) for all encryption operations, IndexedDB via localForage for local credential storage, JSZip for bundle creation and parsing, and Playwright\texttrademark{} for end-to-end testing. The application requires a modern browser with WebAuthn support. PRF is supported on macOS, iOS, Android, and Chrome OS platform authenticators, as well as YubiKey 5+ hardware tokens; Windows Hello added hmac-secret support in February 2026. A PBKDF2 fallback mode is provided for platforms without PRF support. The code was developed with assistance from Claude Code (Opus 4.6 AI model).
 
-\FloatBarrier
 \input{tables/uds-evaluation}
-\FloatBarrier
 
 \section{Evaluation Against Requirements}
 \label{sec:eval-requirements}
