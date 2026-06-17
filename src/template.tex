@@ -180,24 +180,48 @@
     \end{minipage}%
 }
 
-% Full-page portrait figure with lead-in text (figure title block) + image + caption
-% Usage: \centeredfigurepage[width]{lead-in}{image}{LOF caption}{figure caption}{label}
-\newcommand{\centeredfigurepage}[6][0.86\textwidth]{%
-    \clearpage
-    \begin{figure}[H]
-        \centering
-        \vspace*{\fill}
-        \begin{minipage}{0.9\textwidth}
-            \centering
-            #2
-        \end{minipage}
-        \par\vspace{1em}
-        \includegraphics[width=#1,keepaspectratio]{#3}
-        \caption[#4]{#5}
-        \label{#6}
-        \vspace*{\fill}
-    \end{figure}
+% Portrait UI figures with lead-in text (figure title block) + image + caption.
+% centeredfigurebottom — Fig. 5.2 at bottom of preceding text page (float [b]).
+% centeredfigurepage — new page, block vertically centered (Figs. 5.3–5.8).
+% centeredfigurepairpage — one page, two stacked centered figures (Figs. 5.9–5.10).
+\makeatletter
+\newcommand{\centeredfigure@block}[6]{%
+  \begin{minipage}{0.9\textwidth}%
+    \centering
+    #2%
+    \par\vspace{0.75em}%
+    \includegraphics[width=#1,keepaspectratio]{#3}%
+    \par\vspace{0.35em}%
+    \captionof{figure}[#4]{#5}%
+    \label{#6}%
+  \end{minipage}%
 }
+\newcommand{\centeredfigurebottom}[6][0.80\textwidth]{%
+  \par\vfil
+  \noindent\centerline{\centeredfigure@block{#1}{#2}{#3}{#4}{#5}{#6}}%
+  \par\vspace{0.5\baselineskip}%
+}
+\newcommand{\centeredfigurepage}[6][0.86\textwidth]{%
+  \clearpage
+  \null
+  \vbox to \dimexpr\textheight-\baselineskip\relax{%
+    \vfil
+    \noindent\centerline{\centeredfigure@block{#1}{#2}{#3}{#4}{#5}{#6}}%
+    \vfil
+  }%
+}
+\newenvironment{centeredfigurepairpage}{%
+  \clearpage
+  \null
+  \vbox to \dimexpr\textheight-\baselineskip\relax\bgroup
+  \vfil
+  \noindent\begin{minipage}{\textwidth}\centering
+}{%
+  \end{minipage}%
+  \vfil\egroup
+}
+\newcommand{\centeredfigureblock}{\centeredfigure@block}
+\makeatother
 
 % --- Placeholder macro for figures whose source file is not yet supplied ---
 % Renders a clearly labeled grey TODO box at the requested width.

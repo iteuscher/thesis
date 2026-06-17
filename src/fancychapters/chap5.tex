@@ -89,7 +89,7 @@ The share access link flow (Figure~\ref{fig:share-access-link}) addresses the sc
 
 The system is implemented as a Next.js\texttrademark{} web application using React\texttrademark{} 19 and TypeScript, with age encryption provided by the typage library, credential storage in IndexedDB, and an optional Supabase\texttrademark{} backend for link sharing. The complete source code is available as an open-source repository~\cite{docprotect_repo}. This section walks through the implementation organized by user-facing workflow steps, corresponding to the guided workflow presented in the application interface.
 
-\centeredfigurepage[0.88\textwidth]{%
+\centeredfigurebottom[0.76\textwidth]{%
     \textbf{File Upload.}\par\smallskip
     The application presents a single interface for both encryption and decryption (Figure~\ref{fig:ui-upload}). The user uploads any file to encrypt it, or uploads a \texttt{.rico} file to decrypt it. The system detects the file type automatically and adjusts the workflow accordingly: encryption proceeds through a five-step flow (Upload, Identity, Recipients, Share, Done) while decryption uses a shortened three-step flow (Upload, Identity, Done).%
 }{figures/ui-upload.png}{File upload interface of the application.}{File upload interface of the application.}{fig:ui-upload}
@@ -123,21 +123,21 @@ The system is implemented as a Next.js\texttrademark{} web application using Rea
     When a \texttt{.rico} file is uploaded, the interface presents the decryption path (Figure~\ref{fig:ui-decrypt}). The user selects a stored credential or uses their password manager's passkey picker, then clicks ``Decrypt File.'' The system parses the bundle, extracts the manifest and encrypted payload, triggers a WebAuthn ceremony to derive the decryption key via PRF, and presents the decrypted file for download.%
 }{figures/ui-decrypt.png}{Decryption identity step.}{Decryption identity step with decrypt file action.}{fig:ui-decrypt}
 
-\centeredfigurepage[0.88\textwidth]{%
+\begin{centeredfigurepairpage}
+\centeredfigureblock{0.76\textwidth}{%
     \textbf{Settings.}\par\smallskip
     A settings panel (Figure~\ref{fig:ui-settings}) allows the user to select between three encryption algorithms: WebAuthn Passkey (PRF) as the default, Post-Quantum Hybrid (ML-KEM-768 + X25519), or Classic (X25519). This panel is collapsed by default.%
 }{figures/ui-settings.png}{Settings panel with encryption algorithm selection.}{Settings panel with encryption algorithm selection.}{fig:ui-settings}
-
-\centeredfigurepage[0.88\textwidth]{%
+\par\vspace{2\baselineskip}
+\centeredfigureblock{0.76\textwidth}{%
     \textbf{Technical Information.}\par\smallskip
     An expandable ``Technical Info'' panel (Figure~\ref{fig:ui-techinfo}) displays the current encryption algorithm setting, PRF support status for the platform, stored credentials with their type and PRF capability, and the current workflow state. This panel was included for transparency during the user study and for debugging during development.%
 }{figures/ui-techinfo.png}{Technical info panel.}{Technical info panel for transparency and debugging.}{fig:ui-techinfo}
+\end{centeredfigurepairpage}
 
 \paragraph{Bundle Format.} The \texttt{.rico} bundle format is a ZIP archive containing two files: \texttt{manifest.json}, which stores file metadata, encryption algorithm, recipient list, and an OpenTDF-inspired policy object with ABAC scaffolding (see Section~\ref{sec:opentdf}); and \texttt{0.payload}, which contains the age-encrypted binary data. The manifest tracks the encryption algorithm used (\texttt{age}, \texttt{age-pq}, \texttt{age-x25519}, or \texttt{age-fallback}), enabling the system to select the correct decryption path automatically.
 
 \paragraph{Technology Stack.} The implementation uses Next.js 16 as the application framework, the \texttt{age-encryption} npm package (typage) for all encryption operations, IndexedDB via localForage for local credential storage, JSZip for bundle creation and parsing, and Playwright\texttrademark{} for end-to-end testing. The application requires a modern browser with WebAuthn support. PRF is supported on macOS, iOS, Android, and Chrome OS platform authenticators, as well as YubiKey 5+ hardware tokens; Windows Hello added hmac-secret support in February 2026. A PBKDF2 fallback mode is provided for platforms without PRF support. The code was developed with assistance from Claude Code (Opus 4.6 AI model).
-
-\input{tables/uds-evaluation}
 
 \section{Evaluation Against Requirements}
 \label{sec:eval-requirements}
@@ -146,7 +146,11 @@ This section evaluates the implemented system against the 15 design requirements
 
 The system in its current state fully satisfies 10 of the 15 benefits, partially satisfies 4, and does not satisfy 1 (\emph{D4 Mature}). The four partial ratings reflect current state constraints rather than architectural limitations. Two partial ratings (\emph{U5 Seamless-Sharing} and \emph{D6 Guest-Friendly}) come from the proof-of-concept nature of the research reflecting the scoping decision to prioritize the core encryption workflow over the full access management feature set. These benefits could be fully satisfied with additional development. \emph{D3 Compatible} reflects the current state of PRF platform support which is maturing rapidly. \emph{U4 Easy-Recovery-from-Loss} depends on the user's choice of authenticator type and is rated as partial since it maintains the tradeoff decision between device-bound and synced passkeys.
 
-\paragraph{Addressing the FIDO2 Gaps.} As discussed in Sections~\ref{sec:fido2-evals} and~\ref{sec:eval-passwordless}, Lyastani et al.~\cite{lyastani_fido2_2020} identified four remaining gaps when applying FIDO2 hardware tokens to the Bonneau framework: Nothing-to-Carry, Easy-Recovery-from-Loss, Server-Compatible, and Resilience-to-Theft. B\"uttner et al.~\cite{buttner_passkey_2025} found that synced passkeys address portability and recovery but introduce third-party trust in the passkey provider. The designed system addresses these gaps by supporting both authenticator types. Synced passkeys provide Nothing-to-Carry (the credential is available on any device with the passkey provider), Easy-Recovery-from-Loss (backup and restore through the provider), and broader compatibility. Hardware-bound credentials provide no trusted third party (Resilient-to-Third-Party-Leak) and tamper resistance. By not mandating a single authenticator type, the system allows users to select the tradeoff appropriate to their threat model.
+\paragraph{Addressing the FIDO2 Gaps.} As discussed in Sections~\ref{sec:fido2-evals} and~\ref{sec:eval-passwordless}, Lyastani et al.~\cite{lyastani_fido2_2020} identified four remaining gaps when applying FIDO2 hardware tokens to the Bonneau framework: Nothing-to-Carry, Easy-Recovery-from-Loss, Server-Compatible, and Resilience-to-Theft. B\"uttner et al.~\cite{buttner_passkey_2025} found that synced passkeys address portability and recovery but introduce third-party trust in the passkey provider. The designed system addresses these gaps by supporting both authenticator types. Synced passkeys provide Nothing-to-Carry (the credential is available on any device with the passkey provider), Easy-Recovery-from-Loss
+
+\input{tables/uds-evaluation}
+
+\noindent(backup and restore through the provider), and broader compatibility. Hardware-bound credentials provide no trusted third party (Resilient-to-Third-Party-Leak) and tamper resistance. By not mandating a single authenticator type, the system allows users to select the tradeoff appropriate to their threat model.
 
 \paragraph{Threat Model Coverage.} Evaluating against the adversary threat model from Section~\ref{sec:threat-summary}, the system counters each identified threat. Bulk server-side file access yields only encrypted bundles, each with a unique key (\emph{S4 Granular-Protection}). Brute-force cracking post-exfiltration is not feasible because keys are derived from authenticator secrets, not passwords (\emph{S2 Resilient-to-Guessing}). Unauthorized redistribution is constrained by recipient-bound encryption where only designated identities can unwrap the file key (\emph{S3 Resilient-to-Third-Party-Leak}). Server compromise exposes no key material because all key derivation occurs client-side (\emph{S3 Resilient-to-Third-Party-Leak}).
 
