@@ -114,22 +114,3 @@
 % Metadata                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hypersetup{pdftitle={Toward Passwordless Document Encryption (print)}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Black text, so only real figures bill as color                        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BYU Print & Mail bills per printed side, and a side counts as color if it
-% carries any color at all. The class tints chapter and section headings,
-% caption labels, and the ToC/LoF/LoT titles royal blue, which put 84
-% otherwise black-and-white pages on the color rate (~$0.31 each) for a few
-% hundred blue pixels.
-%
-% Redefining the brand colors is enough: the class always reaches them
-% through these names (\colorchapnum, \colorsectitle, \captionnamefont,
-% algorithm comments), and no chapter, table, or TikZ figure in this thesis
-% sets a color of its own. Pages with actual color figures or screenshots
-% are untouched and still print in color. The class defines black as
-% HTML 111111, which is neutral gray and bills as black-and-white.
-\colorlet{royal}{black}
-\colorlet{primary}{black}
-\colorlet{navy}{black}
