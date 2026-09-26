@@ -24,7 +24,9 @@ inputs at the end of its preamble when that flag is set:
   Table 4.2 are rotated in place instead), and
 - the matplotlib plots are swapped for outlined copies in `src/print/figures/`
   (see `src/print/README.md`), so BYU Print & Mail's preflight finds no font
-  named Arial.
+  named Arial, and
+- headings and caption labels print black instead of royal blue, so only pages
+  with real color figures bill at the color rate (22 pages instead of 104).
 
 Both builds must have every font embedded — check with
 `pdffonts thesis-for-printing.pdf`; the `emb` column must read `yes` for every
